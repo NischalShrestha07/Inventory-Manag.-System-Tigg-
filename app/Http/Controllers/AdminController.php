@@ -26,6 +26,22 @@ class AdminController extends Controller
     {
         return view('admin.login');
     }
+    public function uom()
+    {
+        return view('admin.uom.index');
+    }
+    public function variant_product()
+    {
+        return view('admin.variant_products.index');
+    }
+    public function variant_attribute()
+    {
+        return view('admin.variant_attributes.index');
+    }
+    public function product_category()
+    {
+        return view('admin.product_category.index');
+    }
     public function products()
     {
         return view('admin.products.index');

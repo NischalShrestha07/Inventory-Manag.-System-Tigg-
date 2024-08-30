@@ -223,7 +223,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('admin.var_products') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Varient Products</p>
                                     </a>
@@ -232,7 +232,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('admin.var_attributes') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Variant Attributes</p>
                                     </a>
@@ -241,7 +241,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('admin.var_products') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Products</p>
                                     </a>
@@ -250,7 +250,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('admin.var_products') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Product Category</p>
                                     </a>
@@ -259,7 +259,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('admin.uom') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Units Of Measurement</p>
                                     </a>
@@ -523,7 +523,7 @@
         @yield('content')
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io/">Inventory Management</a>.</strong>
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io/">Inventory Management System</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.2.0
@@ -541,13 +541,13 @@
 
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 
-    <script>
+    {{-- <script>
         $.widget.bridge('uibutton', $.ui.button)
-    </script>
+    </script> --}}
 
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="plugins/chart.js/Chart.min.js"></script>
+    {{-- <script src="plugins/chart.js/Chart.min.js"></script> --}}
 
     <script src="plugins/sparklines/sparkline.js"></script>
 
