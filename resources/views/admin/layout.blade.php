@@ -547,7 +547,7 @@
 
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    {{-- <script src="plugins/chart.js/Chart.min.js"></script> --}}
+    <script src="plugins/chart.js/Chart.min.js"></script>
 
     <script src="plugins/sparklines/sparkline.js"></script>
 

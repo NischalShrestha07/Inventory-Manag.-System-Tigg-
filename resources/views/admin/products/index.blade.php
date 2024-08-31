@@ -4,6 +4,7 @@
 
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 @endsection
 @section('content')
     <div class="content-wrapper">
@@ -46,6 +47,7 @@
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>TAX</th>
+                                            <th>Action</th>
 
                                         </tr>
                                     </thead>
@@ -55,6 +57,14 @@
                                             <td>Mackbookk</td>
                                             <td>book</td>
                                             <td>13% VAT </td>
+                                            <td class="d-flex gap-3">
+                                                <a href="">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </td>
 
                                         </tr>
 
