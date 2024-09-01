@@ -17,53 +17,57 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="menu-title navbar">
-                                <h2 class="ml-2 menu-title">Goods</h2>
+                                <h2 class="ml-2 menu-title">Product Adjustment</h2>
                                 <div>
                                     @if (@session('success'))
-                                        <div class="alert alert-success bg-success h3 text-white rounded fw-bolder fs-1">
+                                        <div class="alert alert-success bg-success h1 text-white rounded fw-bolder fs-1">
                                             {{ session('success') }}
                                         </div>
                                     @endif
                                 </div>
                                 <div class="navbar d-flex justify-content-end">
                                     <button type="button" data-toggle="modal" class="btn btn-success"
-                                        data-target="#addNewProduct">Add New</button>
+                                        data-target="#AddNewAdjustment">Add New</button>
                                 </div>
                             </div>
 
 
-                            <div class="modal" id="addNewProduct">
+                            <div class="modal" id="AddNewAdjustment">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Add New Product</h4>
+                                            <h4 class="modal-title">Add New Inventory Adjustment</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
 
                                         <!-- Modal body -->
                                         <div class="modal-body">
-                                            <form action="{{ url('AddNewProduct') }}" method="POST"
+                                            <form action="{{ url('AddNewInvenAdjustment') }}" method="POST"
                                                 enctype="multipart/form-data">
                                                 @csrf
-                                                <label for="code">Code/Sku:</label>
-                                                <input type="text" id="code" name="code"
-                                                    placeholder="Enter Code/Sku:" class="form-control mb-2">
+                                                <label for="date">Date:</label>
+                                                <input type="date" id="date" name="date"
+                                                    placeholder="Enter Date:" class="form-control mb-2">
 
 
-                                                <label for="name">Product Name:</label>
-                                                <input type="text" id="name" name="name"
-                                                    placeholder="Enter Product Name:" class="form-control mb-2">
+                                                <label for="entryNum">Entry Number:</label>
+                                                <input type="text" id="entryNum" name="entryNum"
+                                                    placeholder="Enter Entry Number:" class="form-control mb-2">
 
 
-                                                <label for="category">Category Name:</label>
-                                                <input type="text" id="category" name="category"
-                                                    placeholder="Enter Category Name:" class="form-control mb-2">
+                                                <label for="reference">Reference:</label>
+                                                <input type="text" id="reference" name="reference"
+                                                    placeholder="Reference" class="form-control mb-2">
 
 
-                                                <label for="tax">Tax:</label>
-                                                <input type="text" id="tax" name="tax" placeholder="Tax"
+                                                <label for="amount">Amount:</label>
+                                                <input type="text" id="amount" name="amount" placeholder="Amount"
+                                                    class="form-control mb-2">
+
+                                                <label for="note">Note:</label>
+                                                <input type="text" id="note" name="note" placeholder="Note"
                                                     class="form-control mb-2">
 
                                                 <input type="submit" name="save" class="btn btn-success"
@@ -78,10 +82,10 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>CODE/SKU</th>
-                                            <th>NAME</th>
-                                            <th>CATEGORY</th>
-                                            <th>TAX</th>
+                                            <th>DATE</th>
+                                            <th>ENTRY NO</th>
+                                            <th>REFERENCE</th>
+                                            <th>AMOUNT</th>
                                             <th>ACTIONS</th>
                                         </tr>
                                     </thead>
@@ -89,15 +93,15 @@
                                         @php
                                             $i = 0;
                                         @endphp
-                                        @foreach ($products as $item)
+                                        @foreach ($adjustments as $item)
                                             @php
                                                 $i++;
                                             @endphp
                                             <tr>
-                                                <td>{{ $item->code }}</td>
-                                                <td>{{ $item->name }}</td>
-                                                <td>{{ $item->category }}</td>
-                                                <td>{{ $item->tax }}% VAT</td>
+                                                <td>{{ $item->date }}</td>
+                                                <td>{{ $item->entryNum }}</td>
+                                                <td>{{ $item->reference }}</td>
+                                                <td>{{ $item->amount }}</td>
                                                 <td>
                                                     <a href="" class="btn" title="Edit">
                                                         <i class="fas fa-edit fa-lg"></i>
@@ -113,7 +117,6 @@
                                                     </button>
                                                     {{-- </form> --}}
                                                 </td>
-
                                                 {{-- <td> --}}
                                                 {{-- <a href="{{ route('products.edit', $product->id) }}"
                                                         class="btn btn-warning btn-sm">Edit</a>

@@ -2,9 +2,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BillController;
+use App\Http\Controllers\InvenAdjustmentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
+use App\Models\InvenAdjustment;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
@@ -26,3 +29,9 @@ Route::post('/AddNewUom', [UOMController::class, 'AddNewUom']);
 
 Route::get('/varProduct/create', [VariantProductController::class, 'index'])->name('varProduct.create');
 Route::post('/AddNewVarProduct', [VariantProductController::class, 'AddNewVarProduct']);
+
+Route::get('/adjustment/create', [InvenAdjustmentController::class, 'index'])->name('adjustment.create');
+Route::post('/AddNewInvenAdjustment', [InvenAdjustmentController::class, 'AddNewAdjustment']);
+
+Route::get('/bill/create', [BillController::class, 'index'])->name('bill.create');
+Route::post('/AddNewBill', [BillController::class, 'AddNewBill']);

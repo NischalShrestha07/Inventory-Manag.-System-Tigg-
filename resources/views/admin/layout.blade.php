@@ -268,7 +268,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('adjustment.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Inventory Adjustment</p>
                                     </a>
@@ -277,7 +277,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{ route('bill.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Bills Of Materials</p>
                                     </a>

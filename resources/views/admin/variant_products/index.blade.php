@@ -95,11 +95,11 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Code/SKU</th>
-                                            <th>Name</th>
-                                            <th>Category</th>
+                                            <th>CODE/SKU</th>
+                                            <th>NAME</th>
+                                            <th>CATEGORY</th>
                                             <th>TAX</th>
-                                            <th>Actions</th>
+                                            <th>ACTIONS</th>
                                         </tr>
 
                                     </thead>
@@ -117,7 +117,21 @@
                                                 <th>{{ $item->name }}</th>
                                                 <th>{{ $item->category }}</th>
                                                 <th>{{ $item->tax }}</th>
+                                                <td>
+                                                    <a href="" class="btn" title="Edit">
+                                                        <i class="fas fa-edit fa-lg"></i>
+                                                    </a>
 
+                                                    {{-- <form action="{{ route('adjustment.destroy', $item->id) }}"
+                                                        method="POST" style="display:inline-block;">
+                                                        @csrf
+                                                        @method('DELETE') --}}
+                                                    <button type="submit" class="btn btn-sm w-10" title="Delete"
+                                                        onclick="return confirm('Are you sure you want to delete this item?')">
+                                                        <i class="fas fa-lg fa-trash-alt"></i>
+                                                    </button>
+                                                    {{-- </form> --}}
+                                                </td>
 
                                             </tr>
                                         @endforeach
