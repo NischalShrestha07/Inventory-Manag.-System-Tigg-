@@ -232,31 +232,23 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    {{-- <a href="{{ route('admin.var_attributes') }}" class="nav-link"> --}}
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Variant Attributes</p>
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Variant Attributes</p>
                                     </a>
                                 </li>
 
                             </ul>
+
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    {{-- <a href="{{ route('admin.var_products') }}" class="nav-link"> --}}
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Products</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                            {{-- <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('varProduct.create') }}" class="nav-link">
+                                    <a href="{{ route('category.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Product Category</p>
                                     </a>
                                 </li>
 
-                            </ul> --}}
+                            </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('uom.create') }}" class="nav-link">

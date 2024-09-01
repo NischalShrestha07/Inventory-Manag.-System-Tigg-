@@ -4,6 +4,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\InvenAdjustmentController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
@@ -35,3 +36,6 @@ Route::post('/AddNewInvenAdjustment', [InvenAdjustmentController::class, 'AddNew
 
 Route::get('/bill/create', [BillController::class, 'index'])->name('bill.create');
 Route::post('/AddNewBill', [BillController::class, 'AddNewBill']);
+
+Route::get('/category/create', [ProductCategoryController::class, 'index'])->name('category.create');
+Route::post('/AddNewProCategory', [ProductCategoryController::class, 'AddNewProductCategory']);

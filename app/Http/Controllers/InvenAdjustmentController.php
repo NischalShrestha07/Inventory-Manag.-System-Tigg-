@@ -22,7 +22,7 @@ class InvenAdjustmentController extends Controller
     public function AddNewAdjustment(Request $request)
     {
         $request->validate([
-            'date' => 'nullable|integer',
+            'date' => 'nullable',
             'entryNum' => 'required|integer',
             'refernce' => 'nullable|string',
             'amount' => 'nullable',

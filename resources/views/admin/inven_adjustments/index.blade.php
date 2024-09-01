@@ -17,10 +17,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="menu-title navbar">
-                                <h2 class="ml-2 menu-title">Product Adjustment</h2>
+                                <h2 class="ml-2 menu-title">Inventory Adjustment</h2>
                                 <div>
                                     @if (@session('success'))
-                                        <div class="alert alert-success bg-success h1 text-white rounded fw-bolder fs-1">
+                                        <div class="alert alert-success bg-success h3 text-white rounded fw-bolder fs-1">
                                             {{ session('success') }}
                                         </div>
                                     @endif
