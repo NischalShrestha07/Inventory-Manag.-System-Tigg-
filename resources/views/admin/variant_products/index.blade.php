@@ -113,10 +113,10 @@
                                             @endphp
                                             <tr>
 
-                                                <th>{{ $item->code }}</th>
-                                                <th>{{ $item->name }}</th>
-                                                <th>{{ $item->category }}</th>
-                                                <th>{{ $item->tax }}</th>
+                                                <td>{{ $item->code }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->category }}</td>
+                                                <td>{{ $item->tax }}% VAT</td>
                                                 <td>
                                                     <a href="" class="btn" title="Edit">
                                                         <i class="fas fa-edit fa-lg"></i>

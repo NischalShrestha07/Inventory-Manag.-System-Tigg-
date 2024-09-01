@@ -82,7 +82,7 @@
                                             <th>FINISHED GOODS</th>
                                             <th>RAW MATERIALS</th>
                                             <th>BY PRODUCTS</th>
-                                            <th>Actions</th>
+                                            <th>ACTIONS</th>
 
 
                                         </tr>
@@ -98,8 +98,8 @@
                                             <tr>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->finishgoods }}</td>
-                                                <td>{{ $item->rawmaterials }}</td>
-                                                <td>{{ $item->byproducts }}% VAT</td>
+                                                <td>{{ $item->rawmaterials }} items</td>
+                                                <td>{{ $item->byproducts }} items</td>
                                                 <td>
                                                     <a href="" class="btn" title="Edit">
                                                         <i class="fas fa-edit fa-lg"></i>

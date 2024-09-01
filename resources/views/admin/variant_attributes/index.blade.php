@@ -87,7 +87,7 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>NAME</th>
                                             <th>Short Name</th>
                                             <th>Action</th>
                                         </tr>

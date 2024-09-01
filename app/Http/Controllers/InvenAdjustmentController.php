@@ -37,7 +37,7 @@ class InvenAdjustmentController extends Controller
         $data->save();
         // dd($data);
 
-        return redirect()->route('adjustment.create')->with('success', 'Product Added Successfully.');
+        return redirect()->route('adjustment.create')->with('success', 'Product Adjustment Added Successfully.');
     }
 
     /**

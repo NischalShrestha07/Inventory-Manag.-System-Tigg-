@@ -22,19 +22,34 @@ class ProductController extends Controller
      */
     public function AddNewProduct(Request $request)
     {
+        // $request->validate([
+        //     'name' => 'nullable|integer',
+        //     'finishgoods' => 'required|string',
+        //     'rawmaterials' => 'nullable|string',
+        //     'byproducts' => 'nullable|string',
+        // ]);
+        // $data = new Product();
+        // $data->name = $request->name;
+        // $data->finishgoods = $request->finishgoods;
+        // $data->rawmaterials = $request->rawmaterials;
+        // $data->byproducts = $request->byproducts;
+        // $data->save();
+        // dd($data);
+
         $request->validate([
-            'name' => 'nullable|integer',
-            'finishgoods' => 'required|string',
-            'rawmaterials' => 'nullable|string',
-            'byproducts' => 'nullable|string',
+            'code' => 'nullable|integer',
+            'name' => 'required|string',
+            'category' => 'nullable|string',
+            'tax' => 'nullable|string',
         ]);
         $data = new Product();
         $data->name = $request->name;
-        $data->finishgoods = $request->finishgoods;
-        $data->rawmaterials = $request->rawmaterials;
-        $data->byproducts = $request->byproducts;
+        $data->code = $request->code;
+        $data->category = $request->category;
+        $data->tax = $request->tax;
         $data->save();
         // dd($data);
+
 
         return redirect()->route('product.create')->with('success', 'Product Added Successfully.');
     }
