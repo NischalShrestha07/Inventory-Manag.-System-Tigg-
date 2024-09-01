@@ -6,6 +6,7 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\InvenAdjustmentController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductionJournalController;
 use App\Http\Controllers\ProductionOrderController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
@@ -43,3 +44,6 @@ Route::post('/AddNewProCategory', [ProductCategoryController::class, 'AddNewProd
 
 Route::get('/orders/create', [ProductionOrderController::class, 'index'])->name('order.create');
 Route::post('/AddNewProductionOrder', [ProductionOrderController::class, 'AddNewProductionOrder']);
+
+Route::get('/journal/create', [ProductionJournalController::class, 'index'])->name('journal.create');
+Route::post('/AddNewProductionJournal', [ProductionJournalController::class, 'AddNewProductionJournal']);
