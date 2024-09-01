@@ -12,32 +12,37 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.form');
+        $products = Product::all();
+        return view('admin.products.products', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function AddNewProduct(Request $request)
     {
-        //
+        $request->validate([
+            'code' => 'nullable|integer',
+            'name' => 'required|string',
+            'category' => 'nullable|string',
+            'tax' => 'nullable|string',
+        ]);
+        $data = new Product();
+        $data->code = $request->code;
+        $data->name = $request->name;
+        $data->category = $request->category;
+        $data->tax = $request->tax;
+        $data->save();
+
+        return redirect()->route('products.create')->with('success', 'Product Added Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
+    // public function read()
+    // {
+    //     $products = Product::all();
+    //     return view('admin.products.products', 'products');
+    // }
 
     /**
      * Show the form for editing the specified resource.

@@ -45,7 +45,7 @@
     <div class="wrapper">
 
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/gymlogo.png" alt="Gym Logo" height="60" width="60">
+            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="Gym Logo" height="60" width="60">
         </div>
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -214,7 +214,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.products') }}" class="nav-link">
+                                    <a href="{{ route('product.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Products</p>
                                     </a>
@@ -223,45 +223,45 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.var_products') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Varient Products</p>
+                                    {{-- <a href="{{ route('admin.var_products') }}" class="nav-link"> --}}
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Varient Products</p>
                                     </a>
                                 </li>
 
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.var_attributes') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Variant Attributes</p>
+                                    {{-- <a href="{{ route('admin.var_attributes') }}" class="nav-link"> --}}
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Variant Attributes</p>
                                     </a>
                                 </li>
 
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.var_products') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Products</p>
+                                    {{-- <a href="{{ route('admin.var_products') }}" class="nav-link"> --}}
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Products</p>
                                     </a>
                                 </li>
 
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.var_products') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Product Category</p>
+                                    {{-- <a href="{{ route('admin.var_products') }}" class="nav-link"> --}}
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Product Category</p>
                                     </a>
                                 </li>
 
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.uom') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Units Of Measurement</p>
+                                    {{-- <a href="{{ route('admin.uom') }}" class="nav-link"> --}}
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Units Of Measurement</p>
                                     </a>
                                 </li>
 
