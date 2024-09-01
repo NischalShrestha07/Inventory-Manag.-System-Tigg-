@@ -52,8 +52,8 @@
                                                     placeholder="Enter Code/Sku:" class="form-control mb-2">
 
 
-                                                <label for="product">Product Name:</label>
-                                                <input type="text" id="product" name="product"
+                                                <label for="name">Product Name:</label>
+                                                <input type="text" id="name" name="name"
                                                     placeholder="Enter Product Name:" class="form-control mb-2">
 
 
@@ -89,17 +89,17 @@
                                         @php
                                             $i = 0;
                                         @endphp
-                                        @foreach ($products as $product)
+                                        @foreach ($products as $item)
                                             @php
                                                 $i++;
                                             @endphp
                                             <tr>
-                                                <td>{{ $product->code }}</td>
-                                                <td>{{ $product->name }}</td>
-                                                <td>{{ $product->category }}</td>
-                                                <td>{{ $product->tax }}% VAT</td>
-                                                <td>
-                                                    {{-- <a href="{{ route('products.edit', $product->id) }}"
+                                                <td>{{ $item->code }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->category }}</td>
+                                                <td>{{ $item->tax }}% VAT</td>
+                                                {{-- <td> --}}
+                                                {{-- <a href="{{ route('products.edit', $product->id) }}"
                                                         class="btn btn-warning btn-sm">Edit</a>
 
                                                     <form action="{{ route('products.destroy', $product->id) }}"
@@ -108,7 +108,7 @@
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                     </form> --}}
-                                                </td>
+                                                {{-- </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

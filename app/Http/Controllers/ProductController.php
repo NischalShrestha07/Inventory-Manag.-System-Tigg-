@@ -34,15 +34,11 @@ class ProductController extends Controller
         $data->category = $request->category;
         $data->tax = $request->tax;
         $data->save();
+        // dd($data);
 
-        return redirect()->route('products.create')->with('success', 'Product Added Successfully.');
+        return redirect()->route('product.create')->with('success', 'Product Added Successfully.');
     }
 
-    // public function read()
-    // {
-    //     $products = Product::all();
-    //     return view('admin.products.products', 'products');
-    // }
 
     /**
      * Show the form for editing the specified resource.

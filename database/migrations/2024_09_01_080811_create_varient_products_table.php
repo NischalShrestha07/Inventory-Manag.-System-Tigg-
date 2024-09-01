@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('varient_products', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
+            $table->string('name');
+            $table->string('category');
+            $table->bigInteger('tax');
             $table->timestamps();
         });
     }

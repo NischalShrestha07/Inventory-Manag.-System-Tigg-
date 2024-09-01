@@ -3,6 +3,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UOMController;
+use App\Http\Controllers\VariantProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
@@ -17,4 +19,10 @@ Route::get('/form', [AdminController::class, 'form'])->name('admin.form');
 
 
 Route::get('/product/create', [ProductController::class, 'index'])->name('product.create');
-Route::post('/addNewProduct', [ProductController::class, 'AddNewProduct']);
+Route::post('/AddNewProduct', [ProductController::class, 'AddNewProduct']);
+
+Route::get('/uom/create', [UOMController::class, 'index'])->name('uom.create');
+Route::post('/AddNewUom', [UOMController::class, 'AddNewUom']);
+
+Route::get('/varProduct/create', [VariantProductController::class, 'index'])->name('varProduct.create');
+Route::post('/AddNewVarProduct', [VariantProductController::class, 'AddNewVarProduct']);
