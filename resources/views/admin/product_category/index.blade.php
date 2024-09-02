@@ -84,10 +84,58 @@
                                             <tr>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->parent }}</td>
-                                                <td>
-                                                    <a href="" class="btn" title="Edit">
+
+                                                {{-- <a href="" class="btn" title="Edit">
                                                         <i class="fas fa-edit fa-lg"></i>
-                                                    </a>
+                                                    </a> --}}
+
+                                                {{-- Update Model  --}}
+                                                <td class="font-weight-medium">
+                                                    <button type="button" class="btn" title="Edit" data-toggle="modal"
+                                                        data-target="#updateModel{{ $i }}">
+                                                        <i class="fas fa-edit fa-lg"></i>
+                                                    </button>
+                                                    <div class="modal" id="updateModel{{ $i }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Update Product Category</h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{ url('UpdateCategory') }}"
+                                                                        method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+
+                                                                        <label for="name">Name:</label>
+                                                                        <input type="name" id="name" name="name"
+                                                                            value="{{ $item->name }}"
+                                                                            placeholder="Enter Name:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="parent">Parent:</label>
+                                                                        <input type="text" id="parent" name="parent"
+                                                                            value="{{ $item->parent }}"
+                                                                            placeholder="Enter Product Parent"
+                                                                            class="form-control mb-2">
+
+
+
+
+                                                                        <input type="hidden" name="id"
+                                                                            value="{{ $item->id }}">
+                                                                        <input type="submit" name="save"
+                                                                            class="btn btn-success" value="Save Changes" />
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
 
                                                     <form action="{{ route('category.create', $item->id) }}" method="POST"
                                                         style="display:inline-block;">
@@ -99,17 +147,7 @@
                                                         </button>
                                                     </form>
                                                 </td>
-                                                {{-- <td> --}}
-                                                {{-- <a href="{{ route('products.edit', $product->id) }}"
-                                                        class="btn btn-warning btn-sm">Edit</a>
 
-                                                    <form action="{{ route('products.destroy', $product->id) }}"
-                                                        method="POST" style="display:inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                    </form> --}}
-                                                {{-- </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

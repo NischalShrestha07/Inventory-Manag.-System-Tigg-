@@ -34,36 +34,23 @@ class ProductCategoryController extends Controller
         return redirect()->route('category.create')->with('success', 'Product Category Added Successfully.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProductCategory $productCategory)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProductCategory $productCategory)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function UpdateCategory(Request $request, ProductCategory $productCategory)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'parent' => 'nullable|string',
+        ]);
+        $data = ProductCategory::findOrFail($request->input('id'));
+        $data->name = $request->name;
+        $data->parent = $request->parent;
+        $data->save();
+        // dd($data);
+
+        return redirect()->route('category.create')->with('success', 'Product Category Updated Successfully.');
     }
 
     /**

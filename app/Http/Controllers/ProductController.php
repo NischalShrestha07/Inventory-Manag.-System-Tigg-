@@ -22,19 +22,7 @@ class ProductController extends Controller
      */
     public function AddNewProduct(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'nullable|integer',
-        //     'finishgoods' => 'required|string',
-        //     'rawmaterials' => 'nullable|string',
-        //     'byproducts' => 'nullable|string',
-        // ]);
-        // $data = new Product();
-        // $data->name = $request->name;
-        // $data->finishgoods = $request->finishgoods;
-        // $data->rawmaterials = $request->rawmaterials;
-        // $data->byproducts = $request->byproducts;
-        // $data->save();
-        // dd($data);
+
 
         $request->validate([
             'code' => 'nullable|integer',
@@ -55,17 +43,25 @@ class ProductController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product, $id) {}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Product $product)
+    public function UpdateProduct(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'code' => 'nullable|integer',
+            'name' => 'required|string',
+            'category' => 'nullable|string',
+            'tax' => 'nullable|string',
+        ]);
+        $data = Product::findOrFail($request->input('id'));
+        $data->name = $request->name;
+        $data->code = $request->code;
+        $data->category = $request->category;
+        $data->tax = $request->tax;
+        $data->save();
+        // dd($data);
+
+
+        return redirect()->route('product.create')->with('success', 'Product Updated Successfully.');
     }
 
     /**

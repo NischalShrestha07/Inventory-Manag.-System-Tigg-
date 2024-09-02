@@ -100,12 +100,12 @@
                                                 <td>{{ $item->finishgoods }}</td>
                                                 <td>{{ $item->rawmaterials }} items</td>
                                                 <td>{{ $item->byproducts }} items</td>
-                                                <td>
-                                                    {{-- <a href="" class="btn" title="Edit">
+
+                                                {{-- <a href="" class="btn" title="Edit">
                                                         <i class="fas fa-edit fa-lg"></i>
                                                     </a> --}}
 
-                                                    {{-- Update Model  --}}
+                                                {{-- Update Model  --}}
                                                 <td class="font-weight-medium">
                                                     <button type="button" class="btn" title="Edit" data-toggle="modal"
                                                         data-target="#updateModel{{ $i }}">

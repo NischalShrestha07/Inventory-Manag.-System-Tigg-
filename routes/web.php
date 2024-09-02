@@ -27,6 +27,7 @@ Route::get('/form', [AdminController::class, 'form'])->name('admin.form');
 
 Route::get('/product/create', [ProductController::class, 'index'])->name('product.create');
 Route::post('/AddNewProduct', [ProductController::class, 'AddNewProduct']);
+Route::put('/UpdateProduct', [ProductController::class, 'UpdateProduct']);
 Route::delete('/AddNewProduct/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
 Route::get('/uom/create', [UOMController::class, 'index'])->name('uom.create');
@@ -37,6 +38,7 @@ Route::delete('/uom/{id}', [UOMController::class, 'destroy'])->name('uom.destroy
 
 Route::get('/varProduct/create', [VariantProductController::class, 'index'])->name('varProduct.create');
 Route::post('/AddNewVarProduct', [VariantProductController::class, 'AddNewVarProduct']);
+Route::put('/UpdateVarProduct', [VariantProductController::class, 'UpdateVarProduct']);
 Route::delete('/varProduct/{id}', [VariantProductController::class, 'destroy'])->name('varProduct.destroy');
 
 
@@ -52,6 +54,7 @@ Route::delete('/bill/{id}', [BillController::class, 'destroy'])->name('bill.dest
 
 Route::get('/category/create', [ProductCategoryController::class, 'index'])->name('category.create');
 Route::post('/AddNewProCategory', [ProductCategoryController::class, 'AddNewProductCategory']);
+Route::put('/UpdateCategory', [ProductCategoryController::class, 'UpdateCategory']);
 Route::delete('/category/{id}', [ProductCategoryController::class, 'destroy'])->name('category.destroy');
 
 
