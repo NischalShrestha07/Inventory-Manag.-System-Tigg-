@@ -74,8 +74,8 @@ class ProductionJournalController extends Controller
      */
     public function destroy(ProductionJournal $productionJournal, $id)
     {
-        $data = ProductionJournal::find($id);
+        $data = ProductionJournal::findOrFail($id);
         $data->delete();
-        return redirect()->route('journal.destroy')->with('success', 'Production Journal Deleted Successfully.');
+        return redirect()->route('journal.create')->with('success', 'Production Journal Deleted Successfully.');
     }
 }

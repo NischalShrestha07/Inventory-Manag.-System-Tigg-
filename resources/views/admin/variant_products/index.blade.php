@@ -122,15 +122,15 @@
                                                         <i class="fas fa-edit fa-lg"></i>
                                                     </a>
 
-                                                    {{-- <form action="{{ route('adjustment.destroy', $item->id) }}"
+                                                    <form action="{{ route('varProduct.destroy', $item->id) }}"
                                                         method="POST" style="display:inline-block;">
                                                         @csrf
-                                                        @method('DELETE') --}}
-                                                    <button type="submit" class="btn btn-sm w-10" title="Delete"
-                                                        onclick="return confirm('Are you sure you want to delete this item?')">
-                                                        <i class="fas fa-lg fa-trash-alt"></i>
-                                                    </button>
-                                                    {{-- </form> --}}
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm w-10" title="Delete"
+                                                            onclick="return confirm('Are you sure you want to delete this item?')">
+                                                            <i class="fas fa-lg fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
 
                                             </tr>

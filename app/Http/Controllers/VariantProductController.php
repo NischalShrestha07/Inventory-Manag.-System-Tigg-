@@ -37,4 +37,14 @@ class VariantProductController extends Controller
 
         return redirect()->route('varProduct.create')->with('success', 'Product Added Successfully.');
     }
+
+
+
+    public function destroy($id)
+    {
+        $data = VarientProduct::findOrFail($id);
+        $data->delete();
+
+        return redirect()->route('varProduct.create')->with('success', 'Variant Product Deleted Successfully.');
+    }
 }

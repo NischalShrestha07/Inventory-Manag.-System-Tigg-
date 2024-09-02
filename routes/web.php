@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductionOrderController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
 use App\Models\InvenAdjustment;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
@@ -30,21 +31,36 @@ Route::delete('/AddNewProduct/{id}', [ProductController::class, 'destroy'])->nam
 
 Route::get('/uom/create', [UOMController::class, 'index'])->name('uom.create');
 Route::post('/AddNewUom', [UOMController::class, 'AddNewUom']);
+Route::delete('/uom/{id}', [InvenAdjustmentController::class, 'destroy'])->name('uom.destroy');
+
 
 Route::get('/varProduct/create', [VariantProductController::class, 'index'])->name('varProduct.create');
 Route::post('/AddNewVarProduct', [VariantProductController::class, 'AddNewVarProduct']);
+Route::delete('/varProduct/{id}', [VariantProductController::class, 'destroy'])->name('varProduct.destroy');
+
 
 Route::get('/adjustment/create', [InvenAdjustmentController::class, 'index'])->name('adjustment.create');
 Route::post('/AddNewInvenAdjustment', [InvenAdjustmentController::class, 'AddNewAdjustment']);
+Route::delete('/adjustment/{id}', [InvenAdjustmentController::class, 'destroy'])->name('adjustment.destroy');
 
 Route::get('/bill/create', [BillController::class, 'index'])->name('bill.create');
 Route::post('/AddNewBill', [BillController::class, 'AddNewBill']);
+Route::delete('/bill/{id}', [BillController::class, 'destroy'])->name('bill.destroy');
 
 Route::get('/category/create', [ProductCategoryController::class, 'index'])->name('category.create');
 Route::post('/AddNewProCategory', [ProductCategoryController::class, 'AddNewProductCategory']);
+Route::delete('/category/{id}', [ProductCategoryController::class, 'destroy'])->name('category.destroy');
+
 
 Route::get('/orders/create', [ProductionOrderController::class, 'index'])->name('order.create');
 Route::post('/AddNewProductionOrder', [ProductionOrderController::class, 'AddNewProductionOrder']);
+Route::delete('/orders/{id}', [ProductionOrderController::class, 'destroy'])->name('order.destroy');
+
 
 Route::get('/journal/create', [ProductionJournalController::class, 'index'])->name('journal.create');
 Route::post('/AddNewProductionJournal', [ProductionJournalController::class, 'AddNewProductionJournal']);
+Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])->name('journal.destroy');
+
+// Route::get('/attribute/create', [ProductionJournalController::class, 'index'])->name('journal.create');
+// Route::post('/AddNewProductionJournal', [ProductionJournalController::class, 'AddNewProductionJournal']);
+// Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])->name('journal.destroy');
