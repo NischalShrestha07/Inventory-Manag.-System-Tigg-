@@ -102,12 +102,80 @@
                                                 <td>{{ $item->entryNum }}</td>
                                                 <td>{{ $item->reference }}</td>
                                                 <td>{{ $item->amount }}</td>
-                                                <td>
+                                                {{-- <td>
                                                     <a href="" class="btn" title="Edit">
                                                         <i class="fas fa-edit fa-lg"></i>
-                                                    </a>
+                                                    </a> --}}
 
-                                                    <form action="{{ route('adjustment.create', $item->id) }}"
+                                                {{-- Update Model  --}}
+                                                <td class="font-weight-medium">
+                                                    <button type="button" class="btn" title="Edit" data-toggle="modal"
+                                                        data-target="#updateModel{{ $i }}">
+                                                        <i class="fas fa-edit fa-lg"></i>
+                                                    </button>
+                                                    <div class="modal" id="updateModel{{ $i }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Update Inventory Adjustment</h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{ url('UpdateAdjustment') }}"
+                                                                        method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+
+                                                                        <label for="date">Date:</label>
+                                                                        <input type="date" id="date" name="date"
+                                                                            value="{{ $item->date }}"
+                                                                            placeholder="Enter Date:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="entryNum">Entry Number:</label>
+                                                                        <input type="text" id="entryNum"
+                                                                            name="entryNum" value="{{ $item->entryNum }}"
+                                                                            placeholder="Enter Entry Number:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="reference">Reference:</label>
+                                                                        <input type="text" id="reference"
+                                                                            name="reference"
+                                                                            value="{{ $item->reference }}"
+                                                                            placeholder="Reference"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="amount">Amount:</label>
+                                                                        <input type="text" id="amount"
+                                                                            name="amount" value="{{ $item->amount }}"
+                                                                            placeholder="Amount"
+                                                                            class="form-control mb-2">
+
+                                                                        <label for="note">Note:</label>
+                                                                        <input type="text" id="note"
+                                                                            name="note" value="{{ $item->note }}"
+                                                                            placeholder="Note" class="form-control mb-2">
+
+
+
+
+                                                                        <input type="hidden" name="id"
+                                                                            value="{{ $item->id }}">
+                                                                        <input type="submit" name="save"
+                                                                            class="btn btn-success"
+                                                                            value="Save Changes" />
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <form action="{{ route('adjustment.destroy', $item->id) }}"
                                                         method="POST" style="display:inline-block;">
                                                         @csrf
                                                         @method('DELETE')

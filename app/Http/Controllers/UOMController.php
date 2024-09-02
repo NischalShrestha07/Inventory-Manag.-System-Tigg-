@@ -34,43 +34,31 @@ class UOMController extends Controller
         return redirect()->route('uom.create')->with('success', 'Product Added Successfully.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(UOM $uOM)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(UOM $uOM)
+    public function UpdateUOM(Request $request, UOM $uOM)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|string',
+            'shortname' => 'nullable|string',
+        ]);
+        $data = UOM::findOrFail($request->input('id'));
+        $data->name = $request->name;
+        $data->shortname = $request->shortname;
+        $data->save();
+        // dd($data);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, UOM $uOM)
-    {
-        //
+        return redirect()->route('uom.create')->with('success', 'Product Updated Successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UOM $uOM)
+    public function destroy(UOM $uOM, $id)
     {
-        //
+        $uoms = UOM::findOrFail($id);
+        $uoms->delete();
+
+        return redirect()->route('uom.create')->with('success', 'UOM Deleted Successfully.');
     }
 }

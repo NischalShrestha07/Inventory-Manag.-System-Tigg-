@@ -112,10 +112,89 @@
                                                 <td>{{ $item->product }}</td>
                                                 <td>{{ $item->quantity }}</td>
                                                 <td>{{ $item->status }}</td>
-                                                <td>
-                                                    <a href="" class="btn" title="Edit">
+
+
+                                                {{-- <a href="" class="btn" title="Edit">
                                                         <i class="fas fa-edit fa-lg"></i>
-                                                    </a>
+                                                    </a> --}}
+
+
+                                                {{-- Update Model  --}}
+                                                <td class="font-weight-medium">
+                                                    <button type="button" class="btn" title="Edit" data-toggle="modal"
+                                                        data-target="#updateModel{{ $i }}">
+                                                        <i class="fas fa-edit fa-lg"></i>
+                                                    </button>
+                                                    <div class="modal" id="updateModel{{ $i }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Update Production Order</h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{ url('UpdateProductionOrder') }}"
+                                                                        method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+
+                                                                        <label for="date">DATE:</label>
+                                                                        <input type="date" id="date" name="date"
+                                                                            value="{{ $item->date }}"
+                                                                            placeholder="Date:" class="form-control mb-2">
+
+
+                                                                        <label for="code">CODE/SKU:</label>
+                                                                        <input type="integer" id="code"
+                                                                            name="code" value="{{ $item->code }}"
+                                                                            placeholder="Enter code:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="reference">Reference:</label>
+                                                                        <input type="text" id="reference"
+                                                                            name="reference"
+                                                                            value="{{ $item->reference }}"
+                                                                            placeholder="Reference:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="product">Product:</label>
+                                                                        <input type="text" id="product"
+                                                                            name="product" value="{{ $item->product }}"
+                                                                            placeholder="Product Name"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="quantity">Quantity:</label>
+                                                                        <input type="integer" id="quantity"
+                                                                            name="quantity" value="{{ $item->quantity }}"
+                                                                            placeholder="Quantity"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="status">Status:</label>
+                                                                        <input type="text" id="status"
+                                                                            name="status" value="{{ $item->status }}"
+                                                                            placeholder="Status"
+                                                                            class="form-control mb-2">
+
+
+
+
+
+                                                                        <input type="hidden" name="id"
+                                                                            value="{{ $item->id }}">
+                                                                        <input type="submit" name="save"
+                                                                            class="btn btn-success"
+                                                                            value="Save Changes" />
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
 
                                                     <form action="{{ route('order.destroy', $item->id) }}" method="POST"
                                                         style="display:inline-block;">
@@ -128,17 +207,7 @@
                                                     </form>
                                                 </td>
 
-                                                {{-- <td> --}}
-                                                {{-- <a href="{{ route('products.edit', $product->id) }}"
-                                                        class="btn btn-warning btn-sm">Edit</a>
 
-                                                    <form action="{{ route('products.destroy', $product->id) }}"
-                                                        method="POST" style="display:inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                    </form> --}}
-                                                {{-- </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

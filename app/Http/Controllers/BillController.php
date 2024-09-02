@@ -40,28 +40,28 @@ class BillController extends Controller
         return redirect()->route('bill.create')->with('success', 'Bill Added Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Bill $bill)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Bill $bill)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bill $bill)
+    public function UpdateBill(Request $request, Bill $bill)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'finishgoods' => 'nullable|string',
+            'rawmaterials' => 'nullable|string',
+            'byproducts' => 'nullable|string',
+
+        ]);
+
+        $data = Bill::findOrFail($request->input('id'));
+        $data->name = $request->name;
+        $data->finishgoods = $request->finishgoods;
+        $data->rawmaterials = $request->rawmaterials;
+        $data->byproducts = $request->byproducts;
+        $data->save();
+
+        return redirect()->route('bill.create')->with('success', 'Bill Updated Successfully.');
     }
 
     /**

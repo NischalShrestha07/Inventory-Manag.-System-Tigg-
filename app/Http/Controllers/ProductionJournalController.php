@@ -45,28 +45,24 @@ class ProductionJournalController extends Controller
         return redirect()->route('journal.create')->with('success', 'Production Journal Added Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProductionJournal $productionJournal)
+    public function UpdateJournal(Request $request, ProductionJournal $productionJournal)
     {
-        //
-    }
+        $request->validate([
+            'date' => 'nullable',
+            'code' => 'nullable',
+            'reference' => 'nullable',
+            'product' => 'required',
+            'quantity' => 'nullable',
+        ]);
+        $products = ProductionJournal::findOrFail($request->input('id'));
+        $products->date = $request->input('date');
+        $products->code = $request->input('code');
+        $products->reference = $request->input('reference');
+        $products->product = $request->input('product');
+        $products->quantity = $request->input('quantity');
+        $products->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProductionJournal $productionJournal)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ProductionJournal $productionJournal)
-    {
-        //
+        return redirect()->route('journal.create')->with('success', 'Production Journal Updated Successfully.');
     }
 
     /**

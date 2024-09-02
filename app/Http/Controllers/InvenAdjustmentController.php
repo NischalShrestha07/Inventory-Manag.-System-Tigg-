@@ -40,28 +40,29 @@ class InvenAdjustmentController extends Controller
         return redirect()->route('adjustment.create')->with('success', 'Product Adjustment Added Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(InvenAdjustment $invenAdjustment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(InvenAdjustment $invenAdjustment)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, InvenAdjustment $invenAdjustment)
+    public function UpdateAdjustment(Request $request, InvenAdjustment $invenAdjustment)
     {
-        //
+        $request->validate([
+            'date' => 'nullable',
+            'entryNum' => 'required|integer',
+            'refernce' => 'nullable|string',
+            'amount' => 'nullable',
+            'note' => 'nullable',
+        ]);
+        $data = InvenAdjustment::findOrFail($request->input('id'));
+        $data->date = $request->input('date');
+        $data->entryNum = $request->input('entryNum');
+        $data->reference = $request->input('reference');
+        $data->amount = $request->input('amount');
+        $data->note = $request->input('note');
+        $data->save();
+        // dd($data);
+
+        return redirect()->route('adjustment.create')->with('success', 'Product Adjustment Updated Successfully.');
     }
 
     /**
@@ -69,7 +70,7 @@ class InvenAdjustmentController extends Controller
      */
     public function destroy(InvenAdjustment $invenAdjustment, $id)
     {
-        $data = InvenAdjustment::find($id);
+        $data = InvenAdjustment::findOrFail($id);
         $data->delete();
 
         return redirect()->route('adjustment.create')->with('success', 'Inventory Adjustment Deleted Successfully.');

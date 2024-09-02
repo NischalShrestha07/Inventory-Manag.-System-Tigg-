@@ -101,9 +101,77 @@
                                                 <td>{{ $item->rawmaterials }} items</td>
                                                 <td>{{ $item->byproducts }} items</td>
                                                 <td>
-                                                    <a href="" class="btn" title="Edit">
+                                                    {{-- <a href="" class="btn" title="Edit">
                                                         <i class="fas fa-edit fa-lg"></i>
-                                                    </a>
+                                                    </a> --}}
+
+                                                    {{-- Update Model  --}}
+                                                <td class="font-weight-medium">
+                                                    <button type="button" class="btn" title="Edit" data-toggle="modal"
+                                                        data-target="#updateModel{{ $i }}">
+                                                        <i class="fas fa-edit fa-lg"></i>
+                                                    </button>
+                                                    <div class="modal" id="updateModel{{ $i }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Update Bills</h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{ url('UpdateBill') }}" method="POST"
+                                                                        enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+
+                                                                        <label for="name">PRODUCT NAME:</label>
+                                                                        <input type="text" id="name" name="name"
+                                                                            value="{{ $item->name }}"
+                                                                            placeholder="Enter Product Name:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="finishgoods">Finished Goods:</label>
+                                                                        <input type="text" id="finishgoods"
+                                                                            name="finishgoods"
+                                                                            value="{{ $item->finishgoods }}"
+                                                                            placeholder="Enter Finished Goods with UOM:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="rawmaterials">Raw Materials:</label>
+                                                                        <input type="text" id="rawmaterials"
+                                                                            name="rawmaterials"
+                                                                            value="{{ $item->rawmaterials }}"
+                                                                            placeholder="No of Items Needed:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="byproducts">By Products:</label>
+                                                                        <input type="text" id="byproducts"
+                                                                            name="byproducts"
+                                                                            value="{{ $item->byproducts }}"
+                                                                            placeholder="No of By Products"
+                                                                            class="form-control mb-2">
+
+
+
+
+
+                                                                        <input type="hidden" name="id"
+                                                                            value="{{ $item->id }}">
+                                                                        <input type="submit" name="save"
+                                                                            class="btn btn-success"
+                                                                            value="Save Changes" />
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
 
                                                     <form action="{{ route('bill.destroy', $item->id) }}" method="POST"
                                                         style="display:inline-block;">
@@ -115,17 +183,7 @@
                                                         </button>
                                                     </form>
                                                 </td>
-                                                {{-- <td> --}}
-                                                {{-- <a href="{{ route('products.edit', $product->id) }}"
-                                                        class="btn btn-warning btn-sm">Edit</a>
 
-                                                    <form action="{{ route('products.destroy', $product->id) }}"
-                                                        method="POST" style="display:inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                    </form> --}}
-                                                {{-- </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

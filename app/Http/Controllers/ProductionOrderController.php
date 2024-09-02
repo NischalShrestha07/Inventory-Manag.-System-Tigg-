@@ -46,28 +46,31 @@ class ProductionOrderController extends Controller
         return redirect()->route('order.create')->with('success', 'Production Order Added Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProductionOrder $productionOrder)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ProductionOrder $productionOrder)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProductionOrder $productionOrder)
+    public function UpdateProductionOrder(Request $request, ProductionOrder $productionOrder)
     {
-        //
+        $request->validate([
+            'date' => 'nullable',
+            'code' => 'nullable',
+            'reference' => 'nullable|string',
+            'product' => 'required|string',
+            'quantity' => 'nullable',
+            'status' => 'nullable',
+        ]);
+
+        $data = ProductionOrder::find($request->input('id'));
+        $data->date = $request->input('date');
+        $data->code = $request->input('code');
+        $data->reference = $request->input('reference');
+        $data->product = $request->input('product');
+        $data->quantity = $request->input('quantity');
+        $data->status = $request->input('status');
+        $data->save();
+
+        return redirect()->route('order.create')->with('success', 'Production Order Updated Successfully.');
     }
 
     /**
