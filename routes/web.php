@@ -26,6 +26,7 @@ Route::get('/form', [AdminController::class, 'form'])->name('admin.form');
 
 Route::get('/product/create', [ProductController::class, 'index'])->name('product.create');
 Route::post('/AddNewProduct', [ProductController::class, 'AddNewProduct']);
+Route::delete('/AddNewProduct/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
 Route::get('/uom/create', [UOMController::class, 'index'])->name('uom.create');
 Route::post('/AddNewUom', [UOMController::class, 'AddNewUom']);

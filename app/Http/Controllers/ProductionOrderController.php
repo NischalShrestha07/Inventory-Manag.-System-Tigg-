@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ProductionOrder;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\returnSelf;
+
 class ProductionOrderController extends Controller
 {
     /**
@@ -71,8 +73,11 @@ class ProductionOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductionOrder $productionOrder)
+    public function destroy(ProductionOrder $productionOrder, $id)
     {
-        //
+        $data = ProductionOrder::find($id);
+        $data->delete();
+
+        return redirect()->route('order.create')->with('success', 'Production Order Deleted Successfully.');
     }
 }

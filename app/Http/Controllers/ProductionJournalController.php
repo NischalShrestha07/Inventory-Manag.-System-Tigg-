@@ -72,8 +72,10 @@ class ProductionJournalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductionJournal $productionJournal)
+    public function destroy(ProductionJournal $productionJournal, $id)
     {
-        //
+        $data = ProductionJournal::find($id);
+        $data->delete();
+        return redirect()->route('journal.destroy')->with('success', 'Production Journal Deleted Successfully.');
     }
 }

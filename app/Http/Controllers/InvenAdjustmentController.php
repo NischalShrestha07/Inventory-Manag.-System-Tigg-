@@ -67,8 +67,11 @@ class InvenAdjustmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(InvenAdjustment $invenAdjustment)
+    public function destroy(InvenAdjustment $invenAdjustment, $id)
     {
-        //
+        $data = InvenAdjustment::find($id);
+        $data->delete();
+
+        return redirect()->route('adjustment.create')->with('success', 'Inventory Adjustment Deleted Successfully.');
     }
 }
