@@ -56,10 +56,12 @@
                                                     placeholder="Enter Product Name:" class="form-control mb-2">
 
 
-                                                <label for="category"> Category:</label>
-                                                <input type="text" id="category" name="category"
-                                                    placeholder="Enter Product Category:" class="form-control mb-2">
-
+                                               <label for="category">Category:</label>
+                                                <select id="category" name="category" class="form-control mb-2">
+                                                    @foreach($categories as $category)
+                                                        <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
 
                                                 <label for="tax"> Tax:</label>
                                                 <input type="text" id="tax" name="tax"
@@ -190,12 +192,15 @@
                                                                         enctype="multipart/form-data">
                                                                         @csrf
                                                                         @method('PUT')
-                                                                        <!-- Name -->
+
+
+                                                                      <input type="hidden" name="id" value="{{ $item->id }}">
+
                                                                         <div class="mb-3">
                                                                             <label for="productName"
                                                                                 class="form-label">Product Name:</label>
                                                                             <input type="text" class="form-control"
-                                                                                id="productName" value="{{ $item->name }}"
+                                                                                id="name" name="name" value="{{ $item->name }}"
                                                                                 placeholder="Name">
                                                                         </div>
 
@@ -205,12 +210,17 @@
                                                                             placeholder="Enter Code/Sku:"
                                                                             class="form-control mb-2">
 
-                                                                             <label for="category">Category:</label>
-                                                                        <input type="text" id="category"
-                                                                            name="category" value="{{ $item->category }}"
-                                                                            placeholder="Enter Category:"
-                                                                            class="form-control mb-2">
 
+                                                                            <label for="category">Category:</label>
+                                                                            <select id="category" name="category" class="form-control mb-2">
+                                                                                @foreach($categories as $category)
+                                                                                    <option value="{{ $category->name }}" {{ $category->id == $item->category ? 'selected' : '' }}>
+                                                                                        {{ $category->name }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+
+                                                                        </select>
                                                                         <label for="tax">tax/Sku:</label>
                                                                         <input type="text" id="tax"
                                                                             name="tax" value="{{ $item->tax }}"
