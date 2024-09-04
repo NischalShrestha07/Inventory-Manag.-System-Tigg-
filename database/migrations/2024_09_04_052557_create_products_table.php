@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('category');
-            $table->bigInteger('tax');
+            $table->string('tax');
             $table->timestamps();
         });
     }

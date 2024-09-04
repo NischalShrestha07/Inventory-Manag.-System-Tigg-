@@ -137,8 +137,8 @@
 
 
 
-                                                    <form action="{{ route('category.create', $item->id) }}" method="POST"
-                                                        style="display:inline-block;">
+                                                    <form action="{{ route('category.destroy', $item->id) }}"
+                                                        method="POST" style="display:inline-block;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm w-10" title="Delete"
