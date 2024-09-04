@@ -17,10 +17,12 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('category_id');
             $table->string('tax');
+            $table->unsignedBigInteger('primary_unit');
+            $table->string('hscode');
             $table->timestamps();
 
 
-
+            $table->foreign('primary_unit')->references('id')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
         });
     }
@@ -32,6 +34,9 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->dropForeign(['category_id']);
+        });
+        Schema::table('u_o_m_s', function (Blueprint $table) {
+            $table->dropForeign(['primary_unit']);
         });
 
         Schema::dropIfExists('products');

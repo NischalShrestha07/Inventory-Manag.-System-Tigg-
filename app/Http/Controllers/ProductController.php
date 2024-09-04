@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\UOM;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +16,8 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $categories = ProductCategory::all();
-        return view('admin.products.products', compact('products', 'categories'));
+        $primary_unit = UOM::all();
+        return view('admin.products.products', compact('products', 'categories', 'primary_unit'));
     }
     public function AddNewProduct(Request $request)
     {
@@ -24,6 +26,8 @@ class ProductController extends Controller
             'name' => 'required',
             'category' => 'required',
             'tax' => 'nullable',
+            'primary_unit' => 'required',
+            'hscode' => 'nullable',
         ]);
 
         $data = new Product();
@@ -31,6 +35,9 @@ class ProductController extends Controller
         $data->code = $request->code;
         $data->category = $request->category;
         $data->tax = $request->tax;
+        $data->primary_unit = $request->primary_unit;
+        $data->hscode = $request->hscode;
+
         $data->save();
 
         return redirect()->route('product.create')->with('success', 'Product Added Successfully.');
@@ -40,14 +47,14 @@ class ProductController extends Controller
     public function AddCategory(Request $request)
     {
         $request->validate([
-            'category' => 'required',
+            'name' => 'required|string',
         ]);
 
         $category = new ProductCategory();
-        $category->name = $request->category;
+        $category->name = $request->name;
         $category->save();
 
-        return redirect()->route('product.create')->with('success', 'Category Added Successfully.');
+        // return redirect()->route('product.create')->with('success', 'Category Added Successfully.');
     }
 
 
@@ -59,6 +66,8 @@ class ProductController extends Controller
             'name' => 'required',
             'category' => 'required',
             'tax' => 'nullable',
+            'primary_unit' => 'required',
+            'hscode' => 'nullable',
 
 
         ]);
@@ -67,6 +76,8 @@ class ProductController extends Controller
         $data->code = $request->code;
         $data->category = $request->category;
         $data->tax = $request->tax;
+        $data->primary_unit = $request->primary_unit;
+        $data->hscode = $request->hscode;
         $data->save();
         // dd($data);
         return redirect()->route('product.create')->with('success', 'Product Updated Successfully.');
