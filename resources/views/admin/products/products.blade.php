@@ -11,7 +11,7 @@
 <div class="content-wrapper">
     <!-- Your existing content -->
 
-    <section class="content">
+    <section class="content ">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -26,7 +26,7 @@
                                 @endif
                             </div>
                             <div class="navbar d-flex justify-content-end">
-                                <button type="button" data-toggle="modal" class="btn btn-success"
+                                <button type="button" data-toggle="modal" class="btn btn-success mr-3"
                                     data-target="#addNewProduct">Add New</button>
                             </div>
                         </div>

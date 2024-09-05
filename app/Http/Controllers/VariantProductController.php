@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductCategory;
 use App\Models\VarientProduct;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class VariantProductController extends Controller
     public function index()
     {
         $varProducts = VarientProduct::all();
-        return view('admin.variant_products.index', compact('varProducts'));
+        $categories = ProductCategory::all();
+        return view('admin.variant_products.index', compact('varProducts', 'categories'));
     }
 
     public function AddNewVarProduct(Request $request)
