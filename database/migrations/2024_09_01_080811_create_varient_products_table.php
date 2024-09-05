@@ -16,7 +16,13 @@ return new class extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('category');
-            $table->bigInteger('tax');
+            $table->string('tax');
+            $table->string('primary_unit');
+            $table->string('selling_price');
+            $table->string('purchase_price');
+
+            ///attribute and options is remaining.
+
             $table->timestamps();
         });
     }

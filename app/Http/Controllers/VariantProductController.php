@@ -77,6 +77,6 @@ class VariantProductController extends Controller
         $data = VarientProduct::findOrFail($id);
         $data->delete();
 
-        return redirect()->route('varProduct.create')->with('success', 'Variant Product Deleted Successfully.');
+        return redirect()->route('varProduct.create')->with('error', 'Variant Product Deleted Successfully.');
     }
 }

@@ -44,6 +44,13 @@
                                 </div>
                                 @endif
                             </div>
+                            <div>
+                                @if (@session('error'))
+                                <div class="alert alert-danger bg-danger h3 text-white rounded">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
+                            </div>
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success"
                                     data-target="#addNewVarProduct">Add New</button>

@@ -61,6 +61,6 @@ class ProductCategoryController extends Controller
         $data = ProductCategory::find($id);
         $data->delete();
 
-        return redirect()->route('category.create')->with('success', 'Product Category Deleted Successfully.');
+        return redirect()->route('category.create')->with('error', 'Product Category Deleted Successfully.');
     }
 }

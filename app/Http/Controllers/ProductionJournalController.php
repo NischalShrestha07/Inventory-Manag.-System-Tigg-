@@ -72,6 +72,6 @@ class ProductionJournalController extends Controller
     {
         $data = ProductionJournal::findOrFail($id);
         $data->delete();
-        return redirect()->route('journal.create')->with('success', 'Production Journal Deleted Successfully.');
+        return redirect()->route('journal.create')->with('error', 'Production Journal Deleted Successfully.');
     }
 }

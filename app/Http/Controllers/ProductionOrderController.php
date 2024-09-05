@@ -81,6 +81,6 @@ class ProductionOrderController extends Controller
         $data = ProductionOrder::find($id);
         $data->delete();
 
-        return redirect()->route('order.create')->with('success', 'Production Order Deleted Successfully.');
+        return redirect()->route('order.create')->with('error', 'Production Order Deleted Successfully.');
     }
 }

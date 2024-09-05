@@ -25,6 +25,13 @@
                                 </div>
                                 @endif
                             </div>
+                            <div>
+                                @if (session('error'))
+                                <div class="alert alert-danger bg-danger h3 text-white rounded fw-bolder fs-1">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
+                            </div>
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success mr-3"
                                     data-target="#addNewProduct">Add New</button>

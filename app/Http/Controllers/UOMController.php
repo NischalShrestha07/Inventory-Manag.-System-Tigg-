@@ -59,6 +59,6 @@ class UOMController extends Controller
         $uoms = UOM::findOrFail($id);
         $uoms->delete();
 
-        return redirect()->route('uom.create')->with('success', 'UOM Deleted Successfully.');
+        return redirect()->route('uom.create')->with('error', 'UOM Deleted Successfully.');
     }
 }

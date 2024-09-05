@@ -73,6 +73,6 @@ class InvenAdjustmentController extends Controller
         $data = InvenAdjustment::findOrFail($id);
         $data->delete();
 
-        return redirect()->route('adjustment.create')->with('success', 'Inventory Adjustment Deleted Successfully.');
+        return redirect()->route('adjustment.create')->with('error', 'Inventory Adjustment Deleted Successfully.');
     }
 }

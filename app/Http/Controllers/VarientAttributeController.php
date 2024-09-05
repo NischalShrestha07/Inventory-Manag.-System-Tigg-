@@ -64,6 +64,6 @@ class VarientAttributeController extends Controller
         $data = VarientAttribute::find($id);
         $data->delete();
 
-        return redirect()->route('varAttribute.create')->with('success', 'Varient Attribute Updated Successfully.');
+        return redirect()->route('varAttribute.create')->with('error', 'Varient Attribute Updated Successfully.');
     }
 }

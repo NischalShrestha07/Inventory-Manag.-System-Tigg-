@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('varient_attributes', function (Blueprint $table) {
+        Schema::create('variant_options', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-
-
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('varient_attributes');
+        Schema::dropIfExists('variant_options');
     }
 };

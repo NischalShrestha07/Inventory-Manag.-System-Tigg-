@@ -72,6 +72,6 @@ class BillController extends Controller
         $data = Bill::find($id);
         $data->delete();
 
-        return redirect()->route('bill.create')->with('success', 'Bill Deleted Successfully.');
+        return redirect()->route('bill.create')->with('error', 'Bill Deleted Successfully.');
     }
 }
