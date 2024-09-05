@@ -12,6 +12,17 @@ class Product extends Model
         'code',
         'name',
         'category',
-        'tax'
+        'tax',
+        'primary_unit',
+        'hscode',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'category_id');
+    }
+    public function uom()
+    {
+        return $this->belongsTo(UOM::class, 'primary_unit');
+    }
 }

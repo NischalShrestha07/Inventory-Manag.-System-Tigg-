@@ -55,20 +55,17 @@
                                             <input type="text" id="name" name="name" placeholder="Enter Product Name:"
                                                 class="form-control mb-2">
 
-
-
                                             <div class="mb-3">
-                                                <label for="category" class="form-label">Category</label>
+                                                <label for="category_id" class="form-label">Category</label>
                                                 <div class="input-group">
-                                                    <select class="form-select form-control selectpicker" id="category"
-                                                        name="category">
+                                                    <select class="form-select form-control selectpicker"
+                                                        id="category_id" name="category_id">
                                                         <option value="">Select Options</option>
                                                         @foreach ($categories as $category)
-                                                        <option value="{{ $category->name }}">
+                                                        <option value="{{ $category->id }}">
                                                             {{ $category->name }}
                                                         </option>
                                                         @endforeach
-
                                                     </select>
                                                     <button type="button" class="btn btn-primary ml-2"
                                                         data-toggle="modal" data-target="#addCategoryModal">Add
@@ -79,14 +76,9 @@
                                             <div class="mb-3">
                                                 <label for="tax">Tax:</label>
                                                 <select class="form-control" name="tax" id="tax">
-                                                    <option value="" selected>
-                                                        Select Option</option>
-                                                    <option class="form-control" id="tax" name="tax" value="13"
-                                                        class="form-control mb-2">13 %VAT
-                                                    </option>
-                                                    <option class="form-control" id="tax" name="tax" value="0"
-                                                        class="form-control mb-2">0 %VAT
-                                                    </option>
+                                                    <option value="" selected>Select Option</option>
+                                                    <option value="13">13 %VAT</option>
+                                                    <option value="0">0 %VAT</option>
                                                 </select>
                                             </div>
 
@@ -95,26 +87,21 @@
                                                 <div class="input-group">
                                                     <select class="form-select form-control selectpicker"
                                                         id="primary_unit" name="primary_unit">
-                                                        <option value="" selected>
-                                                            Select Option</option>
+                                                        <option value="" selected>Select Option</option>
                                                         @foreach ($primary_unit as $item)
-                                                        <option value="{{ $item->name }}">
+                                                        <option value="{{ $item->id }}">
                                                             {{ $item->name }}
                                                         </option>
                                                         @endforeach
-
                                                     </select>
                                                 </div>
                                             </div>
-
 
                                             <div class="mb-3">
                                                 <label for="hscode">Hs Code:</label>
                                                 <input type="text" id="hscode" name="hscode" placeholder="HS Code"
                                                     class="form-control mb-2">
                                             </div>
-
-
 
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
@@ -139,10 +126,8 @@
                                     <tr>
                                         <td>{{ $item->code }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->category }}</td>
+                                        <td>{{ $item->category ? $item->category->name : 'No Category' }}</td>
                                         <td>{{ $item->tax }}% VAT</td>
-
-
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
                                                 data-target="#updateModel{{ $item->id }}">
@@ -163,7 +148,6 @@
                                                                 @csrf
                                                                 @method('PUT')
 
-
                                                                 <input type="hidden" name="id" value="{{ $item->id }}">
 
                                                                 <div class="mb-3">
@@ -180,52 +164,42 @@
                                                                     placeholder="Enter Code/Sku:"
                                                                     class="form-control mb-2">
 
-
-                                                                <label for="category">Category:</label>
-                                                                <select id="category" name="category"
+                                                                <label for="category_id">Category:</label>
+                                                                <select id="category_id" name="category_id"
                                                                     class="form-control mb-2">
                                                                     @foreach($categories as $category)
-                                                                    <option value="{{ $category->name }}" {{ $category->
-                                                                        id == $item->category ? 'selected' : '' }}>
+                                                                    <option value="{{ $category->id }}" {{ $category->id
+                                                                        == $item->category_id ? 'selected' : '' }}>
                                                                         {{ $category->name }}
                                                                     </option>
                                                                     @endforeach
                                                                 </select>
 
-                                                                </select>
-
-
                                                                 <label for="tax">Tax:</label>
                                                                 <select class="form-control" name="tax" id="tax">
                                                                     <option value="{{$item->tax}}" selected>
                                                                         {{$item->tax}} %VAT</option>
-                                                                    <option class="form-control" id="tax" name="tax"
-                                                                        value="13" class="form-control mb-2">13 %VAT
-                                                                    </option>
-                                                                    <option class="form-control" id="tax" name="tax"
-                                                                        value="0" class="form-control mb-2">0 %VAT
-                                                                    </option>
+                                                                    <option value="13">13 %VAT</option>
+                                                                    <option value="0">0 %VAT</option>
                                                                 </select>
-
 
                                                                 <label for="primary_unit">Primary Unit:</label>
                                                                 <select id="primary_unit" name="primary_unit"
                                                                     class="form-control mb-2">
-                                                                    @foreach($primary_unit as $item)
-                                                                    <option value="{{ $item->name }}" {{ $item->
-                                                                        id == $item->item ? 'selected' : '' }}>
-                                                                        {{ $item->name }}
+                                                                    @foreach($primary_unit as $unit)
+                                                                    <option value="{{ $unit->id }}" {{ $unit->id ==
+                                                                        $item->primary_unit ? 'selected' : '' }}>
+                                                                        {{ $unit->name }}
                                                                     </option>
                                                                     @endforeach
-                                                                </select>
-
                                                                 </select>
 
                                                                 <div class="mb-3">
                                                                     <label for="hscode"
                                                                         class="form-label">Hscode</label>
                                                                     <input type="number" class="form-control"
-                                                                        id="hscode" value="{{ $item->hscode }}"
+                                                                        id="hscode" name="hscode"
+                                                                        value="{{ $item->hscode }}"
                                                                         placeholder="HS Code">
                                                                 </div>
 
@@ -237,7 +211,7 @@
                                                 </div>
                                             </div>
 
-                                            <a href="#" class="text-danger"
+                                            {{-- <a href="#" class="text-danger"
                                                 onclick="event.preventDefault();
                                                                 document.getElementById('delete-form-{{ $item->id }}').submit();">
                                                 <i class="fas fa-trash fa-lg"></i>
@@ -247,6 +221,19 @@
                                                 style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
+                                                <button type="submit" class="btn btn-sm w-10" title="Delete"
+                                                    onclick="return confirm('Are you sure you want to delete this item?')">
+                                                    <i class="fas fa-lg fa-trash-alt"></i>
+                                                </button>
+                                            </form> --}}
+                                            <form action="{{ route('product.destroy', $item->id) }}" method="POST"
+                                                style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm w-10" title="Delete"
+                                                    onclick="return confirm('Are you sure you want to delete this item?')">
+                                                    <i class="fas fa-lg fa-trash-alt"></i>
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
@@ -291,32 +278,6 @@
 @endsection
 
 @section('customJs')
-<script>
-    function addVariant() {
-            var dynamicVariants = document.getElementById('dynamic-variants');
-            var variantElement = document.createElement('div');
-            variantElement.className = 'mb-3';
-            variantElement.innerHTML = `
-                <label for="attributes" class="form-label">Attributes</label>
-                <select class="form-select" id="attributes" name="attributes[]">
-                    <option value="" selected>Select Attributes</option>
-                    <option value="color">Color</option>
-                    <option value="size">Size</option>
-                </select>
-                <label for="options" class="form-label">Options</label>
-                <select class="form-select" id="options" name="options[]">
-                    <option value="" selected>Please select</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                </select>
-            `;
-            dynamicVariants.appendChild(variantElement);
-        }
-</script>
-@endsection
-
-
-@section('customJs')
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
@@ -324,30 +285,30 @@
 <script>
     let variantCount = 1;
 
-        function addVariant() {
-            variantCount++;
-            const container = document.createElement('div');
-            container.className = 'mb-3';
-            container.innerHTML = `
-                <div class="mb-3">
-                    <label for="attributes-${variantCount}" class="form-label">Attribute ${variantCount}</label>
-                    <input type="text" class="form-control" id="attributes-${variantCount}" name="attributes[]" placeholder="Enter attribute name">
-                </div>
-                <div class="mb-3">
-                    <label for="options-${variantCount}" class="form-label">Options for Attribute ${variantCount}</label>
-                    <select class="form-select" id="options-${variantCount}" name="options[]">
-                        <option value="">Select an option</option>
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                    </select>
-                </div>
-            `;
-            document.getElementById('dynamic-variants').appendChild(container);
-        }
+    function addVariant() {
+        variantCount++;
+        const container = document.createElement('div');
+        container.className = 'mb-3';
+        container.innerHTML = `
+            <div class="mb-3">
+                <label for="attributes-${variantCount}" class="form-label">Attribute ${variantCount}</label>
+                <input type="text" class="form-control" id="attributes-${variantCount}" name="attributes[]" placeholder="Enter attribute name">
+            </div>
+            <div class="mb-3">
+                <label for="options-${variantCount}" class="form-label">Options for Attribute ${variantCount}</label>
+                <select class="form-select" id="options-${variantCount}" name="options[]">
+                    <option value="">Select an option</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                </select>
+            </div>
+        `;
+        document.getElementById('dynamic-variants').appendChild(container);
+    }
 
-        $(function() {
-            bsCustomFileInput.init();
-        });
+    $(function() {
+        bsCustomFileInput.init();
+    });
 </script>
 @endsection

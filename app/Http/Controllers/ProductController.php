@@ -19,22 +19,34 @@ class ProductController extends Controller
     public function AddNewProduct(Request $request)
     {
         $request->validate([
-            'code' => 'nullable',
-            'name' => 'required',
-            'category_id' => 'required',
+            'code' => 'nullable|string',
+            'name' => 'required|string',
+            'category_id' => 'nullable|string|exists:product_categories,id',
             'tax' => 'nullable',
-            // 'primary_unit' => 'required',
-            // 'hscode' => 'nullable',
+            'primary_unit' => 'nullable|exists:u_o_m_s,id',
+            'hscode' => 'nullable',
         ]);
         $data = new Product();
-        $data->name = $request->name;
-        $data->code = $request->code;
-        $data->category_id = $request->category_id;
-        $data->tax = $request->tax;
+        // $dem = new ProductCategory();
+        // $rem = new UOM();
+
+        $data->name = $request->input('name');
+        $data->code = $request->input('code');
+        $data->category_id = $request->input('category_id');
+        $data->tax = $request->input('tax');
+        $data->primary_unit = $request->input('primary_unit');
+        $data->hscode = $request->input('hscode');
+        $data->save();
+        // dd($request->all());
+
+        // $data->name = $request->name;
+        // $data->code = $request->code;
+        // $data->category_id = $request->category_id;
+        // $data->tax = $request->tax;
         // $data->primary_unit = $request->primary_unit;
         // $data->hscode = $request->hscode;
 
-        $data->save();
+        // $data->save();
 
         return redirect()->route('product.create')->with('success', 'Product Added Successfully.');
     }

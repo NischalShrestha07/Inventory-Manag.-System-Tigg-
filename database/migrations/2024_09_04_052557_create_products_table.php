@@ -16,10 +16,14 @@ return new class extends Migration
             $table->string('code');
             $table->string('name');
             $table->string('category_id');
-
             $table->string('primary_unit');
+            $table->string('tax');
             $table->string('hscode');
             $table->timestamps();
+
+
+            // $table->string('category_id')->constrained('product_categories');
+            // $table->string('primary_unit')->constrained('uoms');
 
 
             // $table->foreign('primary_unit')->references('id')->on('u_o_m_s')->onDelete('cascade');
