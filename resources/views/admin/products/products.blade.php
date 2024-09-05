@@ -62,6 +62,7 @@
                                                 <div class="input-group">
                                                     <select class="form-select form-control selectpicker" id="category"
                                                         name="category">
+                                                        <option value="">Select Options</option>
                                                         @foreach ($categories as $category)
                                                         <option value="{{ $category->name }}">
                                                             {{ $category->name }}
@@ -75,16 +76,27 @@
                                                 </div>
                                             </div>
 
-                                            <label for="tax"> Tax:</label>
-                                            <input type="text" id="tax" name="tax" placeholder="Enter Product Tax:"
-                                                class="form-control mb-2">
-
+                                            <div class="mb-3">
+                                                <label for="tax">Tax:</label>
+                                                <select class="form-control" name="tax" id="tax">
+                                                    <option value="" selected>
+                                                        Select Option</option>
+                                                    <option class="form-control" id="tax" name="tax" value="13"
+                                                        class="form-control mb-2">13 %VAT
+                                                    </option>
+                                                    <option class="form-control" id="tax" name="tax" value="0"
+                                                        class="form-control mb-2">0 %VAT
+                                                    </option>
+                                                </select>
+                                            </div>
 
                                             <div class="mb-3">
                                                 <label for="primary_unit" class="form-label">Primary Unit</label>
                                                 <div class="input-group">
                                                     <select class="form-select form-control selectpicker"
                                                         id="primary_unit" name="primary_unit">
+                                                        <option value="" selected>
+                                                            Select Option</option>
                                                         @foreach ($primary_unit as $item)
                                                         <option value="{{ $item->name }}">
                                                             {{ $item->name }}
@@ -96,53 +108,13 @@
                                             </div>
 
 
-
-
-                                            {{--
-                                            <!-- Purchase Price -->
                                             <div class="mb-3">
-                                                <label for="purchasePrice" class="form-label">Purchase Price</label>
-                                                <input type="number" class="form-control" id="purchasePrice"
-                                                    placeholder="0">
+                                                <label for="hscode">Hs Code:</label>
+                                                <input type="text" id="hscode" name="hscode" placeholder="HS Code"
+                                                    class="form-control mb-2">
                                             </div>
 
-                                            <div class="mb-3">
-                                                <label for="primaryUnit" class="form-label">Primary Unit</label>
-                                                <select class="form-select" id="primaryUnit">
-                                                    <option selected>Select Unit</option>
-                                                    <option value="1">Kg</option>
-                                                    <option value="2">Liter</option>
-                                                </select>
-                                            </div>
 
-                                            <h4>Product Information</h4>
-                                            <div id="dynamic-variants">
-                                                <!-- Default Attribute and Options -->
-                                                <div class="mb-3">
-                                                    <label for="attributes" class="form-label">Attributes</label>
-                                                    <select class="form-select" id="attributes" name="attributes[]">
-                                                        <option value="" selected>Select Attributes</option>
-                                                        <option value="color">Color</option>
-                                                        <option value="size">Size</option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="options" class="form-label">Options</label>
-                                                    <select class="form-select" id="options" name="options[]">
-                                                        <option value="" selected>Please select</option>
-                                                        <option value="option1">Option 1</option>
-                                                        <option value="option2">Option 2</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <button type="button" class="btn btn-success mb-2"
-                                                    onclick="addVariant()">+ Add More Variants</button>
-                                                <button type="button" class="btn btn-primary mb-2">Generate
-                                                    Variants</button>
-                                            </div> --}}
 
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
@@ -223,14 +195,16 @@
                                                                 </select>
 
 
-                                                                <label for="tax">tax/Sku:</label>
+                                                                <label for="tax">Tax:</label>
                                                                 <select class="form-control" name="tax" id="tax">
                                                                     <option value="{{$item->tax}}" selected>
-                                                                        {{$item->tax}}</option>
+                                                                        {{$item->tax}} %VAT</option>
                                                                     <option class="form-control" id="tax" name="tax"
-                                                                        value="13" class="form-control mb-2">13</option>
+                                                                        value="13" class="form-control mb-2">13 %VAT
+                                                                    </option>
                                                                     <option class="form-control" id="tax" name="tax"
-                                                                        value="0" class="form-control mb-2">0</option>
+                                                                        value="0" class="form-control mb-2">0 %VAT
+                                                                    </option>
                                                                 </select>
 
 
@@ -247,87 +221,13 @@
 
                                                                 </select>
 
-
                                                                 <div class="mb-3">
-                                                                    <label for="primary_unit" class="form-label">Primary
-                                                                        Unit</label>
+                                                                    <label for="hscode"
+                                                                        class="form-label">Hscode</label>
                                                                     <input type="number" class="form-control"
-                                                                        id="primary_unit"
-                                                                        value="{{ $item->primary_unit }}"
-                                                                        placeholder="0">
+                                                                        id="hscode" value="{{ $item->hscode }}"
+                                                                        placeholder="HS Code">
                                                                 </div>
-
-
-                                                                <div class="mb-3">
-                                                                    <label for="htdocs"
-                                                                        class="form-label">Htdocs</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="htdocs" value="{{ $item->htdocs }}"
-                                                                        placeholder="0">
-                                                                </div>
-
-
-                                                                {{--
-                                                                <div class="mb-3">
-                                                                    <label for="purchasePrice"
-                                                                        class="form-label">Purchase Price</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="purchasePrice"
-                                                                        value="{{ $item->purchase_price }}"
-                                                                        placeholder="0">
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label for="primaryUnit" class="form-label">Primary
-                                                                        Unit</label>
-                                                                    <select class="form-select" id="primaryUnit">
-                                                                        <option selected>Select Unit</option>
-                                                                        <option value="1" {{ $item->primary_unit == 1 ?
-                                                                            'selected' : '' }}>
-                                                                            Kg</option>
-                                                                        <option value="2" {{ $item->primary_unit == 2 ?
-                                                                            'selected' : '' }}>
-                                                                            Liter</option>
-                                                                    </select>
-                                                                </div>
-
-                                                                <h4>Product Information</h4>
-                                                                <div id="dynamic-variants">
-                                                                    <div class="mb-3">
-                                                                        <label for="attributes"
-                                                                            class="form-label">Attributes</label>
-                                                                        <select class="form-select" id="attributes"
-                                                                            name="attributes[]">
-                                                                            <option value="" selected>Select
-                                                                                Attributes</option>
-                                                                            <option value="color">Color</option>
-                                                                            <option value="size">Size</option>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <div class="mb-3">
-                                                                        <label for="options"
-                                                                            class="form-label">Options</label>
-                                                                        <select class="form-select" id="options"
-                                                                            name="options[]">
-                                                                            <option value="" selected>Please
-                                                                                select</option>
-                                                                            <option value="option1">Option 1
-                                                                            </option>
-                                                                            <option value="option2">Option 2
-                                                                            </option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <button type="button" class="btn btn-success mb-2"
-                                                                        onclick="addVariant()">+ Add More
-                                                                        Variants</button>
-                                                                    <button type="button"
-                                                                        class="btn btn-primary mb-2">Generate
-                                                                        Variants</button>
-                                                                </div> --}}
 
                                                                 <input type="submit" name="save" class="btn btn-success"
                                                                     value="Save Now" />

@@ -1,0 +1,111 @@
+  {{--//update part code
+                                                                <div class="mb-3">
+                                                                    <label for="purchasePrice"
+                                                                        class="form-label">Purchase Price</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="purchasePrice"
+                                                                        value="{{ $item->purchase_price }}"
+                                                                        placeholder="0">
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="primaryUnit" class="form-label">Primary
+                                                                        Unit</label>
+                                                                    <select class="form-select" id="primaryUnit">
+                                                                        <option selected>Select Unit</option>
+                                                                        <option value="1" {{ $item->primary_unit == 1 ?
+                                                                            'selected' : '' }}>
+                                                                            Kg</option>
+                                                                        <option value="2" {{ $item->primary_unit == 2 ?
+                                                                            'selected' : '' }}>
+                                                                            Liter</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <h4>Product Information</h4>
+                                                                <div id="dynamic-variants">
+                                                                    <div class="mb-3">
+                                                                        <label for="attributes"
+                                                                            class="form-label">Attributes</label>
+                                                                        <select class="form-select" id="attributes"
+                                                                            name="attributes[]">
+                                                                            <option value="" selected>Select
+                                                                                Attributes</option>
+                                                                            <option value="color">Color</option>
+                                                                            <option value="size">Size</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <label for="options"
+                                                                            class="form-label">Options</label>
+                                                                        <select class="form-select" id="options"
+                                                                            name="options[]">
+                                                                            <option value="" selected>Please
+                                                                                select</option>
+                                                                            <option value="option1">Option 1
+                                                                            </option>
+                                                                            <option value="option2">Option 2
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <button type="button" class="btn btn-success mb-2"
+                                                                        onclick="addVariant()">+ Add More
+                                                                        Variants</button>
+                                                                    <button type="button"
+                                                                        class="btn btn-primary mb-2">Generate
+                                                                        Variants</button>
+                                                                </div> --}}
+
+
+
+
+//add details part code
+   {{--
+                                            <!-- Purchase Price -->
+                                            <div class="mb-3">
+                                                <label for="purchasePrice" class="form-label">Purchase Price</label>
+                                                <input type="number" class="form-control" id="purchasePrice"
+                                                    placeholder="0">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="primaryUnit" class="form-label">Primary Unit</label>
+                                                <select class="form-select" id="primaryUnit">
+                                                    <option selected>Select Unit</option>
+                                                    <option value="1">Kg</option>
+                                                    <option value="2">Liter</option>
+                                                </select>
+                                            </div>
+
+                                            <h4>Product Information</h4>
+                                            <div id="dynamic-variants">
+                                                <!-- Default Attribute and Options -->
+                                                <div class="mb-3">
+                                                    <label for="attributes" class="form-label">Attributes</label>
+                                                    <select class="form-select" id="attributes" name="attributes[]">
+                                                        <option value="" selected>Select Attributes</option>
+                                                        <option value="color">Color</option>
+                                                        <option value="size">Size</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="options" class="form-label">Options</label>
+                                                    <select class="form-select" id="options" name="options[]">
+                                                        <option value="" selected>Please select</option>
+                                                        <option value="option1">Option 1</option>
+                                                        <option value="option2">Option 2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <button type="button" class="btn btn-success mb-2"
+                                                    onclick="addVariant()">+ Add More Variants</button>
+                                                <button type="button" class="btn btn-primary mb-2">Generate
+                                                    Variants</button>
+                                            </div> --}}

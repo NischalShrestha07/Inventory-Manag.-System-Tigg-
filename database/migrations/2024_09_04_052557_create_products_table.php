@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->unsignedBigInteger('category_id');
-            $table->string('tax');
-            $table->unsignedBigInteger('primary_unit');
+            $table->string('category_id');
+
+            $table->string('primary_unit');
             $table->string('hscode');
             $table->timestamps();
 
 
-            $table->foreign('primary_unit')->references('id')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
+            // $table->foreign('primary_unit')->references('id')->on('u_o_m_s')->onDelete('cascade');
+            // $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
         });
     }
 
@@ -33,12 +33,16 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);
-        });
-        Schema::table('u_o_m_s', function (Blueprint $table) {
-            $table->dropForeign(['primary_unit']);
+
+            Schema::dropIfExists('products');
         });
 
-        Schema::dropIfExists('products');
+        // Schema::table('products', function (Blueprint $table) {
+        //     //     $table->dropForeign(['category_id']);
+        // });
+        // Schema::table('u_o_m_s', function (Blueprint $table) {
+        //     $table->dropForeign(['primary_unit']);
+        // });
+
     }
 };
