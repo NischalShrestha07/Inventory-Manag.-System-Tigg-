@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductionJournalController;
 use App\Http\Controllers\ProductionOrderController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
+use App\Http\Controllers\VarientAttributeController;
 use App\Models\InvenAdjustment;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Route;
@@ -70,6 +71,6 @@ Route::post('/AddNewProductionJournal', [ProductionJournalController::class, 'Ad
 Route::put('/UpdateJournal', [ProductionJournalController::class, 'UpdateJournal']);
 Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])->name('journal.destroy');
 
-// Route::get('/attribute/create', [Produ::class, 'index'])->name('proAttribute.create');
-Route::post('/AddNewProductionJournal', [ProductionJournalController::class, 'AddNewProductionJournal']);
-Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])->name('journal.destroy');
+Route::get('/attribute/create', [VarientAttributeController::class, 'index'])->name('varAttribute.create');
+// Route::post('/AddNewVarAttribute', [ProductionJournalController::class, 'AddNewVarAttribute']);
+// Route::delete('/attribute/{id}', [ProductionJournalController::class, 'destroy'])->name('varAttribute.destroy');

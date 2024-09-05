@@ -203,10 +203,11 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('proAttribute.create')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Variant Attributes</p>
-                                    </a>
+                                    <a href="" class="nav-link">
+                                        {{-- <a href="{{route('varAttribute.create')}}" class="nav-link"> --}}
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Variant Attributes</p>
+                                        </a>
                                 </li>
 
                             </ul>
@@ -227,8 +228,8 @@
                                         <p>Units Of Measurement</p>
                                     </a>
                                 </li>
-
                             </ul>
+
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('adjustment.create') }}" class="nav-link">
