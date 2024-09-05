@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
+use App\Models\UOM;
 use App\Models\VarientProduct;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class VariantProductController extends Controller
     {
         $varProducts = VarientProduct::all();
         $categories = ProductCategory::all();
-        return view('admin.variant_products.index', compact('varProducts', 'categories'));
+        $primary_unit = UOM::all();
+        return view('admin.variant_products.index', compact('varProducts', 'categories', 'primary_unit'));
     }
 
     public function AddNewVarProduct(Request $request)
@@ -23,16 +25,18 @@ class VariantProductController extends Controller
             'name' => 'required|string',
             'category' => 'nullable|string',
             'tax' => 'nullable|string',
+            'selling_price' => 'nullable|string',
+            'purchase_price' => 'nullable|string',
         ]);
         $data = new VarientProduct();
-        // $data->code = $data->code;
-        // $data->name = $data->name;
-        // $data->category = $data->category;
-        // $data->tax = $data->tax;
-        $data->code = $request->input('code');  // Assigning 'code' input to 'code' attribute
-        $data->name = $request->input('name');  // Assigning 'name' input to 'name' attribute
-        $data->category = $request->input('category');  // Assigning 'category' input to 'category' attribute
-        $data->tax = $request->input('tax');  // Assigning 'tax' input to 'tax' attribute
+
+        $data->code = $request->input('code');
+        $data->name = $request->input('name');
+        $data->category = $request->input('category');
+        $data->tax = $request->input('tax');
+        $data->selling_price = $request->input('selling_price');
+        $data->purchase_price = $request->input('purchase_price');
+
 
         $data->save();
         // dd($data);
@@ -48,13 +52,17 @@ class VariantProductController extends Controller
             'name' => 'required|string',
             'category' => 'nullable|string',
             'tax' => 'nullable|string',
+            'selling_price' => 'nullable|string',
+            'purchase_price' => 'nullable|string',
         ]);
         $data = VarientProduct::findOrFail($request->input('id'));
 
-        $data->code = $request->input('code');  // Assigning 'code' input to 'code' attribute
-        $data->name = $request->input('name');  // Assigning 'name' input to 'name' attribute
-        $data->category = $request->input('category');  // Assigning 'category' input to 'category' attribute
-        $data->tax = $request->input('tax');  // Assigning 'tax' input to 'tax' attribute
+        $data->code = $request->input('code');
+        $data->name = $request->input('name');
+        $data->category = $request->input('category');
+        $data->tax = $request->input('tax');
+        $data->selling_price = $request->input('selling_price');
+        $data->purchase_price = $request->input('purchase_price');
 
         $data->save();
         // dd($data);

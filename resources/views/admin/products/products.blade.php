@@ -211,21 +211,6 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <a href="#" class="text-danger"
-                                                onclick="event.preventDefault();
-                                                                document.getElementById('delete-form-{{ $item->id }}').submit();">
-                                                <i class="fas fa-trash fa-lg"></i>
-                                            </a>
-                                            <form id="delete-form-{{ $item->id }}"
-                                                action="{{ route('product.destroy', $item->id) }}" method="POST"
-                                                style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm w-10" title="Delete"
-                                                    onclick="return confirm('Are you sure you want to delete this item?')">
-                                                    <i class="fas fa-lg fa-trash-alt"></i>
-                                                </button>
-                                            </form> --}}
                                             <form action="{{ route('product.destroy', $item->id) }}" method="POST"
                                                 style="display:inline-block;">
                                                 @csrf

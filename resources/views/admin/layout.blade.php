@@ -52,8 +52,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
@@ -132,8 +131,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true"
-                        href="#" role="button">
+                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
+                        role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
@@ -202,15 +201,15 @@
                                 </li>
 
                             </ul>
-                            {{-- <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('proAttribute.create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Variant Attributes</p>
                                     </a>
                                 </li>
 
-                            </ul> --}}
+                            </ul>
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
@@ -283,14 +282,14 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('admin.membership') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Membership</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Membership</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('class.read') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View Class List</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Class List</p>
                                     </a>
 
                                 </li>
@@ -313,14 +312,14 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('admin.class') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Class Schedule</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Class Schedule</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('feehead.read') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View Fee Head</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Fee Head</p>
                                     </a>
 
                                 </li>
@@ -343,14 +342,14 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('feestructure.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add FeeStructure</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add FeeStructure</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.billing') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p> Billing</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p> Billing</p>
                                     </a>
 
                                 </li>
@@ -369,14 +368,14 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('student.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Setting</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Setting</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('admin.setting') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Setting</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Setting</p>
                                     </a>
 
                                 </li>
@@ -398,14 +397,14 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('announcement.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Announcement</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Announcement</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('announcement.read') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View Announcement List</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Announcement List</p>
                                     </a>
 
                                 </li>
@@ -429,14 +428,14 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('assignSubject.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Subject to Assign</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Subject to Assign</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('assignSubject.read') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View Assigned Subject</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Assigned Subject</p>
                                     </a>
 
                                 </li>
@@ -458,14 +457,14 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('subject.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Add Record</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Record</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('subject.read') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>View Record</p>
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Record</p>
                                     </a>
 
                                 </li>

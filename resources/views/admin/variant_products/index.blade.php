@@ -4,6 +4,10 @@
 
 <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -89,11 +93,72 @@
                                                 </div>
                                             </div>
 
+                                            <div class="mb-3">
+                                                <label for="tax">Tax:</label>
+                                                <select class="form-control" name="tax" id="tax">
+                                                    <option value="" selected>Select Option</option>
+                                                    <option value="13">13 %VAT</option>
+                                                    <option value="0">0 %VAT</option>
+                                                </select>
+                                            </div>
 
-                                            <label for="tax">Tax:</label>
-                                            <input type="text" id="tax" name="tax" placeholder="Tax"
-                                                class="form-control mb-2">
+                                            <div class="mb-3">
+                                                <label for="primary_unit" class="form-label">Primary Unit</label>
+                                                <div class="input-group">
+                                                    <select class="form-select form-control selectpicker"
+                                                        id="primary_unit" name="primary_unit">
+                                                        <option value="" selected>Select Option</option>
+                                                        @foreach ($primary_unit as $item)
+                                                        <option value="{{ $item->id }}">
+                                                            {{ $item->name }}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
 
+                                            <label for="selling_price">Selling Price:</label>
+                                            <input type="text" id="selling_price" name="selling_price"
+                                                placeholder="Enter Selling Price:" class="form-control mb-2">
+
+
+                                            <label for="purchase_price">Purchase Price:</label>
+                                            <input type="text" id="purchase_price" name="purchase_price"
+                                                placeholder="Enter Purchase Price:" class="form-control mb-2">
+
+
+                                            {{-- Dependent Dropdown --}}
+                                            <div class="mb-3">
+                                                <h4>Product Information</h4>
+                                                <div id="dynamic-variants">
+                                                    <!-- Default Attribute and Options -->
+                                                    <div class="variant-group mb-3">
+                                                        <label for="attributes" class="form-label">Attributes</label>
+                                                        <select class="form-select form-control" name="attributes[]">
+                                                            <option value="" selected>Select Attributes</option>
+                                                            <option value="color">Color</option>
+                                                            <option value="size">Size</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="variant-group mb-3">
+                                                        <label for="options" class="form-label ">Options</label>
+                                                        <select class="form-select form-control" name="options[]">
+                                                            <option value="" selected>Please select</option>
+                                                            <option value="option1">Option 1</option>
+                                                            <option value="option2">Option 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                {{--
+                                                <div class="mb-3">
+                                                    <button type="button" class="btn btn-success mb-2"
+                                                        onclick="addVariant()">+ Add More Variants</button>
+                                                    <button type="button" class="btn btn-primary mb-2"
+                                                        onclick="generateVariants()">Generate Variants</button>
+                                                </div> --}}
+                                            </div>
 
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
@@ -223,15 +288,36 @@
             </div>
 
         </div>
+        <div class="modal" id="addCategoryModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New Category</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+                        <form action="{{ url('AddCategory') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="category" name="category"
+                                    placeholder="Enter Category Name">
+                            </div>
+                            <input type="submit" name="save" class="btn btn-success" value="Add Category" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
 </div>
 @endsection
 @section('customJs')
-{{-- Remove the search bar --}}
-{{-- <script src="plugins/datatables/jquery.dataTables.min.js"></script> --}}
-{{-- <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script> --}}
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 {{-- <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script> --}}
@@ -242,9 +328,16 @@
 <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Include Bootstrap CSS -->
 <script src="dist/js/adminlte.min2167.js?v=3.2.0"></script>
+<!-- Include Bootstrap Selectpicker CSS -->
 
+<!-- Include Bootstrap Selectpicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script src="dist/js/demo.js"></script>
 
 <script>
@@ -263,5 +356,42 @@
                 "responsive": true,
             });
         });
+
+
+    // $(function() {
+    //     bsCustomFileInput.init();
+    // });
+    // function addVariant() {
+    // const variantGroup = document.createElement('div');
+    // variantGroup.className = 'variant-group mb-3';
+
+    // variantGroup.innerHTML = `
+    // <label class="form-label">Attributes</label>
+    // <select class="form-select" name="attributes[]">
+    //     <option value="" selected>Select Attributes</option>
+    //     <option value="color">Color</option>
+    //     <option value="size">Size</option>
+    // </select>
+    // <label class="form-label mt-2">Options</label>
+    // <select class="form-select" name="options[]">
+    //     <option value="" selected>Please select</option>
+    //     <option value="option1">Option 1</option>
+    //     <option value="option2">Option 2</option>
+    // </select>
+    // <button type="button" class="btn btn-danger mt-2" onclick="removeVariant(this)">Remove</button>
+    // `;
+
+    // document.getElementById('dynamic-variants').appendChild(variantGroup);
+    // }
+
+    // function removeVariant(button) {
+    // const variantGroup = button.parentElement;
+    // variantGroup.remove();
+    // }
+
+    // function generateVariants() {
+    // // Add your logic to generate variants based on selected attributes and options
+    // alert('Generating variants...');
+    // }
 </script>
 @endsection

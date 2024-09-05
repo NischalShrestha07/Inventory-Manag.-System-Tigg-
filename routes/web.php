@@ -70,6 +70,6 @@ Route::post('/AddNewProductionJournal', [ProductionJournalController::class, 'Ad
 Route::put('/UpdateJournal', [ProductionJournalController::class, 'UpdateJournal']);
 Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])->name('journal.destroy');
 
-// Route::get('/attribute/create', [ProductionJournalController::class, 'index'])->name('journal.create');
-// Route::post('/AddNewProductionJournal', [ProductionJournalController::class, 'AddNewProductionJournal']);
-// Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])->name('journal.destroy');
+// Route::get('/attribute/create', [Produ::class, 'index'])->name('proAttribute.create');
+Route::post('/AddNewProductionJournal', [ProductionJournalController::class, 'AddNewProductionJournal']);
+Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])->name('journal.destroy');
