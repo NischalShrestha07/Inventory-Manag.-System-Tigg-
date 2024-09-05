@@ -47,6 +47,7 @@
                                 </div>
                                 @endif
                             </div>
+
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success"
                                     data-target="#addNewUom">Add New</button>

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('variant_options', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('varient_attribute_id')->constrained('varient_attributes')->onDelete('cascade');
+            $table->string('option_name');
             $table->timestamps();
         });
     }

@@ -72,13 +72,15 @@
                                             <input type="text" id="name" name="name" placeholder="Enter Attribute Name:"
                                                 class="form-control mb-2">
 
+                                            <div id="option-fields">
+                                                <label for="option[]">Options:</label>
+                                                <input type="text" id="option[]" name="option"
+                                                    placeholder="Enter Option:" class="form-control mb-2">
 
-                                            <label for="option">Options:</label>
-                                            <input type="text" id="option" name="option" placeholder="Enter Name:"
-                                                class="form-control mb-2">
-
-
-                                            <input type="submit" name="save" class="btn btn-success" value="Save Now" />
+                                            </div>
+                                            <button type="button" id="add-option" class="btn btn-secondary">+
+                                                NEW</button>
+                                            <button type="submit" class="btn btn-success">Save</button>
                                         </form>
                                     </div>
                                 </div>
@@ -175,5 +177,15 @@
                 "responsive": true,
             });
         });
+
+
+            document.getElementById('add-option').addEventListener('click', function() {
+                var optionField = `<div class="form-group">
+                                       <label for="options[]">Option:</label>
+                                       <input type="text" name="options[]" class="form-control" placeholder="Enter Option">
+                                   </div>`;
+                document.getElementById('option-fields').insertAdjacentHTML('beforeend', optionField);
+            });
+
 </script>
 @endsection

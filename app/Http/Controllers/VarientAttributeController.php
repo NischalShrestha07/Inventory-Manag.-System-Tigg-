@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VarientAttribute;
+use App\Models\VarientOption;
 use App\Models\VarientProduct;
 use Illuminate\Http\Request;
 
@@ -13,23 +14,41 @@ class VarientAttributeController extends Controller
      */
     public function index()
     {
-        $attribute = VarientAttribute::all();
-        return view('admin.variant_attributes.index', compact('attribute'));
+        $attributes = VarientAttribute::all();
+        return view('admin.variant_attributes.index', compact('attributes'));
     }
 
     public function AddNewVarAttribute(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'option' => 'nullable|string',
+            'name' => 'required|string|max:260',
+            'option' => 'nullable|array',
+            'options.*' => 'required|string|max:260',
 
         ]);
-        $data = new VarientAttribute();
-        $data->name = $request->input('name');
-        $data->option = $request->input('option');
-        $data->save();
 
-        return redirect()->route('varAttribute.create')->with('success', 'Varient Attribute Added Successfully.');
+
+        // Create the variant attribute
+        $variant = VarientAttribute::create([
+            'name' => $request->input('name'),
+        ]);
+
+        // Create each option related to the variant attribute
+        foreach ($request->input('options') as $option) {
+            VarientOption::create([
+                'variant_attribute_id' => $variant->id,
+                'option_name' => $option,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Variant Attribute and Options saved successfully!');
+
+        // $data = new VarientAttribute();
+        // $data->name = $request->input('name');
+        // $data->option = $request->input('option');
+        // $data->save();
+
+        // return redirect()->route('varAttribute.create')->with('success', 'Varient Attribute Added Successfully.');
     }
 
     /**
