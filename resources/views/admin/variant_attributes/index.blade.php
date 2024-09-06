@@ -74,8 +74,8 @@
 
                                             <div id="option-fields">
                                                 <label for="option[]">Options:</label>
-                                                <input type="text" id="option[]" name="option"
-                                                    placeholder="Enter Option:" class="form-control mb-2">
+                                                <input type="text" name="options[]" placeholder="Enter Option:"
+                                                    class="form-control mb-2">
 
                                             </div>
                                             <button type="button" id="add-option" class="btn btn-secondary">+
@@ -98,7 +98,7 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                {{-- <tbody>
                                     @php
                                     $i = 0;
 
@@ -123,10 +123,20 @@
                                     </tr>
                                     @endforeach
 
-                                </tbody>
-                                <tfoot>
+                                </tbody> --}}
 
-                                </tfoot>
+                                <tbody>
+                                    @foreach($varients as $variant)
+                                    <tr>
+                                        <td>{{ $variant->name }}</td>
+                                        <td>
+                                            @foreach($variant->options as $option)
+                                            <span>{{ $option->option_name }}</span><br>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
 

@@ -72,5 +72,5 @@ Route::put('/UpdateJournal', [ProductionJournalController::class, 'UpdateJournal
 Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])->name('journal.destroy');
 
 Route::get('/attribute/create', [VarientAttributeController::class, 'index'])->name('varAttribute.create');
-Route::post('/AddNewVarAttribute', [VarientAttributeController::class, 'AddNewVarAttribute']);
+Route::post('/AddNewVarAttribute', [VarientAttributeController::class, 'AddNewVarAttribute'])->name('variant.add');
 Route::delete('/attribute/{id}', [VarientAttributeController::class, 'destroy'])->name('varAttribute.destroy');

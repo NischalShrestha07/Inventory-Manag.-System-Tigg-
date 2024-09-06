@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class VarientAttribute extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'option',
+    ];
+    public function options()
+    {
+        return $this->hasMany(VarientOption::class);
+    }
 }
