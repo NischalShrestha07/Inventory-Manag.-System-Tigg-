@@ -36,7 +36,7 @@
 
                         <div class="card">
                             <div class="menu-title navbar">
-                                <h2 class="ml-2 menu-title">Variant Products</h2>
+                                <h2 class="ml-2 menu-title"> Products</h2>
                                 <div>
                                     @if (@session('success'))
                                     <div class="alert alert-success bg-success h3 text-white rounded">
@@ -88,7 +88,7 @@
                                                         <select class=" form-control " id="category" name="category">
                                                             <option value="">Select Options</option>
                                                             @foreach ($categories as $category)
-                                                            <option value="{{ $category->id }}">
+                                                            <option value="{{ $category->name }}">
                                                                 {{ $category->name }}
                                                             </option>
                                                             @endforeach

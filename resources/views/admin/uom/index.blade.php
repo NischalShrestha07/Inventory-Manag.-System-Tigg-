@@ -106,7 +106,7 @@
                                     @endphp
                                     @foreach ($uoms as $item)
                                     @php
-                                    $i = 1;
+                                    $i++;
                                     @endphp
                                     <tr>
                                         <td>{{ $item->name }}</td>

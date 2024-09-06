@@ -269,10 +269,91 @@
 
                         </li>
 
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    Sales
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
 
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p> Journal</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Production </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Production </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+
+
+
+
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    Purchase
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Production Journal</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Production Journal</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Production Journal</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
 
                         {{-- class mngt --}}
-                        {{-- <li class="nav-item">
+                        {{--
+                        <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
