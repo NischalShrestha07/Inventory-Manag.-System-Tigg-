@@ -25,7 +25,6 @@ return new class extends Migration
             $table->foreignId('attribute_id')->nullable()->constrained('varient_attributes')->onDelete('set null');
             $table->foreignId('option_id')->nullable()->constrained('variant_options')->onDelete('set null');
 
-
             $table->timestamps();
         });
     }

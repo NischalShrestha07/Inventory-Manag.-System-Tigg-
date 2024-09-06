@@ -55,7 +55,7 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <label for="date">DATE:</label>
-                                            <input type="date" id="date" name="date" placeholder="Date:"
+                                            <input type="date" id=" date" name="date" placeholder="Date:"
                                                 class="form-control mb-2">
 
 

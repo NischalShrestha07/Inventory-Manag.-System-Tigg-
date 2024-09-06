@@ -28,6 +28,7 @@ class VariantProductController extends Controller
             'name' => 'required|string',
             'category' => 'nullable|string',
             'tax' => 'nullable|string',
+            'primary_unit' => 'required|string',
             'selling_price' => 'nullable|string',
             'purchase_price' => 'nullable|string',
         ]);
@@ -37,6 +38,7 @@ class VariantProductController extends Controller
         $data->name = $request->input('name');
         $data->category = $request->input('category');
         $data->tax = $request->input('tax');
+        $data->primary_unit = $request->input('primary_unit');
         $data->selling_price = $request->input('selling_price');
         $data->purchase_price = $request->input('purchase_price');
 
@@ -56,6 +58,7 @@ class VariantProductController extends Controller
             'category' => 'nullable|string',
             'tax' => 'nullable|string',
             'selling_price' => 'nullable|string',
+            'primary_unit' => 'required|string',
             'purchase_price' => 'nullable|string',
         ]);
         $data = VarientProduct::findOrFail($request->input('id'));
@@ -64,6 +67,7 @@ class VariantProductController extends Controller
         $data->name = $request->input('name');
         $data->category = $request->input('category');
         $data->tax = $request->input('tax');
+        $data->primary_unit = $request->input('primary_unit');
         $data->selling_price = $request->input('selling_price');
         $data->purchase_price = $request->input('purchase_price');
 

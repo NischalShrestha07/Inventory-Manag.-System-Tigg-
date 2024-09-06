@@ -113,7 +113,7 @@
                                                     <label for="primary_unit" class="form-label">Primary Unit</label>
                                                     <div class="input-group">
                                                         <select class="form-control" id="primary_unit"
-                                                            name="primary_unit">
+                                                            name="primary_unit" required>
                                                             <option value="" selected>Select Option</option>
                                                             @foreach ($primary_unit as $item)
                                                             <option value="{{ $item->id }}">
@@ -139,25 +139,6 @@
                                                     <h4>Product Information</h4>
                                                     <div id="dynamic-variants">
                                                         <!-- Default Attribute and Options -->
-                                                        {{-- <div class="variant-group mb-3">
-                                                            <label for="attributes"
-                                                                class="form-label">Attributes</label>
-                                                            <select class="form-select form-control"
-                                                                name="attributes[]">
-                                                                <option value="" selected>Select Attributes</option>
-                                                                <option value="color">Color</option>
-                                                                <option value="size">Size</option>
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="variant-group mb-3">
-                                                            <label for="options" class="form-label ">Options</label>
-                                                            <select class="form-select form-control" name="options[]">
-                                                                <option value="" selected>Please select</option>
-                                                                <option value="option1">Option 1</option>
-                                                                <option value="option2">Option 2</option>
-                                                            </select>
-                                                        </div> --}}
 
                                                         <div class="variant-group mb-3">
                                                             <label for="attributes"
@@ -189,7 +170,8 @@
                                                     <button type="button" class="btn btn-primary mb-2"
                                                         onclick="generateVariants()">Generate Variants</button>
                                                 </div>
-                                        </div>
+                                                {{--
+                                        </div> --}}
                                         <input type="submit" name="save" class="btn btn-success" value="Save Changes"
                                             m-5 />
                                         </form>
