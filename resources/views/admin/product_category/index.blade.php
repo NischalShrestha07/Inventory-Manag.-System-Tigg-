@@ -91,10 +91,6 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->parent }}</td>
 
-                                        {{-- <a href="" class="btn" title="Edit">
-                                            <i class="fas fa-edit fa-lg"></i>
-                                        </a> --}}
-
                                         {{-- Update Model --}}
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"

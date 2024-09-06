@@ -89,43 +89,105 @@
 
 
 
-                        <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>NAME</th>
-                                        <th>OPTIONS</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
+                        {{-- <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped"> --}}
+
+
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>NAME</th>
+                                                <th>OPTIONS </th>
+                                                <th>ACTIONS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                            $i = 0;
+                                            @endphp
+                                            @foreach ($varients as $item)
+                                            @php
+                                            $i++;
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $item->name }}</td>
+                                                <td>
+                                                    @foreach($item->options as $option)
+                                                    <span>{{ $option->option_name }}</span><br>
+                                                    @endforeach
+                                                </td>
+
+                                                {{-- Update Model --}}
+                                                <td class="font-weight-medium">
+                                                    <button type="button" class="btn" title="Edit" data-toggle="modal"
+                                                        data-target="#updateModel{{ $i }}">
+                                                        <i class="fas fa-edit fa-lg"></i>
+                                                    </button>
+                                                    <div class="modal" id="updateModel{{ $i }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Update Varient Attribute
+                                                                    </h4>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="{{ url('UpdateVarAttribute') }}"
+                                                                        method="POST" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+
+
+                                                                        <label for="name">Name:</label>
+                                                                        <input type="text" id="name" name="name"
+                                                                            value="{{ $item->name }}"
+                                                                            placeholder="Enter Attribute Name:"
+                                                                            class="form-control mb-2">
+
+
+                                                                        <label for="option[]">Options:</label>
+                                                                        @foreach($item->options as $index => $option)
+                                                                        <input type="text" name="options[]"
+                                                                            value="{{ $option->option_name }}"
+                                                                            class="form-control mb-2">
+                                                                        @endforeach
+
+
+                                                                        <input type="hidden" name="id"
+                                                                            value="{{ $item->id }}">
+                                                                        <input type="submit" name="save"
+                                                                            class="btn btn-success"
+                                                                            value="Save Changes" />
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <form action="{{ route('varAttribute.destroy', $item->id) }}"
+                                                        method="POST" style="display:inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm w-10" title="Delete"
+                                                            onclick="return confirm('Are you sure you want to delete this item?')">
+                                                            <i class="fas fa-lg fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+
+
+                                {{-- CHATgpt codes helps --}}
                                 {{-- <tbody>
-                                    @php
-                                    $i = 0;
-
-                                    @endphp
-                                    @foreach ($attributes as $item)
-                                    @php
-                                    $i = 1;
-                                    @endphp
-                                    <tr>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->option }}</td>
-                                        <td>
-                                            <a href="" class="btn" title="Edit">
-                                                <i class="fas fa-edit fa-lg"></i>
-                                            </a>
-                                            <button type="submit" class="btn btn-sm w-10" title="Delete"
-                                                onclick="return confirm('Are you sure you want to delete this item?')">
-                                                <i class="fas fa-lg fa-trash-alt"></i>
-                                            </button>
-
-                                        </td>
-                                    </tr>
-                                    @endforeach
-
-                                </tbody> --}}
-
-                                <tbody>
                                     @foreach($varients as $variant)
                                     <tr>
                                         <td>{{ $variant->name }}</td>
@@ -136,9 +198,10 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                </tbody>
+                                </tbody> --}}
+                                {{--
                             </table>
-                        </div>
+                        </div> --}}
 
                     </div>
 

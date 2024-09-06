@@ -58,37 +58,41 @@ class VarientAttributeController extends Controller
         // dd($request->all());
 
         return redirect()->back()->with('success', 'Variant Attribute and Options saved successfully!');
-
-        // $data = new VarientAttribute();
-        // $data->name = $request->input('name');
-        // $data->option = $request->input('option');
-        // $data->save();
-
-        // return redirect()->route('varAttribute.create')->with('success', 'Varient Attribute Added Successfully.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     public function UpdateVarAttribute(Request $request, VarientAttribute $varientAttribute)
     {
         $request->validate([
             'name' => 'required|string',
-            'option' => 'nullable|string',
+            'options' => 'nullable|array',
+            'options.*' => 'nullable|string|max:260',
 
         ]);
-        $data = VarientAttribute::findOrFail('id');;
-        $data->name = $request->input('name');
-        $data->option = $request->input('option');
-        $data->save();
+
+        //Update the Varient Attribute Name
+        $varientAttribute->name = $request->input('name');
+        $varientAttribute->save();
+
+        if ($request->has('options')) {
+            //clear the existing options to avoid duplicates
+            $varientAttribute->options()->delete();
 
 
-        return redirect()->route('varAttribute.create')->with('success', 'Varient Attribute Updated Successfully.');
+
+            //create or update options
+            foreach ($request->input('options') as $option) {
+                if (!empty($option)) {
+                    VarientOption::create([
+                        'varient_attribute_id' => $varientAttribute->id,
+                        'option_name' => $option,
+                    ]);
+                }
+            }
+        }
+
+
+        return redirect()->route('varAttribute.create')->with('success', 'Varient Attribute and Options Updated Successfully.');
     }
 
     /**
@@ -98,6 +102,6 @@ class VarientAttributeController extends Controller
     {
         $data = VarientAttribute::find($id);
         $data->delete();
-        return redirect()->route('varAttribute.create')->with('error', 'Varient Attribute Updated Successfully.');
+        return redirect()->route('varAttribute.create')->with('error', 'Varient Attribute Deleted Successfully.');
     }
 }
