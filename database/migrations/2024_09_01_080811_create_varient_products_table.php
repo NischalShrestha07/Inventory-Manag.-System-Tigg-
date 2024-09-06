@@ -21,7 +21,10 @@ return new class extends Migration
             $table->string('selling_price');
             $table->string('purchase_price');
 
-            ///attribute and options is remaining.
+            // Assuming you want to store attributes and options separately
+            $table->foreignId('attribute_id')->nullable()->constrained('varient_attributes')->onDelete('set null');
+            $table->foreignId('option_id')->nullable()->constrained('variant_options')->onDelete('set null');
+
 
             $table->timestamps();
         });

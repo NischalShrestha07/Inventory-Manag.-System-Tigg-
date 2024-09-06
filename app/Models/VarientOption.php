@@ -15,6 +15,6 @@ class VarientOption extends Model
     ];
     public function varientAttribute()
     {
-        return $this->belongsTo(VarientAttribute::class);
+        return $this->belongsTo(VarientAttribute::class, 'varient_attribute_id');
     }
 }

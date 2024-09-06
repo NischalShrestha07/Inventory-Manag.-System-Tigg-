@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
 use App\Models\UOM;
+use App\Models\VarientAttribute;
+use App\Models\VarientOption;
 use App\Models\VarientProduct;
 use Illuminate\Http\Request;
 
@@ -12,10 +14,11 @@ class VariantProductController extends Controller
     //
     public function index()
     {
+        $attributes = VarientAttribute::all();
         $varProducts = VarientProduct::all();
         $categories = ProductCategory::all();
         $primary_unit = UOM::all();
-        return view('admin.variant_products.index', compact('varProducts', 'categories', 'primary_unit'));
+        return view('admin.variant_products.index', compact('varProducts', 'categories', 'primary_unit', 'attributes'));
     }
 
     public function AddNewVarProduct(Request $request)
@@ -71,6 +74,30 @@ class VariantProductController extends Controller
     }
 
 
+    public function fetchOptions($attribute)
+    {
+        // Fetch attribute model based on the attribute name
+        $attributeModel = VarientAttribute::where('name', $attribute)->first();
+
+        // If the attribute is not found, return an empty array of options
+        if (!$attributeModel) {
+            return response()->json(['options' => []]);
+        }
+
+        // Retrieve the related options for the attribute
+        $options = $attributeModel->options;
+
+        // Format options for response
+        $formattedOptions = $options->map(function ($option) {
+            return [
+                'value' => $option->id, // Use the option's ID or another unique value
+                'label' => $option->option_name // Display name for the option
+            ];
+        });
+
+        // Return the options as JSON
+        return response()->json(['options' => $formattedOptions]);
+    }
 
     public function destroy($id)
     {

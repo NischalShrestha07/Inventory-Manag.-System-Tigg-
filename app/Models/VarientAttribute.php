@@ -14,6 +14,6 @@ class VarientAttribute extends Model
     ];
     public function options()
     {
-        return $this->hasMany(VarientOption::class);
+        return $this->hasMany(VarientOption::class, 'varient_attribute_id');
     }
 }

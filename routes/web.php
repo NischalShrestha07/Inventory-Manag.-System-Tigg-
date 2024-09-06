@@ -43,6 +43,10 @@ Route::post('/AddNewVarProduct', [VariantProductController::class, 'AddNewVarPro
 Route::put('/UpdateVarProduct', [VariantProductController::class, 'UpdateVarProduct']);
 Route::delete('/varProduct/{id}', [VariantProductController::class, 'destroy'])->name('varProduct.destroy');
 
+//Ajax Use to access the dependent options
+Route::get('/fetch-options/{attribute}', [VariantProductController::class, 'fetchOptions']);
+
+
 
 Route::get('/adjustment/create', [InvenAdjustmentController::class, 'index'])->name('adjustment.create');
 Route::post('/AddNewInvenAdjustment', [InvenAdjustmentController::class, 'AddNewAdjustment']);
