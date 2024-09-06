@@ -158,13 +158,13 @@
                                                     </div>
                                                 </div>
 
-                                                {{--
+
                                                 <div class="mb-3">
                                                     <button type="button" class="btn btn-success mb-2"
                                                         onclick="addVariant()">+ Add More Variants</button>
                                                     <button type="button" class="btn btn-primary mb-2"
                                                         onclick="generateVariants()">Generate Variants</button>
-                                                </div> --}}
+                                                </div>
                                             </div>
 
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
@@ -365,40 +365,49 @@
         });
 
 
-    // $(function() {
-    //     bsCustomFileInput.init();
-    // });
-    // function addVariant() {
-    // const variantGroup = document.createElement('div');
-    // variantGroup.className = 'variant-group mb-3';
+    $(function() {
+        bsCustomFileInput.init();
+    });
+    function addVariant() {
+    const variantGroup = document.createElement('div');
+    variantGroup.className = 'variant-group mb-3';
 
-    // variantGroup.innerHTML = `
-    // <label class="form-label">Attributes</label>
-    // <select class="form-select" name="attributes[]">
-    //     <option value="" selected>Select Attributes</option>
-    //     <option value="color">Color</option>
-    //     <option value="size">Size</option>
-    // </select>
-    // <label class="form-label mt-2">Options</label>
-    // <select class="form-select" name="options[]">
-    //     <option value="" selected>Please select</option>
-    //     <option value="option1">Option 1</option>
-    //     <option value="option2">Option 2</option>
-    // </select>
-    // <button type="button" class="btn btn-danger mt-2" onclick="removeVariant(this)">Remove</button>
-    // `;
+    variantGroup.innerHTML = `
 
-    // document.getElementById('dynamic-variants').appendChild(variantGroup);
-    // }
+    <div id="dynamic-variants">
+        <!-- Default Attribute and Options -->
+        <div class="variant-group mb-3">
+            <label for="attributes" class="form-label">Attributes</label>
+            <select class="form-select form-control" name="attributes[]">
+                <option value="" selected>Select Attributes</option>
+                <option value="color">Color</option>
+                <option value="size">Size</option>
+            </select>
+        </div>
 
-    // function removeVariant(button) {
-    // const variantGroup = button.parentElement;
-    // variantGroup.remove();
-    // }
+        <div class="variant-group mb-3">
+            <label for="options" class="form-label ">Options</label>
+            <select class="form-select form-control" name="options[]">
+                <option value="" selected>Please select</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+            </select>
+        </div>
+    </div>
+    <button type="button" class="btn btn-danger mt-2" onclick="removeVariant(this)">Remove</button>
+    `;
 
-    // function generateVariants() {
-    // // Add your logic to generate variants based on selected attributes and options
-    // alert('Generating variants...');
-    // }
+    document.getElementById('dynamic-variants').appendChild(variantGroup);
+    }
+
+    function removeVariant(button) {
+    const variantGroup = button.parentElement;
+    variantGroup.remove();
+    }
+
+    function generateVariants() {
+    // Add your logic to generate variants based on selected attributes and options
+    alert('Generating variants...');
+    }
 </script>
 @endsection

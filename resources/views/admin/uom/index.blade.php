@@ -12,11 +12,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Units of Measurement</h1>
+                    <h1>UNITS OF MEASUREMENT</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">HOME</a></li>
                         <li class="breadcrumb-item active">UOM</li>
                     </ol>
                 </div>
@@ -95,7 +95,7 @@
                                 <thead>
                                     <tr>
                                         <th>NAME</th>
-                                        <th>SHORT Name </th>
+                                        <th>SHORT NAME </th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
