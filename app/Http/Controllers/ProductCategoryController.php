@@ -35,9 +35,7 @@ class ProductCategoryController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function UpdateCategory(Request $request, ProductCategory $productCategory)
     {
         $request->validate([

@@ -79,16 +79,16 @@ Route::delete('/journal/{id}', [ProductionJournalController::class, 'destroy'])-
 
 Route::get('/attribute/create', [VarientAttributeController::class, 'index'])->name('varAttribute.create');
 Route::post('/AddNewVarAttribute', [VarientAttributeController::class, 'AddNewVarAttribute'])->name('variant.add');
-Route::put('/UpdateVarAttribute', [VarientAttributeController::class, 'UpdateVarAttribute']);
+Route::put('/UpdateQuotation', [VarientAttributeController::class, 'UpdateVarAttribute']);
 Route::delete('/attribute/{id}', [VarientAttributeController::class, 'destroy'])->name('varAttribute.destroy');
 
 
 
 
-Route::get('/quotation/create', [QuotationController::class, 'index'])->name('quotations.create');
-// Route::post('/AddNewVarAttribute', [VarientAttributeController::class, 'AddNewVarAttribute'])->name('variant.add');
-// Route::put('/UpdateVarAttribute', [VarientAttributeController::class, 'UpdateVarAttribute']);
-// Route::delete('/attribute/{id}', [VarientAttributeController::class, 'destroy'])->name('varAttribute.destroy');
+Route::get('/quotation/create', [QuotationController::class, 'index'])->name('quotation.create');
+Route::post('/AddNewQuotation', [QuotationController::class, 'AddNewQuotation']);
+Route::put('/UpdateQuotation', [QuotationController::class, 'UpdateQuotation']);
+Route::delete('/quotation/{id}', [QuotationController::class, 'destroy'])->name('quotation.destroy');
 
 
 Route::get('/customer/create', [CustomerController::class, 'index'])->name('customer.create');

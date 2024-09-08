@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="menu-title navbar">
-                            <h2 class="ml-2 menu-title">PRODUCTS</h2>
+                            <h2 class="ml-2 menu-title">QUOTATIONS</h2>
                             <div>
                                 @if (session('success'))
                                 <div class="alert alert-success bg-success h3 text-white rounded fw-bolder fs-1">
@@ -34,81 +34,74 @@
                             </div>
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success mr-3"
-                                    data-target="#addNewProduct">Add New</button>
+                                    data-target="#addNewQuotation">Add New</button>
                             </div>
                         </div>
 
-                        <div class="modal" id="addNewProduct">
+                        <div class="modal" id="addNewQuotation">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Add New Product</h4>
+                                        <h4 class="modal-title">Add New Quotation</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
                                     <!-- Modal body -->
                                     <div class="modal-body">
-                                        <form action="{{ url('AddNewProduct') }}" method="POST"
+                                        <form action="{{ url('AddNewQuotation') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 
-                                            <label for="code">Code/Sku:</label>
-                                            <input type="text" id="code" name="code" placeholder="Enter Code/Sku:"
-                                                class="form-control mb-2">
 
-                                            <label for="name">Product Name:</label>
-                                            <input type="text" id="name" name="name" placeholder="Enter Product Name:"
-                                                class="form-control mb-2">
+                                            <label for="customer_name"> Customer name:</label>
+                                            <div class="input-group">
+                                                <select class="form-select form-control selectpicker" id="customer_name"
+                                                    name="customer_name">
+                                                    <option value="">Customer Name</option>
+                                                    @foreach ($products as $category)
+                                                    <option value="{{ $category->id }}">
+                                                        {{ $category->name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
 
-                                            <div class="mb-3">
-                                                <label for="category_id" class="form-label">Category</label>
-                                                <div class="input-group">
-                                                    <select class="form-select form-control selectpicker"
-                                                        id="category_id" name="category_id">
-                                                        <option value="">Select Options</option>
-                                                        @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">
-                                                            {{ $category->name }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                    <button type="button" class="btn btn-primary ml-2"
-                                                        data-toggle="modal" data-target="#addCategoryModal">Add
-                                                        Category</button>
-                                                </div>
                                             </div>
 
+                                            <label for="code">Code/Sku:</label>
+                                            <input type="text" id="code" name="code" disabled placeholder="DRAFT"
+                                                class="form-control mb-2">
+
+                                            <label for="date">Date:</label>
+                                            <input type="date" id="date" name="date" placeholder="Enter Date"
+                                                class="form-control mb-2">
+
+                                            <label for="expiry_date">Expiry Date:</label>
+                                            <input type="date" id="expiry_date" name="expiry_date"
+                                                placeholder="Enter Expiry Date" class="form-control mb-2">
+
+
+
+
                                             <div class="mb-3">
-                                                <label for="tax">Tax:</label>
-                                                <select class="form-control" name="tax" id="tax">
-                                                    <option value="" selected>Select Option</option>
-                                                    <option value="13">13 %VAT</option>
-                                                    <option value="0">0 %VAT</option>
+                                                <label for="cterms">Credit Terms:</label>
+                                                <select class="form-control" name="cterms" id="cterms">
+                                                    <option value="" selected>Credit Terms</option>
+                                                    <option value="NET 30">NET 30
+                                                    </option>
+                                                    <option value="NET 45">NET 45
+                                                    </option>
+                                                    <option value="NET 60">NET 60
+                                                    </option>
+
+                                                    <option value="NET 90">NET 90
+                                                    </option>
+
                                                 </select>
                                             </div>
 
-                                            <div class="mb-3">
-                                                <label for="primary_unit" class="form-label">Primary Unit</label>
-                                                <div class="input-group">
-                                                    <select class="form-select form-control selectpicker"
-                                                        id="primary_unit" name="primary_unit">
-                                                        <option value="" selected>Select Option</option>
-                                                        @foreach ($primary_unit as $item)
-                                                        <option value="{{ $item->id }}">
-                                                            {{ $item->name }}
-                                                        </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
 
-                                            <div class="mb-3">
-                                                <label for="hscode">Hs Code:</label>
-                                                <input type="text" id="hscode" name="hscode" placeholder="HS Code"
-                                                    class="form-control mb-2">
-                                            </div>
 
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
@@ -171,44 +164,12 @@
                                                                     placeholder="Enter Code/Sku:"
                                                                     class="form-control mb-2">
 
-                                                                <label for="category_id">Category:</label>
-                                                                <select id="category_id" name="category_id"
-                                                                    class="form-control mb-2">
-                                                                    @foreach($categories as $category)
-                                                                    <option value="{{ $category->id }}" {{ $category->id
-                                                                        == $item->category_id ? 'selected' : '' }}>
-                                                                        {{ $category->name }}
-                                                                    </option>
-                                                                    @endforeach
-                                                                </select>
 
-                                                                <label for="tax">Tax:</label>
-                                                                <select class="form-control" name="tax" id="tax">
-                                                                    <option value="{{$item->tax}}" selected>
-                                                                        {{$item->tax}} %VAT</option>
-                                                                    <option value="13">13 %VAT</option>
-                                                                    <option value="0">0 %VAT</option>
-                                                                </select>
 
-                                                                <label for="primary_unit">Primary Unit:</label>
-                                                                <select id="primary_unit" name="primary_unit"
-                                                                    class="form-control mb-2">
-                                                                    @foreach($primary_unit as $unit)
-                                                                    <option value="{{ $unit->id }}" {{ $unit->id ==
-                                                                        $item->primary_unit ? 'selected' : '' }}>
-                                                                        {{ $unit->name }}
-                                                                    </option>
-                                                                    @endforeach
-                                                                </select>
 
-                                                                <div class="mb-3">
-                                                                    <label for="hscode"
-                                                                        class="form-label">Hscode</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="hscode" name="hscode"
-                                                                        value="{{ $item->hscode }}"
-                                                                        placeholder="HS Code">
-                                                                </div>
+
+
+
 
                                                                 <input type="submit" name="save" class="btn btn-success"
                                                                     value="Save Now" />
@@ -218,7 +179,7 @@
                                                 </div>
                                             </div>
 
-                                            <form action="{{ route('product.destroy', $item->id) }}" method="POST"
+                                            <form action="{{ route('quotation.destroy', $item->id) }}" method="POST"
                                                 style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
@@ -241,32 +202,6 @@
     </section>
 </div>
 
-<!-- Add Category Modal -->
-<div class="modal" id="addCategoryModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Add New Category</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form action="{{ url('AddCategory') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="category" name="category"
-                            placeholder="Enter Category Name">
-                    </div>
-                    <input type="submit" name="save" class="btn btn-success" value="Add Category" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('customJs')

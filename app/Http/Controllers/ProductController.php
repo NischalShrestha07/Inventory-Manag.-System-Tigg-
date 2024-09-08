@@ -26,10 +26,8 @@ class ProductController extends Controller
             'primary_unit' => 'nullable|exists:u_o_m_s,id',
             'hscode' => 'nullable',
         ]);
-        $data = new Product();
-        // $dem = new ProductCategory();
-        // $rem = new UOM();
 
+        $data = new Product();
         $data->name = $request->input('name');
         $data->code = $request->input('code');
         $data->category_id = $request->input('category_id');
@@ -39,12 +37,6 @@ class ProductController extends Controller
         $data->save();
         // dd($request->all());
 
-        // $data->name = $request->name;
-        // $data->code = $request->code;
-        // $data->category_id = $request->category_id;
-        // $data->tax = $request->tax;
-        // $data->primary_unit = $request->primary_unit;
-        // $data->hscode = $request->hscode;
 
         // $data->save();
 
