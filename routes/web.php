@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvenAdjustmentController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
@@ -84,8 +85,13 @@ Route::delete('/attribute/{id}', [VarientAttributeController::class, 'destroy'])
 
 
 
-
 Route::get('/quotation/create', [QuotationController::class, 'index'])->name('quotations.create');
 // Route::post('/AddNewVarAttribute', [VarientAttributeController::class, 'AddNewVarAttribute'])->name('variant.add');
 // Route::put('/UpdateVarAttribute', [VarientAttributeController::class, 'UpdateVarAttribute']);
 // Route::delete('/attribute/{id}', [VarientAttributeController::class, 'destroy'])->name('varAttribute.destroy');
+
+
+Route::get('/customer/create', [CustomerController::class, 'index'])->name('customer.create');
+Route::post('/AddNewCustomer', [CustomerController::class, 'AddNewCustomer'])->name('customer.add');
+Route::put('/UpdateCustomer', [CustomerController::class, 'UpdateCustomer']);
+Route::delete('/customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');

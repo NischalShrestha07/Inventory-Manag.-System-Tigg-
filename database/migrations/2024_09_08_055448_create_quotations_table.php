@@ -11,20 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quotations', function (Blueprint $table) {
-            $table->id();
-            $table->string('customer_name');
-            $table->date('date');
-            $table->date('expiry_date');
-            $table->string('currency');
+        // Schema::create('quotations', function (Blueprint $table) {
+        //     // $table->id();
+        //     // $table->string('customer_name');
+        //     // $table->date('date');
+        //     // $table->date('expiry_date');
+        //     // $table->string('currency');
 
 
-            $table->string('credit_notes');
-            $table->string('product_name');
-            $table->text('terms');
+        //     // $table->string('credit_notes');
+        //     // $table->string('product_name');
+        //     // $table->text('terms');
 
-            $table->timestamps();
-        });
+        //     // $table->timestamps();
+        // });
     }
 
     /**
