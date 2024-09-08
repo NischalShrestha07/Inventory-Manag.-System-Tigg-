@@ -280,9 +280,9 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('quotations.create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p> Journal</p>
+                                        <p> Quotations</p>
                                     </a>
                                 </li>
 
@@ -291,7 +291,7 @@
                                 <li class="nav-item">
                                     <a href="" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Production </p>
+                                        <p>Sales Orders </p>
                                     </a>
                                 </li>
 
@@ -300,7 +300,25 @@
                                 <li class="nav-item">
                                     <a href="" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Production </p>
+                                        <p>Credit Notes </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Customers </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <span>Allocate Customer Payment </span>
                                     </a>
                                 </li>
 

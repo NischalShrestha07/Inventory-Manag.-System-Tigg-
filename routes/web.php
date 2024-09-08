@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionJournalController;
 use App\Http\Controllers\ProductionOrderController;
+use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
 use App\Http\Controllers\VarientAttributeController;
@@ -79,3 +80,12 @@ Route::get('/attribute/create', [VarientAttributeController::class, 'index'])->n
 Route::post('/AddNewVarAttribute', [VarientAttributeController::class, 'AddNewVarAttribute'])->name('variant.add');
 Route::put('/UpdateVarAttribute', [VarientAttributeController::class, 'UpdateVarAttribute']);
 Route::delete('/attribute/{id}', [VarientAttributeController::class, 'destroy'])->name('varAttribute.destroy');
+
+
+
+
+
+Route::get('/quotation/create', [QuotationController::class, 'index'])->name('quotations.create');
+// Route::post('/AddNewVarAttribute', [VarientAttributeController::class, 'AddNewVarAttribute'])->name('variant.add');
+// Route::put('/UpdateVarAttribute', [VarientAttributeController::class, 'UpdateVarAttribute']);
+// Route::delete('/attribute/{id}', [VarientAttributeController::class, 'destroy'])->name('varAttribute.destroy');
