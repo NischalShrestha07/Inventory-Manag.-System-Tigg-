@@ -353,9 +353,9 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('supplier.create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Production Journal</p>
+                                        <p>Suppliers</p>
                                     </a>
                                 </li>
 

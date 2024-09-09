@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductionJournalController;
 use App\Http\Controllers\ProductionOrderController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SalesOrderController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
 use App\Http\Controllers\VarientAttributeController;
@@ -109,3 +110,9 @@ Route::get('/invoice/create', [InvoiceController::class, 'index'])->name('invoic
 Route::post('/AddNewInvoice', [InvoiceController::class, 'AddNewInvoice'])->name('invoice.add');
 Route::put('/UpdateInvoice', [InvoiceController::class, 'UpdateInvoice']);
 Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');
+
+
+Route::get('/supplier/create', [SupplierController::class, 'index'])->name('supplier.create');
+Route::post('/AddNewSupplier', [SupplierController::class, 'AddNewSupplier'])->name('supplier.add');
+Route::put('/UpdateSupplier', [SupplierController::class, 'UpdateSupplier']);
+Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
