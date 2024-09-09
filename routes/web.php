@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionJournalController;
 use App\Http\Controllers\ProductionOrderController;
 use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
 use App\Http\Controllers\VarientAttributeController;
@@ -95,3 +96,9 @@ Route::get('/customer/create', [CustomerController::class, 'index'])->name('cust
 Route::post('/AddNewCustomer', [CustomerController::class, 'AddNewCustomer'])->name('customer.add');
 Route::put('/UpdateCustomer', [CustomerController::class, 'UpdateCustomer']);
 Route::delete('/customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+
+
+Route::get('/salesOrder/create', [SalesOrderController::class, 'index'])->name('salesOrder.create');
+Route::post('/AddNewSalesOrder', [SalesOrderController::class, 'AddNewSalesOrder'])->name('salesOrder.add');
+Route::put('/UpdateSalesOrder', [SalesOrderController::class, 'UpdateSalesOrder']);
+Route::delete('/salesOrder/{id}', [SalesOrderController::class, 'destroy'])->name('salesOrder.destroy');

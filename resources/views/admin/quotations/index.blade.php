@@ -95,30 +95,25 @@
                                                     name="product_name">
                                                     <option value="">Product Name</option>
                                                     @foreach ($product as $category)
-                                                    <option value="{{ $category->name    }}">
+                                                    <option value="{{ $category->name}}">
                                                         {{ $category->name }}
                                                     </option>
                                                     @endforeach
                                                 </select>
-
                                             </div>
-
-
 
                                             <label for="terms">Condition & Terms:</label>
                                             <input type="text" id="terms" name="terms"
                                                 placeholder="Enter Conditions & Terms" class="form-control mb-2">
 
-
-                                            <label for="status"> Status:</label>
-                                            <select class="form-control" name="status" id="status">
-                                                <option value="" selected>Status</option>
-                                                <option value="Pending">Pending
-                                                </option>
-                                                <option value="Paid">Paid
-                                                </option>
-
-                                            </select>
+                                            <div class="m-3">
+                                                <label for="status"> Status:</label>
+                                                <select class="form-control" name="status" id="status">
+                                                    <option value="" selected>Select Status</option>
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="Paid">Paid </option>
+                                                </select>
+                                            </div>
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
                                     </div>

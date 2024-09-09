@@ -30,8 +30,9 @@ class QuotationController extends Controller
             'expiry_date' => 'nullable|string',
             'currency' => 'nullable',
             'credit_notes' => 'nullable',
-            'product_name' => 'nullable|string',
             'terms' => 'nullable|string',
+            'product_name' => 'nullable|string',
+            'status' => 'nullable|string',
 
         ]);
         $data = new Quotation();
@@ -44,6 +45,7 @@ class QuotationController extends Controller
         $data->credit_notes = $request->input('credit_notes');
         $data->product_name = $request->input('product_name');
         $data->terms = $request->input('terms');
+        $data->status = $request->input('status');
         $data->save();
 
         return redirect()->route('quotation.create')->with('success', 'Quotation Added Successfully.');
@@ -61,6 +63,7 @@ class QuotationController extends Controller
             'credit_notes' => 'nullable',
             'product_name' => 'nullable|string',
             'terms' => 'nullable|string',
+            'status' => 'nullable|string',
 
         ]);
         $data = Quotation::findOrFail($request->input('id'));
@@ -73,8 +76,8 @@ class QuotationController extends Controller
         $data->credit_notes = $request->credit_notes;
         $data->product_name = $request->product_name;
         $data->terms = $request->terms;
+        $data->status = $request->status;
         $data->save();
-
         return redirect()->route('quotation.create')->with('success', 'Quotation Updated Successfully.');
     }
 
