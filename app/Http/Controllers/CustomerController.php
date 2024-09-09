@@ -30,7 +30,6 @@ class CustomerController extends Controller
 
         ]);
         $data = new Customer();
-
         $data->name = $request->input('name');
         $data->address = $request->input('address');
         $data->code = $request->input('code');
@@ -40,8 +39,8 @@ class CustomerController extends Controller
         $data->group = $request->input('group');
         $data->cterms = $request->input('cterms');
         $data->climit = $request->input('climit');
+        // dd($data);
         $data->save();
-
         return redirect()->route('customer.create')->with('success', 'Customer Added Successfully.');
     }
 
@@ -52,9 +51,9 @@ class CustomerController extends Controller
             'name' => 'required|string',
             'address' => 'nullable|string',
             'code' => 'nullable|string',
-            'pan' => 'nullable',
-            'phoneno' => 'nullable',
-            'email' => 'nullable',
+            'pan' => 'required',
+            'phoneno' => 'required',
+            'email' => 'required',
             'group' => 'nullable|string',
             'cterms' => 'nullable|string',
             'climit' => 'nullable|string',
@@ -76,9 +75,7 @@ class CustomerController extends Controller
         return redirect()->route('customer.create')->with('success', 'Customer Updated Successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Customer $customer, $id)
     {
         $customer = Customer::find($id);

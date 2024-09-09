@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Quotation;
 use Illuminate\Http\Request;
@@ -13,9 +14,10 @@ class QuotationController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Customer::all();
+        $product = Product::all();
         $quotation = Quotation::all();
-        return view('admin.quotations.index', compact('quotation', 'products'));
+        return view('admin.quotations.index', compact('quotation', 'products', 'product'));
     }
 
 
@@ -23,17 +25,19 @@ class QuotationController extends Controller
     {
         $request->validate([
             'customer_name' => 'required|string|exists:customers,id',
+            'code' => 'nullable',
             'date' => 'nullable|string',
             'expiry_date' => 'nullable|string',
             'currency' => 'nullable',
             'credit_notes' => 'nullable',
-            'product_name' => 'required|string',
+            'product_name' => 'nullable|string',
             'terms' => 'nullable|string',
 
         ]);
         $data = new Quotation();
 
         $data->customer_name = $request->input('customer_name');
+        $data->code = $request->input('code');
         $data->date = $request->input('date');
         $data->expiry_date = $request->input('expiry_date');
         $data->currency = $request->input('currency');
@@ -50,17 +54,19 @@ class QuotationController extends Controller
     {
         $request->validate([
             'customer_name' => 'required|string',
+            'code' => 'nullable',
             'date' => 'nullable|string',
             'expiry_date' => 'nullable|string',
             'currency' => 'nullable',
             'credit_notes' => 'nullable',
-            'product_name' => 'required|string',
+            'product_name' => 'nullable|string',
             'terms' => 'nullable|string',
 
         ]);
         $data = Quotation::findOrFail($request->input('id'));
 
         $data->customer_name = $request->customer_name;
+        $data->code = $request->code;
         $data->date = $request->date;
         $data->expiry_date = $request->expiry_date;
         $data->currency = $request->currency;
@@ -73,7 +79,7 @@ class QuotationController extends Controller
     }
 
 
-    public function destroy(Quotation $quotation, $id)
+    public function destroy($id)
     {
         $quotation = Quotation::find($id);
         $quotation->delete();

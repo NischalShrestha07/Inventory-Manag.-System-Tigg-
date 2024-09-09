@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name');
+            $table->string('code');
             $table->date('date');
             $table->date('expiry_date');
             $table->string('currency');
             $table->string('credit_notes');
             $table->string('product_name');
             $table->text('terms');
-
+            $table->string('status');
             $table->timestamps();
         });
     }

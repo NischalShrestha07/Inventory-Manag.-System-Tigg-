@@ -55,11 +55,11 @@
                                             @csrf
 
 
-                                            <label for="customer_name"> Customer name:</label>
+                                            <label for="customer_name">Customer Name:</label>
                                             <div class="input-group">
                                                 <select class="form-select form-control selectpicker" id="customer_name"
                                                     name="customer_name">
-                                                    <option value="">Customer Name</option>
+                                                    <option value="" selected>Customer Name</option>
                                                     @foreach ($products as $category)
                                                     <option value="{{ $category->id }}">
                                                         {{ $category->name }}
@@ -69,40 +69,56 @@
 
                                             </div>
 
-                                            <label for="code">Code/Sku:</label>
-                                            <input type="text" id="code" name="code" disabled placeholder="DRAFT"
-                                                class="form-control mb-2">
-
-                                            <label for="date">Date:</label>
-                                            <input type="date" id="date" name="date" placeholder="Enter Date"
+                                            <label for="code"> Quote No:</label>
+                                            <input type="text" id="code" name="code" placeholder="Code"
                                                 class="form-control mb-2">
 
                                             <label for="expiry_date">Expiry Date:</label>
                                             <input type="date" id="expiry_date" name="expiry_date"
                                                 placeholder="Enter Expiry Date" class="form-control mb-2">
 
+                                            <label for="date">Date:</label>
+                                            <input type="date" id="date" name="date" placeholder="Enter Date"
+                                                class="form-control mb-2">
 
+                                            <label for="currency">Currency:</label>
+                                            <input type="text" id="currency" name="currency"
+                                                placeholder="Enter Currency" class="form-control mb-2">
 
+                                            <label for="credit_notes">Credit Notes:</label>
+                                            <input type="text" id="credit_notes" name="credit_notes"
+                                                placeholder="Enter credit_notes" class="form-control mb-2">
 
-                                            <div class="mb-3">
-                                                <label for="cterms">Credit Terms:</label>
-                                                <select class="form-control" name="cterms" id="cterms">
-                                                    <option value="" selected>Credit Terms</option>
-                                                    <option value="NET 30">NET 30
+                                            <label for="product_name"> Product name:</label>
+                                            <div class="input-group">
+                                                <select class="form-select form-control selectpicker" id="product_name"
+                                                    name="product_name">
+                                                    <option value="">Product Name</option>
+                                                    @foreach ($product as $category)
+                                                    <option value="{{ $category->name    }}">
+                                                        {{ $category->name }}
                                                     </option>
-                                                    <option value="NET 45">NET 45
-                                                    </option>
-                                                    <option value="NET 60">NET 60
-                                                    </option>
-
-                                                    <option value="NET 90">NET 90
-                                                    </option>
-
+                                                    @endforeach
                                                 </select>
+
                                             </div>
 
 
 
+                                            <label for="terms">Condition & Terms:</label>
+                                            <input type="text" id="terms" name="terms"
+                                                placeholder="Enter Conditions & Terms" class="form-control mb-2">
+
+
+                                            <label for="status"> Status:</label>
+                                            <select class="form-control" name="status" id="status">
+                                                <option value="" selected>Status</option>
+                                                <option value="Pending">Pending
+                                                </option>
+                                                <option value="Paid">Paid
+                                                </option>
+
+                                            </select>
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
                                     </div>
@@ -114,20 +130,25 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>CODE/SKU</th>
-                                        <th>NAME</th>
-                                        <th>CATEGORY</th>
-                                        <th>TAX</th>
+                                        <th>CUSTOMER NAME</th>
+                                        <th>QUOTE NO</th>
+                                        <th>DATE</th>
+                                        <th>PRODUCT NAME</th>
+                                        <th>EXPIRY DATE</th>
+                                        <th>STATUS</th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($products as $item)
+                                    @foreach ($quotation as $item)
                                     <tr>
+                                        <td>{{ $item->customer_name }}</td>
                                         <td>{{ $item->code }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->category ? $item->category->name : 'No Category' }}</td>
-                                        <td>{{ $item->tax }}% VAT</td>
+                                        <td>{{ $item->date }}</td>
+                                        <td>{{$item->product_name }}</td>
+                                        <td>{{ $item->expiry_date }}</td>
+                                        <td>{{ $item->status }}</td>
+
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
                                                 data-target="#updateModel{{ $item->id }}">
@@ -209,33 +230,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
-<script>
-    let variantCount = 1;
-
-    function addVariant() {
-        variantCount++;
-        const container = document.createElement('div');
-        container.className = 'mb-3';
-        container.innerHTML = `
-            <div class="mb-3">
-                <label for="attributes-${variantCount}" class="form-label">Attribute ${variantCount}</label>
-                <input type="text" class="form-control" id="attributes-${variantCount}" name="attributes[]" placeholder="Enter attribute name">
-            </div>
-            <div class="mb-3">
-                <label for="options-${variantCount}" class="form-label">Options for Attribute ${variantCount}</label>
-                <select class="form-select" id="options-${variantCount}" name="options[]">
-                    <option value="">Select an option</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                </select>
-            </div>
-        `;
-        document.getElementById('dynamic-variants').appendChild(container);
-    }
-
-    $(function() {
-        bsCustomFileInput.init();
-    });
-</script>
 @endsection

@@ -54,9 +54,9 @@
                                             enctype="multipart/form-data">
                                             @csrf
 
-                                            <label for="customer_name">Customer Name:</label>
-                                            <input type="text" id="customer_name" name="customer_name"
-                                                placeholder="Enter Customer Name:" class="form-control mb-2">
+                                            <label for="name">Customer Name:</label>
+                                            <input type="text" id="name" name="name" placeholder="Enter Customer Name:"
+                                                class="form-control mb-2">
 
                                             <label for="address">Address:</label>
                                             <input type="text" id="address" name="address" placeholder="Enter Address:"
@@ -93,17 +93,15 @@
 
                                             <label for="cterms"> Credit Terms:</label>
                                             <select class="form-control" name="cterms" id="cterms">
-                                                <option value="" selected>Select Group</option>
+                                                <option value="" selected>Credit Terms</option>
                                                 <option value="NET 30">NET 30
                                                 </option>
                                                 <option value="NET 45">NET 45
                                                 </option>
                                                 <option value="NET 60">NET 60
                                                 </option>
-
                                                 <option value="NET 90">NET 90
                                                 </option>
-
                                             </select>
 
                                             <div class="mb-3">
@@ -219,10 +217,10 @@
 
                                                                 <div class="mb-3">
                                                                     <label for="cterms">Credit Terms:</label>
-                                                                    <select class="form-control" name="group"
-                                                                        id="group">
-                                                                        <option value="{{$item->group}}" selected>
-                                                                            {{$item->group}}</option>
+                                                                    <select class="form-control" name="cterms"
+                                                                        id="cterms">
+                                                                        <option value="{{$item->cterms}}" selected>
+                                                                            {{$item->cterms}}</option>
                                                                         <option value="NET 30">NET 30
                                                                         </option>
                                                                         <option value="NET 45">NET 45
