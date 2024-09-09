@@ -24,7 +24,7 @@ class Quotation extends Model
         return $this->belongsTo(Product::class, 'product_name');
     }
 
-    public function quotation()
+    public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_name');
     }

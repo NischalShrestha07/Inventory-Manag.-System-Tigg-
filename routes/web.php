@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvenAdjustmentController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionJournalController;
@@ -102,3 +103,9 @@ Route::get('/salesOrder/create', [SalesOrderController::class, 'index'])->name('
 Route::post('/AddNewSalesOrder', [SalesOrderController::class, 'AddNewSalesOrder'])->name('salesOrder.add');
 Route::put('/UpdateSalesOrder', [SalesOrderController::class, 'UpdateSalesOrder']);
 Route::delete('/salesOrder/{id}', [SalesOrderController::class, 'destroy'])->name('salesOrder.destroy');
+
+
+Route::get('/invoice/create', [InvoiceController::class, 'index'])->name('invoice.create');
+Route::post('/AddNewInvoice', [InvoiceController::class, 'AddNewInvoice'])->name('invoice.add');
+Route::put('/UpdateInvoice', [InvoiceController::class, 'UpdateInvoice']);
+Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');

@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="menu-title navbar">
-                            <h2 class="ml-2 menu-title">QUOTATIONS</h2>
+                            <h2 class="ml-2 menu-title">INVOICE</h2>
                             <div>
                                 @if (session('success'))
                                 <div class="alert alert-success bg-success h3 text-white rounded fw-bolder fs-1">
@@ -34,31 +34,31 @@
                             </div>
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success mr-3"
-                                    data-target="#addNewQuotation">Add New</button>
+                                    data-target="#addNewInvoice">Add New</button>
                             </div>
                         </div>
 
-                        <div class="modal" id="addNewQuotation">
+                        <div class="modal" id="addNewInvoice">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Add New Quotation</h4>
+                                        <h4 class="modal-title">Add New Invoice</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
                                     <!-- Modal body -->
                                     <div class="modal-body">
-                                        <form action="{{ url('AddNewQuotation') }}" method="POST"
+                                        <form action="{{ url('AddNewInvoice') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 
 
-                                            <label for="customer_name">Customer Name:</label>
+                                            <label for="name">Customer Name:</label>
                                             <div class="input-group">
-                                                <select class="form-select form-control selectpicker" id="customer_name"
-                                                    name="customer_name">
+                                                <select class="form-select form-control selectpicker" id="name"
+                                                    name="name">
                                                     <option value="" selected>Customer Name</option>
                                                     @foreach ($products as $category)
                                                     <option value="{{ $category->name }}">
@@ -69,27 +69,27 @@
 
                                             </div>
 
-                                            <label for="code"> Quote No:</label>
-                                            <input type="text" id="code" name="code" placeholder="Code"
+                                            <label for="invoiceNo"> Invoice No:</label>
+                                            <input type="text" id="invoiceNo" name="invoiceNo" placeholder="Invoice No"
                                                 class="form-control mb-2">
 
-                                            <label for="expiry_date">Expiry Date:</label>
-                                            <input type="date" id="expiry_date" name="expiry_date"
-                                                placeholder="Enter Expiry Date" class="form-control mb-2">
+                                            <label for="referenceNo"> Reference No:</label>
+                                            <input type="text" id="referenceNo" name="referenceNo"
+                                                placeholder="Reference No" class="form-control mb-2">
 
-                                            <label for="date">Date:</label>
-                                            <input type="date" id="date" name="date" placeholder="Enter Date"
+                                            <label for="invoiceDate">Invoice Date:</label>
+                                            <input type="date" id="invoiceDate" name="invoiceDate"
+                                                placeholder="Enter Invoice Date" class="form-control mb-2">
+
+                                            <label for="dueDate">Due Date:</label>
+                                            <input type="date" id="dueDate" name="dueDate" placeholder="Enter Due Date"
                                                 class="form-control mb-2">
 
-                                            <label for="currency">Currency:</label>
-                                            <input type="text" id="currency" name="currency"
-                                                placeholder="Enter Currency" class="form-control mb-2">
+                                            <label for="terms">Terms and Conditions:</label>
+                                            <input type="text" id="terms" name="terms" placeholder="Conditions"
+                                                class="form-control mb-2">
 
-                                            <label for="credit_notes">Credit Notes:</label>
-                                            <input type="text" id="credit_notes" name="credit_notes"
-                                                placeholder="Enter credit_notes" class="form-control mb-2">
-
-                                            <label for="product_name"> Product name:</label>
+                                            {{-- <label for="product_name"> Product name:</label>
                                             <div class="input-group">
                                                 <select class="form-select form-control selectpicker" id="product_name"
                                                     name="product_name">
@@ -100,22 +100,9 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                            </div>
+                                            </div> --}}
 
-                                            <label for="terms">Condition & Terms:</label>
-                                            <input type="text" id="terms" name="terms"
-                                                placeholder="Enter Conditions & Terms" class="form-control mb-2">
 
-                                            <div class="m-3">
-                                                <label for="status"> Status:</label>
-                                                <select class="form-control" name="status" id="status">
-                                                    <option value="" selected>Select Status</option>
-                                                    <option value="Pending">Pending</option>
-                                                    <option value="In Progress">In Progress </option>
-                                                    <option value="In Check">In Check </option>
-                                                    <option value="Complete">Complete </option>
-                                                </select>
-                                            </div>
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
                                     </div>
@@ -128,23 +115,21 @@
                                 <thead>
                                     <tr>
                                         <th>CUSTOMER NAME</th>
-                                        <th>QUOTE NO</th>
-                                        <th>DATE</th>
-                                        <th>PRODUCT NAME</th>
-                                        <th>EXPIRY DATE</th>
-                                        <th>STATUS</th>
+                                        <th>INVOICE NO</th>
+                                        <th>REFERENCE NO</th>
+                                        <th>INVOICE DATE</th>
+                                        <th>DUE DATE</th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($quotation as $item)
+                                    @foreach ($invoice as $item)
                                     <tr>
-                                        <td>{{ $item->customer_name }}</td>
-                                        <td>{{ $item->code }}</td>
-                                        <td>{{ $item->date }}</td>
-                                        <td>{{$item->product_name }}</td>
-                                        <td>{{ $item->expiry_date }}</td>
-                                        <td>{{ $item->status }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->invoiceNo }}</td>
+                                        <td>{{ $item->referenceNo }}</td>
+                                        <td>{{$item->invoiceDate }}</td>
+                                        <td>{{ $item->dueDate }}</td>
 
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
@@ -156,12 +141,12 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Update Product</h4>
+                                                            <h4 class="modal-title">Update Invoice</h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{ url('UpdateQuotation') }}" method="POST"
+                                                            <form action="{{ url('UpdateInvoice') }}" method="POST"
                                                                 enctype="multipart/form-data">
                                                                 @csrf
                                                                 @method('PUT')
@@ -169,11 +154,11 @@
                                                                 <input type="hidden" name="id" value="{{ $item->id }}">
 
                                                                 <div class="mb-3">
-                                                                    <label for="customer_name">Customer Name:</label>
+                                                                    <label for="name">Customer Name:</label>
                                                                     <div class="input-group">
                                                                         <select
                                                                             class="form-select form-control selectpicker"
-                                                                            id="customer_name" name="customer_name">
+                                                                            id="name" name="name">
                                                                             <option value="" selected>Customer Name
                                                                             </option>
                                                                             @foreach ($products as $category)

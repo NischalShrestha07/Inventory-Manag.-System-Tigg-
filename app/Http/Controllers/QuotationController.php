@@ -16,7 +16,7 @@ class QuotationController extends Controller
     {
         $products = Customer::all();
         $product = Product::all();
-        $quotation = Quotation::all();
+        $quotation = Quotation::with('customer')->get();
         return view('admin.quotations.index', compact('quotation', 'products', 'product'));
     }
 
@@ -24,7 +24,7 @@ class QuotationController extends Controller
     public function AddNewQuotation(Quotation $quotation, Request $request)
     {
         $request->validate([
-            'customer_name' => 'required|string|exists:customers,id',
+            'customer_name' => 'required|string|exists:customers,name',
             'code' => 'nullable',
             'date' => 'nullable|string',
             'expiry_date' => 'nullable|string',
