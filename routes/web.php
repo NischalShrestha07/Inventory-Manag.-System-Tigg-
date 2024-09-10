@@ -4,6 +4,7 @@
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\CreditNotesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DebitNotesController;
 use App\Http\Controllers\ExpenseController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionJournalController;
 use App\Http\Controllers\ProductionOrderController;
+use App\Http\Controllers\PurchaseBillController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SalesOrderController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\VariantProductController;
 use App\Http\Controllers\VarientAttributeController;
 use App\Models\InvenAdjustment;
 use App\Models\ProductCategory;
+use App\Models\PurchaseBill;
 use App\Models\PurchaseOrder;
 use Illuminate\Support\Facades\Route;
 
@@ -141,3 +144,13 @@ Route::get('/debitnote/create', [DebitNotesController::class, 'index'])->name('d
 Route::post('/AddNewDebitNote', [DebitNotesController::class, 'AddNewDebitNote'])->name('debitnote.add');
 Route::put('/UpdateDebitNote', [DebitNotesController::class, 'UpdateDebitNote']);
 Route::delete('/debitnote/{id}', [DebitNotesController::class, 'destroy'])->name('debitnote.destroy');
+
+Route::get('/purchaseBill/create', [PurchaseBillController::class, 'index'])->name('purchaseBill.create');
+Route::post('/AddNewPurchaseBill', [PurchaseBillController::class, 'AddNewPurchaseBill'])->name('purchaseBill.add');
+Route::put('/UpdatePurchaseBill', [PurchaseBillController::class, 'UpdatePurchaseBill']);
+Route::delete('/purchaseBill/{id}', [PurchaseBillController::class, 'destroy'])->name('purchaseBill.destroy');
+
+Route::get('/creditnote/create', [CreditNotesController::class, 'index'])->name('creditnote.create');
+Route::post('/AddNewCreditNote', [CreditNotesController::class, 'AddNewCreditNote'])->name('creditnote.add');
+Route::put('/UpdateCreditNote', [CreditNotesController::class, 'UpdateCreditNote']);
+Route::delete('/creditnote/{id}', [CreditNotesController::class, 'destroy'])->name('creditnote.destroy');
