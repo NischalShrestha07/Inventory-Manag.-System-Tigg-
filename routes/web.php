@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InvenAdjustmentController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductCategoryController;
@@ -129,3 +130,8 @@ Route::get('/account/create', [AccountsController::class, 'index'])->name('accou
 Route::post('/AddNewAccount', [AccountsController::class, 'AddNewAccount'])->name('account.add');
 Route::put('/UpdateAccount', [AccountsController::class, 'UpdateAccount']);
 Route::delete('/account/{id}', [AccountsController::class, 'destroy'])->name('account.destroy');
+
+Route::get('/expense/create', [ExpenseController::class, 'index'])->name('expense.create');
+Route::post('/AddNewExpense', [ExpenseController::class, 'AddNewExpense'])->name('expense.add');
+Route::put('/UpdateExpense', [ExpenseController::class, 'UpdateExpense']);
+Route::delete('/expense/{id}', [ExpenseController::class, 'destroy'])->name('expense.destroy');
