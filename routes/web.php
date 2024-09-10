@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionJournalController;
 use App\Http\Controllers\ProductionOrderController;
+use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\SupplierController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\VariantProductController;
 use App\Http\Controllers\VarientAttributeController;
 use App\Models\InvenAdjustment;
 use App\Models\ProductCategory;
+use App\Models\PurchaseOrder;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
@@ -116,3 +118,8 @@ Route::get('/supplier/create', [SupplierController::class, 'index'])->name('supp
 Route::post('/AddNewSupplier', [SupplierController::class, 'AddNewSupplier'])->name('supplier.add');
 Route::put('/UpdateSupplier', [SupplierController::class, 'UpdateSupplier']);
 Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+
+Route::get('/purchaseOrder/create', [PurchaseOrderController::class, 'index'])->name('purchaseOrder.create');
+Route::post('/AddNewPurchaseOrder', [PurchaseOrderController::class, 'AddNewPurchaseOrder'])->name('purchaseOrder.add');
+Route::put('/UpdatePurchaseOrder', [PurchaseOrderController::class, 'UpdatePurchaseOrder']);
+Route::delete('/purchaseOrder/{id}', [PurchaseOrderController::class, 'destroy'])->name('purchaseOrder.destroy');

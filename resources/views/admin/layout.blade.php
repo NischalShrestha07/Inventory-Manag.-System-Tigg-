@@ -39,6 +39,25 @@
 
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
     @yield('customCss')
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card h5,
+        .card h4 {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -362,9 +381,9 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('purchaseOrder.create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Production Journal</p>
+                                        <p>Purchase Order</p>
                                     </a>
                                 </li>
 

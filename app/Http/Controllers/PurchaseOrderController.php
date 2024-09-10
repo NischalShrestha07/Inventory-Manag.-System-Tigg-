@@ -3,63 +3,73 @@
 namespace App\Http\Controllers;
 
 use App\Models\PurchaseOrder;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class PurchaseOrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $purchase = PurchaseOrder::with('supplier')->get();
+        $supplier = Supplier::all();
+        return view('admin.purchaseOrder.index', compact('purchase', 'supplier'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function AddNewPurchaseOrder(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|exists:suppliers,name',
+            'referenceNo' => 'nullable|string',
+            'orderNo' => 'nullable|string',
+            'date' => 'required',
+            'cterms' => 'nullable',
+            'stage' => 'nullable',
+
+        ]);
+        $data = new PurchaseOrder();
+        $data->name = $request->input('name');
+        $data->referenceNo = $request->input('referenceNo');
+        $data->orderNo = $request->input('orderNo');
+        $data->date = $request->input('date');
+        $data->cterms = $request->input('cterms');
+        $data->stage = $request->input('stage');
+
+        // dd($data);
+        $data->save();
+        return redirect()->route('purchaseOrder.create')->with('success', 'Purchase Order Added Successfully.');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function UpdatePurchaseOrder(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'referenceNo' => 'nullable|string',
+            'orderNo' => 'nullable|string',
+            'date' => 'required',
+            'cterms' => 'nullable',
+            'stage' => 'nullable',
+
+        ]);
+
+        $data = PurchaseOrder::findOrFail($request->input('id'));
+        $data->name = $request->input('name');
+        $data->referenceNo = $request->input('referenceNo');
+        $data->orderNo = $request->input('orderNo');
+        $data->date = $request->input('date');
+        $data->cterms = $request->input('cterms');
+        $data->stage = $request->input('stage');
+        $data->save();
+
+        return redirect()->route('purchaseOrder.create')->with('success', 'Purchase Order Updated Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(PurchaseOrder $purchaseOrder)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PurchaseOrder $purchaseOrder)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, PurchaseOrder $purchaseOrder)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(PurchaseOrder $purchaseOrder)
-    {
-        //
+        $customer = PurchaseOrder::find($id);
+        $customer->delete();
+        return redirect()->route('purchaseOrder.create')->with('error', 'Purchase Order Deleted Successfully.');
     }
 }
