@@ -25,4 +25,8 @@ class Product extends Model
     {
         return $this->belongsTo(UOM::class, 'primary_unit');
     }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

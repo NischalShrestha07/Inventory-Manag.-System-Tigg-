@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="menu-title navbar">
-                            <h2 class="ml-2 menu-title">EXPENSES</h2>
+                            <h2 class="ml-2 menu-title">DEBIT NOTES</h2>
                             <div>
                                 @if (session('success'))
                                 <div class="alert alert-success bg-success h3 text-white rounded fw-bolder fs-1">
@@ -34,23 +34,23 @@
                             </div>
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success mr-3"
-                                    data-target="#addNewExpense">Add New</button>
+                                    data-target="#addNewDebitNote">Add New</button>
                             </div>
                         </div>
 
-                        <div class="modal" id="addNewExpense">
+                        <div class="modal" id="addNewDebitNote">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Add New Expense</h4>
+                                        <h4 class="modal-title">Add New Debit Note</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
                                     <!-- Modal body -->
                                     <div class="modal-body">
-                                        <form action="{{ url('AddNewExpense') }}" method="POST"
+                                        <form action="{{ url('AddNewDebitNote') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 
@@ -68,34 +68,28 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="invoiceNo">Invoice No:</label>
-                                                <input type="text" id="invoiceNo" name="invoiceNo"
-                                                    placeholder="Enter Invoice No:" class="form-control mb-2">
+                                                <label for="referenceNo">Reference No:</label>
+                                                <input type="text" id="referenceNo" name="referenceNo"
+                                                    placeholder="Enter Reference No:" class="form-control mb-2">
                                             </div>
 
                                             <label for="date">Date:</label>
                                             <input type="date" id="date" name="date" placeholder="Enter Date"
                                                 class="form-control mb-2">
 
-                                            <div class="mb-3">
-                                                <label for="dueDate">Due Date:</label>
-                                                <input type="date" id="dueDate" name="dueDate"
-                                                    placeholder="Enter Due Date:" class="form-control mb-2">
-                                            </div>
 
                                             <div class="container">
                                                 <div class="row mb-3">
                                                     <div class="col-md-12">
-                                                        <label for="account"
-                                                            class="form-label"><strong>Accounts</strong></label>
-                                                        <select class="form-select" id="account" name="account">
-                                                            <option value="" selected>Select Account</option>
-                                                            @foreach ($accounts as $category)
-                                                            <option value="{{ $category->account }}">
-                                                                {{ $category->account }}
+                                                        <label for="product"
+                                                            class="form-label"><strong>Products</strong></label>
+                                                        <select class="form-select" id="product" name="product">
+                                                            <option value="" selected>Select Product</option>
+                                                            @foreach ($products as $category)
+                                                            <option value="{{ $category->name }}">
+                                                                {{ $category->name }}
                                                             </option>
                                                             @endforeach
-                                                            <!-- Accounts will be dynamically populated here -->
                                                         </select>
                                                     </div>
                                                 </div>
@@ -143,8 +137,8 @@
                                             </div>
 
                                             <div class="m-3">
-                                                <label for="note">Note:</label>
-                                                <input type="text" id="note" name="note" placeholder="Enter Notes"
+                                                <label for="noteno">NoteNo:</label>
+                                                <input type="text" id="noteno" name="noteno" placeholder="Enter Notes"
                                                     class="form-control mb-2">
                                             </div>
 
@@ -162,22 +156,22 @@
                                 <thead>
                                     <tr>
                                         <th>SUPPLIER NAME</th>
-                                        <th>DATE</th>
-                                        <th>ACCOUNT</th>
                                         <th>REFERENCE NO</th>
-                                        <th>DUE DATE</th>
+                                        <th>DATE</th>
+                                        <th>PRODUCT</th>
+                                        <th>NOTE NO</th>
                                         <th>AMOUNT</th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($expense as $item)
+                                    @foreach ($debitnote as $item)
                                     <tr>
                                         <td>{{ $item->name }}</td>
+                                        <td>{{ $item->referenceNo }}</td>
                                         <td>{{ $item->date }}</td>
-                                        <td>{{ $item->account }}</td>
-                                        <td>{{ $item->invoiceNo}}</td>
-                                        <td>{{ $item->dueDate }}</td>
+                                        <td>{{ $item->product }}</td>
+                                        <td> {{ $item->noteno }}</td>
                                         <td> {{ $item->amount }}</td>
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
@@ -189,12 +183,12 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Update Expense</h4>
+                                                            <h4 class="modal-title">Update Debit Note</h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{ url('UpdateExpense') }}" method="POST"
+                                                            <form action="{{ url('UpdateDebitNote') }}" method="POST"
                                                                 enctype="multipart/form-data">
                                                                 @csrf
                                                                 @method('PUT')
@@ -214,22 +208,21 @@
                                                                             <option value="{{$category->name}}">
                                                                                 {{$category->name}}</option>
                                                                             @endforeach
+
+
                                                                         </select>
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="m-3">
-                                                                    <label for="invoiceNo">Invoice No:</label>
-                                                                    <input type="text" id="invoiceNo"
-                                                                        value="{{$item->invoiceNo}}" name="invoiceNo"
+                                                                <div class="mb-3">
+                                                                    <label for="referenceNo">Reference No:</label>
+                                                                    <input type="text" id="referenceNo"
+                                                                        name="referenceNo"
+                                                                        placeholder="Enter Reference No:"
+                                                                        value="{{$item->referenceNo}}"
                                                                         class="form-control mb-2">
                                                                 </div>
-                                                                <div class="m-3">
-                                                                    <label for="account">Account:</label>
-                                                                    <input type="text" id="account"
-                                                                        value="{{$item->account}}" name="account"
-                                                                        class="form-control mb-2">
-                                                                </div>
+
 
 
                                                                 <div class="m-3">
@@ -238,13 +231,7 @@
                                                                         placeholder="Enter Date" value="{{$item->date}}"
                                                                         class="form-control mb-2">
                                                                 </div>
-                                                                <div class="m-3">
-                                                                    <label for="dueDate">Due Date:</label>
-                                                                    <input type="date" id="dueDate" name="dueDate"
-                                                                        placeholder="Enter dueDate"
-                                                                        value="{{$item->dueDate}}"
-                                                                        class="form-control mb-2">
-                                                                </div>
+
                                                                 <div class="m-3">
                                                                     <label for="amount">Amount:</label>
                                                                     <input type="text" id="amount" name="amount"
@@ -253,28 +240,25 @@
                                                                         class="form-control mb-2">
                                                                 </div>
                                                                 <div class="m-3">
-                                                                    <label for="account">Account:</label>
-                                                                    <select class="form-control" name="account"
-                                                                        id="account">
-                                                                        <option value="{{$item->account}}">
-                                                                            {{$item->account}}</option>
-                                                                        <option value="" selected>Select Account
+                                                                    <label for="product">Product:</label>
+
+                                                                    <select class="form-select" id="product"
+                                                                        name="product">
+                                                                        <option value="" selected>Select Product
                                                                         </option>
-                                                                        @foreach ($accounts as $category)
-                                                                        <option value="{{ $category->account }}">
-                                                                            {{ $category->account }}
+                                                                        @foreach ($products as $category)
+                                                                        <option value="{{ $category->name }}">
+                                                                            {{ $category->name }}
                                                                         </option>
                                                                         @endforeach
-                                                                        <!-- Accounts will be dynamically populated here -->
-                                                                    </select>
                                                                     </select>
                                                                 </div>
 
                                                                 <div class="m-3">
-                                                                    <label for="note">Note:</label>
-                                                                    <input type="text" id="note" name="note"
-                                                                        value="{{$item->note}}"
-                                                                        placeholder="Enter Notes"
+                                                                    <label for="noteno">Note No:</label>
+                                                                    <input type="text" id="noteno" name="noteno"
+                                                                        value="{{$item->noteno}}"
+                                                                        placeholder="Enter Note No:"
                                                                         class="form-control mb-2">
                                                                 </div>
 
@@ -287,7 +271,7 @@
                                                 </div>
                                             </div>
 
-                                            <form action="{{ route('expense.destroy', $item->id) }}" method="POST"
+                                            <form action="{{ route('debitnote.destroy', $item->id) }}" method="POST"
                                                 style="display:inline-block;"> @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm w-10" title="Delete"

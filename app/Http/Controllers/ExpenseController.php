@@ -28,7 +28,7 @@ class ExpenseController extends Controller
             'invoiceNo' => 'nullable|string',
             'date' => 'nullable|date',
             'dueDate' => 'nullable|date',
-            'account' => 'required',
+            'account' => 'nullable',
             'amount' => 'nullable',
             'note' => 'nullable',
 
@@ -55,7 +55,7 @@ class ExpenseController extends Controller
             'invoiceNo' => 'nullable|string',
             'date' => 'nullable|date',
             'dueDate' => 'nullable|date',
-            'account' => 'required',
+            'account' => 'nullable',
             'amount' => 'nullable',
             'note' => 'nullable',
 

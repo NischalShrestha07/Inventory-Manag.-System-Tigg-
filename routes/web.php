@@ -5,6 +5,7 @@ use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DebitNotesController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InvenAdjustmentController;
 use App\Http\Controllers\InvoiceController;
@@ -135,3 +136,8 @@ Route::get('/expense/create', [ExpenseController::class, 'index'])->name('expens
 Route::post('/AddNewExpense', [ExpenseController::class, 'AddNewExpense'])->name('expense.add');
 Route::put('/UpdateExpense', [ExpenseController::class, 'UpdateExpense']);
 Route::delete('/expense/{id}', [ExpenseController::class, 'destroy'])->name('expense.destroy');
+
+Route::get('/debitnote/create', [DebitNotesController::class, 'index'])->name('debitnote.create');
+Route::post('/AddNewDebitNote', [DebitNotesController::class, 'AddNewDebitNote'])->name('debitnote.add');
+Route::put('/UpdateDebitNote', [DebitNotesController::class, 'UpdateDebitNote']);
+Route::delete('/debitnote/{id}', [DebitNotesController::class, 'destroy'])->name('debitnote.destroy');
