@@ -13,4 +13,8 @@ class PurchaseOrder extends Model
     {
         return $this->belongsTo(Supplier::class, 'supplier_name');
     }
+    public function account()
+    {
+        return $this->belongsTo(Accounts::class, 'account');
+    }
 }

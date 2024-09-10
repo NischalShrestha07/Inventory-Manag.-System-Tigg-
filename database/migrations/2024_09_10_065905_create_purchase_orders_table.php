@@ -19,8 +19,8 @@ return new class extends Migration
             $table->date('date');
             $table->string('cterms');
             $table->string('stage');
+            $table->string('account');
             $table->string('amount');
-
             $table->timestamps();
         });
     }

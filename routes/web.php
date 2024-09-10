@@ -1,6 +1,7 @@
 
 <?php
 
+use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CustomerController;
@@ -123,3 +124,8 @@ Route::get('/purchaseOrder/create', [PurchaseOrderController::class, 'index'])->
 Route::post('/AddNewPurchaseOrder', [PurchaseOrderController::class, 'AddNewPurchaseOrder'])->name('purchaseOrder.add');
 Route::put('/UpdatePurchaseOrder', [PurchaseOrderController::class, 'UpdatePurchaseOrder']);
 Route::delete('/purchaseOrder/{id}', [PurchaseOrderController::class, 'destroy'])->name('purchaseOrder.destroy');
+
+Route::get('/account/create', [AccountsController::class, 'index'])->name('account.create');
+Route::post('/AddNewAccount', [AccountsController::class, 'AddNewAccount'])->name('account.add');
+Route::put('/UpdateAccount', [AccountsController::class, 'UpdateAccount']);
+Route::delete('/account/{id}', [AccountsController::class, 'destroy'])->name('account.destroy');

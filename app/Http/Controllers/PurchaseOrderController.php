@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Accounts;
 use App\Models\PurchaseOrder;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -11,19 +12,25 @@ class PurchaseOrderController extends Controller
     public function index()
     {
         $purchase = PurchaseOrder::with('supplier')->get();
+        $accounts = Accounts::with('account')->get();
         $supplier = Supplier::all();
-        return view('admin.purchaseOrder.index', compact('purchase', 'supplier'));
+        return view('admin.purchaseOrder.index', compact('purchase', 'supplier', 'accounts'));
     }
 
 
     public function AddNewPurchaseOrder(Request $request)
     {
+
+        // dd($request->all());
+
         $request->validate([
             'name' => 'required|string|exists:suppliers,name',
             'referenceNo' => 'nullable|string',
             'orderNo' => 'nullable|string',
             'date' => 'required',
             'cterms' => 'nullable',
+            'account' => 'required',
+            'amount' => 'nullable',
             'stage' => 'nullable',
 
         ]);
@@ -34,6 +41,9 @@ class PurchaseOrderController extends Controller
         $data->date = $request->input('date');
         $data->cterms = $request->input('cterms');
         $data->stage = $request->input('stage');
+        $data->amount = $request->input('grandTotal');
+        // $data->amount = $request->input('grandTotal');
+        $data->account = $request->input('account');
 
         // dd($data);
         $data->save();
@@ -47,9 +57,12 @@ class PurchaseOrderController extends Controller
             'name' => 'required|string',
             'referenceNo' => 'nullable|string',
             'orderNo' => 'nullable|string',
-            'date' => 'required',
+            'date' => 'nullable',
             'cterms' => 'nullable',
             'stage' => 'nullable',
+            'amount' => 'nullable',
+            'account' => 'nullable',
+
 
         ]);
 
@@ -60,6 +73,12 @@ class PurchaseOrderController extends Controller
         $data->date = $request->input('date');
         $data->cterms = $request->input('cterms');
         $data->stage = $request->input('stage');
+        $data->amount = $request->input('amount'); // Store total after VAT
+        // $data->amount = $request->input('grandTotal'); // Store total after VAT
+
+        $data->account = $request->input('account');
+
+
         $data->save();
 
         return redirect()->route('purchaseOrder.create')->with('success', 'Purchase Order Updated Successfully.');

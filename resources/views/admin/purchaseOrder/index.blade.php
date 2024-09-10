@@ -59,7 +59,7 @@
                                             <div class="input-group">
                                                 <select class="form-select form-control selectpicker" id="name"
                                                     name="name">
-                                                    <option value="" selected>Supplier Name</option>
+                                                    <option value="" selected>Select Supplier </option>
                                                     @foreach ($supplier as $category)
                                                     <option value="{{ $category->name }}">
                                                         {{ $category->name }}
@@ -74,7 +74,12 @@
                                                         <label for="account"
                                                             class="form-label"><strong>Accounts</strong></label>
                                                         <select class="form-select" id="account" name="account">
-                                                            <option value="">Select Account</option>
+                                                            <option value="" selected>Select Account</option>
+                                                            @foreach ($accounts as $category)
+                                                            <option value="{{ $category->account }}">
+                                                                {{ $category->account }}
+                                                            </option>
+                                                            @endforeach
                                                             <!-- Accounts will be dynamically populated here -->
                                                         </select>
                                                     </div>
@@ -114,6 +119,8 @@
                                                                 <h5>VAT: <span id="vat">0</span></h5>
                                                                 <h4><strong>Grand Total: <span
                                                                             id="grandTotal">0</span></strong></h4>
+                                                                <input type="hidden" id="grandTotalInput"
+                                                                    name="grandTotal" value="0">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -164,6 +171,7 @@
                                         <th>ORDER NO</th>
                                         <th>REFERENCE NO</th>
                                         <th>DATE</th>
+                                        <th>AMOUNT</th>
                                         <th>STAGE</th>
                                         <th>ACTIONS</th>
                                     </tr>
@@ -175,6 +183,7 @@
                                         <td>{{ $item->orderNo }}</td>
                                         <td>{{ $item->referenceNo }}</td>
                                         <td>{{ $item->date }}</td>
+                                        <td>{{ $item->amount }}</td>
                                         <td>{{ $item->stage }}</td>
 
 
@@ -209,14 +218,9 @@
                                                                             <option value="">Supplier Name
                                                                             </option>
                                                                             @foreach ($supplier as $category)
-                                                                            {{-- <option value="{{ $category->name }}"
-                                                                                {{ $category->id
-                                                                                == $item->category_id ? 'selected' : ''
-                                                                                }}>
-                                                                                {{ $category->name }} --}}
+
                                                                             <option value="{{$category->name}}">
                                                                                 {{$category->name}}</option>
-                                                                            {{-- </option> --}}
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -243,6 +247,32 @@
                                                                     <input type="date" id="date" name="date"
                                                                         placeholder="Enter Date" value="{{$item->date}}"
                                                                         class="form-control mb-2">
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="amount">Amount:</label>
+                                                                    <input type="text" id="amount" name="amount"
+                                                                        placeholder="Enter Amount"
+                                                                        value="{{$item->amount}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="account">Account:</label>
+                                                                    <select class="form-control" name="account"
+                                                                        id="account">
+                                                                        <option value="{{$item->account}}">
+                                                                            {{$item->account}}</option>
+                                                                        <option value="" selected>Select Account
+                                                                        </option>
+                                                                        @foreach ($accounts as $category)
+                                                                        <option value="{{ $category->account }}">
+                                                                            {{ $category->account }}
+                                                                        </option>
+                                                                        @endforeach
+                                                                        <!-- Accounts will be dynamically populated here -->
+                                                                    </select>
+                                                                    </select>
+
+
                                                                 </div>
 
                                                                 <div class="m-3">
@@ -306,7 +336,6 @@
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     const accountSelect = document.getElementById('account');
@@ -318,40 +347,45 @@
     const taxableTotalElem = document.getElementById('taxableTotal');
     const vatElem = document.getElementById('vat');
     const grandTotalElem = document.getElementById('grandTotal');
+    const grandTotalInput = document.getElementById('grandTotalInput');
 
-    // Example accounts (this should be dynamically populated from the server)
-    const accounts = [
-    { id: 1, name: 'Biswanath Crusher Udhyog Pvt Ltd (CA0026)' },
-    { id: 2, name: 'Another Company Pvt Ltd (CA0027)' }
-    ];
-
-    // Populate accounts dynamically
-    accounts.forEach(account => {
-    const option = document.createElement('option');
-    option.value = account.id;
-    option.textContent = account.name;
-    accountSelect.appendChild(option);
-    });
+    // Fetch accounts from the server
+    fetch('/api/accounts') // Adjust the URL to your API endpoint
+    .then(response => response.json())
+    .then(data => {
+        // Populate accounts dynamically
+        data.forEach(account => {
+            const option = document.createElement('option');
+            option.value = account.id;
+            option.textContent = account.name;
+            accountSelect.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Error fetching accounts:', error));
 
     // Event listener to handle changes in amount and tax
     amountInput.addEventListener('input', updateTotals);
     taxSelect.addEventListener('change', updateTotals);
 
     function updateTotals() {
-    const amount = parseFloat(amountInput.value) || 0;
-    const taxRate = parseFloat(taxSelect.value) || 0;
+        const amount = parseFloat(amountInput.value) || 0;
+        const taxRate = parseFloat(taxSelect.value.replace('%', '')) || 0; // Remove '%' and convert to number
 
-    const subTotal = amount;
-    const taxableTotal = subTotal;
-    const vat = (taxRate / 100) * taxableTotal;
-    const grandTotal = taxableTotal + vat;
+        const subTotal = amount;
+        const taxableTotal = subTotal;
+        const vat = (taxRate / 100) * taxableTotal;
+        const grandTotal = taxableTotal + vat;
 
-    subTotalElem.textContent = subTotal.toFixed(2);
-    nonTaxableTotalElem.textContent = (0).toFixed(2); // You can modify this if needed
-    taxableTotalElem.textContent = taxableTotal.toFixed(2);
-    vatElem.textContent = vat.toFixed(2);
-    grandTotalElem.textContent = grandTotal.toFixed(2);
+        subTotalElem.textContent = subTotal.toFixed(2);
+        nonTaxableTotalElem.textContent = (0).toFixed(2); // Adjust if you have non-taxable totals
+        taxableTotalElem.textContent = taxableTotal.toFixed(2);
+        vatElem.textContent = vat.toFixed(2);
+        grandTotalElem.textContent = grandTotal.toFixed(2);
+        grandTotalInput.value = grandTotal.toFixed(2); // Update hidden input
     }
-    });
+
+    // Optionally trigger updateTotals on page load if needed
+    updateTotals();
+});
 </script>
 @endsection
