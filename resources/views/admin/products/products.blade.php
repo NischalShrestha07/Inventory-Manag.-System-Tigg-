@@ -74,9 +74,9 @@
                                                         </option>
                                                         @endforeach
                                                     </select>
-                                                    <button type="button" class="btn btn-primary ml-2"
+                                                    {{-- <button type="button" class="btn btn-primary ml-2"
                                                         data-toggle="modal" data-target="#addCategoryModal">Add
-                                                        Category</button>
+                                                        Category</button> --}}
                                                 </div>
                                             </div>
 
@@ -97,7 +97,7 @@
                                                         <option value="" selected>Select Option</option>
                                                         @foreach ($primary_unit as $item)
                                                         <option value="{{ $item->id }}">
-                                                            {{ $item->name }}
+                                                            {{ $item->shortname }}
                                                         </option>
                                                         @endforeach
                                                     </select>
