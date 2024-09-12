@@ -32,6 +32,10 @@ class PurchaseBillController extends Controller
             'invoReferenceNo' => 'nullable',
             'product' => 'nullable|exists:products,name',
             'amount' => 'nullable',
+            'quantity' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'vat' => 'nullable',
 
         ]);
         $data = new PurchaseBill();
@@ -43,6 +47,10 @@ class PurchaseBillController extends Controller
         $data->invoReferenceNo = $request->input('invoReferenceNo');
         $data->product = $request->input('product');
         $data->amount = $request->input('grandTotal');
+        $data->quantity = $request->input('quantity');
+        $data->rate = $request->input('rate');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
 
         // dd($data);
         $data->save();
@@ -61,6 +69,10 @@ class PurchaseBillController extends Controller
             'invoReferenceNo' => 'nullable',
             'product' => 'nullable',
             'amount' => 'nullable',
+            'quantity' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'vat' => 'nullable',
 
 
         ]);
@@ -74,6 +86,11 @@ class PurchaseBillController extends Controller
         $data->invoReferenceNo = $request->input('invoReferenceNo');
         $data->product = $request->input('product');
         $data->amount = $request->input('amount'); // Store total after VAT
+        $data->quantity = $request->input('quantity');
+        $data->rate = $request->input('rate');
+        $data->discount = $request->input('discount');
+        $data->vat = $request->input('vat');
+
         // $data->amount = $request->input('grandTotal'); // Store total after VAT
         $data->save();
         // dd($data);

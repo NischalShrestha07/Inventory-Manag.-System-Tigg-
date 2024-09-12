@@ -92,10 +92,7 @@
                                                             name="quantity" placeholder="Enter Quantity"
                                                             oninput="calculateTotals()">
                                                     </div>
-                                                    {{-- <div class="col-md-6">
-                                                        <label for="rate">Rate:</label>
 
-                                                    </div> --}}
                                                 </div>
 
                                                 <div class="row mb-3">
@@ -284,6 +281,26 @@
                                                                     <label for="date">Date:</label>
                                                                     <input type="date" id="date" name="date"
                                                                         placeholder="Enter Date" value="{{$item->date}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="rate">Rate:</label>
+                                                                    <input type="rate" id="rate" name="rate"
+                                                                        placeholder="Enter rate" value="{{$item->rate}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="quantity">Quantity:</label>
+                                                                    <input type="quantity" id="quantity" name="quantity"
+                                                                        placeholder="Enter Quantity"
+                                                                        value="{{$item->quantity}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="discount">Discount:</label>
+                                                                    <input type="discount" id="discount" name="discount"
+                                                                        placeholder="Enter discount"
+                                                                        value="{{$item->discount}}"
                                                                         class="form-control mb-2">
                                                                 </div>
 

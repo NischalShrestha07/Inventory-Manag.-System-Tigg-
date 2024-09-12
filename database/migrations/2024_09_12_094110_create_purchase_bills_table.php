@@ -20,7 +20,11 @@ return new class extends Migration
             $table->date('dueDate');
             $table->string('invoReferenceNo');
             $table->string('product');
-            $table->string('amount');
+            $table->decimal('quantity', 8, 2);
+            $table->decimal('rate', 8, 2);
+            $table->decimal('discount', 5, 2);
+            $table->decimal('vat', 5, 2)->nullable();
+            $table->decimal('amount', 10, 2);
 
             $table->timestamps();
         });
