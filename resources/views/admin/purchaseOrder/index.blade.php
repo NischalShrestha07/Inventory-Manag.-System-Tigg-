@@ -395,58 +395,7 @@
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const accountSelect = document.getElementById('account');
-    const amountInput = document.getElementById('amount');
-    const taxSelect = document.getElementById('tax');
 
-    const subTotalElem = document.getElementById('subTotal');
-    const nonTaxableTotalElem = document.getElementById('nonTaxableTotal');
-    const taxableTotalElem = document.getElementById('taxableTotal');
-    const vatElem = document.getElementById('vat');
-    const grandTotalElem = document.getElementById('grandTotal');
-    const grandTotalInput = document.getElementById('grandTotalInput');
-
-    // Fetch accounts from the server
-    fetch('/api/accounts') // Adjust the URL to your API endpoint
-    .then(response => response.json())
-    .then(data => {
-        // Populate accounts dynamically
-        data.forEach(account => {
-            const option = document.createElement('option');
-            option.value = account.id;
-            option.textContent = account.name;
-            accountSelect.appendChild(option);
-        });
-    })
-    .catch(error => console.error('Error fetching accounts:', error));
-
-    // Event listener to handle changes in amount and tax
-    amountInput.addEventListener('input', updateTotals);
-    taxSelect.addEventListener('change', updateTotals);
-
-    function updateTotals() {
-        const amount = parseFloat(amountInput.value) || 0;
-        const taxRate = parseFloat(taxSelect.value.replace('%', '')) || 0; // Remove '%' and convert to number
-
-        const subTotal = amount;
-        const taxableTotal = subTotal;
-        const vat = (taxRate / 100) * taxableTotal;
-        const grandTotal = taxableTotal + vat;
-
-        subTotalElem.textContent = subTotal.toFixed(2);
-        nonTaxableTotalElem.textContent = (0).toFixed(2); // Adjust if you have non-taxable totals
-        taxableTotalElem.textContent = taxableTotal.toFixed(2);
-        vatElem.textContent = vat.toFixed(2);
-        grandTotalElem.textContent = grandTotal.toFixed(2);
-        grandTotalInput.value = grandTotal.toFixed(2); // Update hidden input
-    }
-
-    // Optionally trigger updateTotals on page load if needed
-    updateTotals();
-});
-</script> --}}
 <script>
     function calculateTotals() {
     // Retrieve values from input fields

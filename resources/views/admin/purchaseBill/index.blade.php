@@ -259,6 +259,28 @@
                                                                         value="{{$item->referenceNo}}"
                                                                         class="form-control mb-2">
                                                                 </div>
+                                                                <div class="mb-3">
+                                                                    <label for="quantity">Quantity:</label>
+                                                                    <input type="text" id="quantity" name="quantity"
+                                                                        placeholder="Enter Quantity:"
+                                                                        value="{{$item->quantity}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="rate">Rate:</label>
+                                                                    <input type="text" id="rate" name="rate"
+                                                                        placeholder="Enter rate:"
+                                                                        value="{{$item->rate}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="discount">Discount:</label>
+                                                                    <input type="text" id="discount" name="discount"
+                                                                        placeholder="Enter discount:"
+                                                                        value="{{$item->discount}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
 
 
 
