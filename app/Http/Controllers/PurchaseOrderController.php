@@ -30,8 +30,12 @@ class PurchaseOrderController extends Controller
             'date' => 'required',
             'cterms' => 'nullable',
             'account' => 'required',
-            'amount' => 'nullable',
             'stage' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'grand_total' => 'nullable',
+            'vat' => 'nullable',
 
         ]);
         $data = new PurchaseOrder();
@@ -41,7 +45,12 @@ class PurchaseOrderController extends Controller
         $data->date = $request->input('date');
         $data->cterms = $request->input('cterms');
         $data->stage = $request->input('stage');
-        $data->amount = $request->input('grandTotal');
+        $data->grand_total = $request->input('grandTotal');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
+
         // $data->amount = $request->input('grandTotal');
         $data->account = $request->input('account');
 
@@ -60,7 +69,11 @@ class PurchaseOrderController extends Controller
             'date' => 'nullable',
             'cterms' => 'nullable',
             'stage' => 'nullable',
-            'amount' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'grand_total' => 'nullable',
+            'vat' => 'nullable',
             'account' => 'nullable',
 
 
@@ -73,11 +86,16 @@ class PurchaseOrderController extends Controller
         $data->date = $request->input('date');
         $data->cterms = $request->input('cterms');
         $data->stage = $request->input('stage');
-        $data->amount = $request->input('amount'); // Store total after VAT
-        // $data->amount = $request->input('grandTotal'); // Store total after VAT
-
+        $data->grand_total = $request->input('grand_total');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
         $data->account = $request->input('account');
+        $data->discount = $request->input('discount');
 
+
+        // $data->amount = $request->input('grandTotal'); // Store total after VAT chalena yo
+        // $data->amount = $request->input('amount'); // Store total after VAT
 
         $data->save();
 
