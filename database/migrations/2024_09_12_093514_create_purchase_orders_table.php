@@ -24,7 +24,7 @@ return new class extends Migration
             $table->decimal('rate', 8, 2);
             $table->decimal('discount', 5, 2);
             $table->decimal('vat', 5, 2)->nullable();
-            $table->decimal('grand_total', 10, 2);
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }

@@ -34,7 +34,7 @@ class PurchaseOrderController extends Controller
             'rate' => 'nullable',
             'discount' => 'nullable',
             'quantity' => 'nullable',
-            'grand_total' => 'nullable',
+            'amount' => 'nullable',
             'vat' => 'nullable',
 
         ]);
@@ -45,7 +45,7 @@ class PurchaseOrderController extends Controller
         $data->date = $request->input('date');
         $data->cterms = $request->input('cterms');
         $data->stage = $request->input('stage');
-        $data->grand_total = $request->input('grandTotal');
+        $data->amount = $request->input('grandTotal');
         $data->rate = $request->input('rate');
         $data->quantity = $request->input('quantity');
         $data->vat = $request->input('vat');
@@ -72,9 +72,10 @@ class PurchaseOrderController extends Controller
             'rate' => 'nullable',
             'discount' => 'nullable',
             'quantity' => 'nullable',
-            'grand_total' => 'nullable',
+            'amount' => 'nullable',
             'vat' => 'nullable',
             'account' => 'nullable',
+
 
 
         ]);
@@ -86,7 +87,8 @@ class PurchaseOrderController extends Controller
         $data->date = $request->input('date');
         $data->cterms = $request->input('cterms');
         $data->stage = $request->input('stage');
-        $data->grand_total = $request->input('grand_total');
+        // $data->grand_total = $request->input('grand_total');
+        $data->amount = $request->input('amount');
         $data->rate = $request->input('rate');
         $data->quantity = $request->input('quantity');
         $data->vat = $request->input('vat');
