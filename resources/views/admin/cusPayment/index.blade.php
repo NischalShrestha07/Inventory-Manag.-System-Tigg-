@@ -35,10 +35,11 @@
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success mr-3"
                                     data-target="#addNewCustomerPayment">Add New</button>
-                                <button type="button" data-toggle="modal" class="btn btn-primary mr-3"
-                                    data-target="#addNewQuickReceipt">Quick Receipt</button>
+                                {{-- <a type="button" data-toggle="modal" class="btn btn-primary mr-3"
+                                    data-target="#addNewQuickReceipt">Quick Receipt</a> --}}
                             </div>
                         </div>
+
 
                         <div class="modal" id="addNewCustomerPayment">
                             <div class="modal-dialog modal-lg">
@@ -82,7 +83,6 @@
                                                                 {{ $category->account }}
                                                             </option>
                                                             @endforeach
-                                                            <!-- Accounts will be dynamically populated here -->
                                                         </select>
                                                     </div>
                                                 </div>
