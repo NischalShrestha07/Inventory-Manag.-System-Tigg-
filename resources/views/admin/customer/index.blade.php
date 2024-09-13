@@ -134,7 +134,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->group }}</td>
                                         <td>{{ $item->phoneno}}</td>
-                                        <td>{{ $item->email }}</td>
+                                        <td>Rs {{ $item->email }}</td>
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
                                                 data-target="#updateModel{{ $item->id }}">

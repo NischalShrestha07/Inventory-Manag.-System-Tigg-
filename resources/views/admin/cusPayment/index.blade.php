@@ -156,7 +156,7 @@
                                         <td>{{ $item->payreference }}</td>
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->amount }}</td>
-                                        <td>{{ $item->account }}</td>
+                                        <td>Rs {{ $item->account }}</td>
 
 
                                         <td class="font-weight-medium">

@@ -218,7 +218,7 @@
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->rate }}</td>
                                         <td>{{ $item->quantity }}</td>
-                                        <td>{{ $item->amount }}</td>
+                                        <td>Rs {{ $item->amount }}</td>
                                         <td>{{ $item->stage }}</td>
 
 

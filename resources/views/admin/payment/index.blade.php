@@ -157,7 +157,7 @@
                                         <td>{{ $item->entryno }}</td>
                                         <td>{{ $item->payreference }}</td>
                                         <td>{{ $item->date }}</td>
-                                        <td>{{ $item->amount }}</td>
+                                        <td>Rs {{ $item->amount }}</td>
                                         <td>{{ $item->account }}</td>
 
 

@@ -169,7 +169,7 @@
                                         <td>{{ $item->invoiceNo }}</td>
                                         <td>{{ $item->referenceNo }}</td>
                                         <td>{{$item->invoiceDate }}</td>
-                                        <td>{{ $item->amount }}</td>
+                                        <td>Rs {{ $item->amount }}</td>
 
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"

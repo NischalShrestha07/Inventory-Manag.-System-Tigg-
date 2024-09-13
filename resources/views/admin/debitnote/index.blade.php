@@ -193,7 +193,7 @@
                                         <td>{{ $item->product }}</td>
                                         <td>{{ $item->rate }}</td>
                                         <td>{{ $item->quantity }}</td>
-                                        <td> {{ $item->amount }}</td>
+                                        <td>Rs {{ $item->amount }}</td>
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
                                                 data-target="#updateModel{{ $item->id }}">

@@ -189,6 +189,7 @@
                                         <th>CATEGORY</th>
                                         <th>QUANTITY</th>
                                         <th>TAX</th>
+                                        <th>AMOUNT</th>
                                         <th>ACTIONS</th>
                                     </tr>
                                 </thead>
@@ -200,6 +201,7 @@
                                         <td>{{ $item->category ? $item->category->name : 'No Category' }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ $item->tax }} VAT</td>
+                                        <td>Rs {{ $item->amount }}</td>
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
                                                 data-target="#updateModel{{ $item->id }}">

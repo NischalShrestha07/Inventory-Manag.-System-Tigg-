@@ -107,7 +107,7 @@
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->entryNum }}</td>
                                         <td>{{ $item->reference }}</td>
-                                        <td>{{ $item->amount }}</td>
+                                        <td>Rs {{ $item->amount }}</td>
                                         {{-- <td>
                                             <a href="" class="btn" title="Edit">
                                                 <i class="fas fa-edit fa-lg"></i>
