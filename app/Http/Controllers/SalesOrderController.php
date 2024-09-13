@@ -27,6 +27,12 @@ class SalesOrderController extends Controller
             'referenceno' => 'nullable|string',
             'deliverydate' => 'nullable',
             'stage' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'amount' => 'nullable',
+            'vat' => 'nullable',
+            'account' => 'nullable',
 
 
         ]);
@@ -38,6 +44,11 @@ class SalesOrderController extends Controller
         $data->referenceno = $request->input('referenceno');
         $data->deliverydate = $request->input('deliverydate');
         $data->stage = $request->input('stage');
+        $data->amount = $request->input('grandTotal');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
 
         return redirect()->route('salesOrder.create')->with('success', 'Sales Order Added Successfully.');
@@ -53,6 +64,11 @@ class SalesOrderController extends Controller
             'referenceno' => 'nullable|string',
             'deliverydate' => 'nullable',
             'stage' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'amount' => 'nullable',
+            'vat' => 'nullable',
 
         ]);
         $data = SalesOrder::findOrFail($request->input('id'));
@@ -63,6 +79,11 @@ class SalesOrderController extends Controller
         $data->referenceno = $request->referenceno;
         $data->deliverydate = $request->deliverydate;
         $data->stage = $request->stage;
+        $data->amount = $request->input('amount');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
         return redirect()->route('salesOrder.create')->with('success', 'Sales Order Updated Successfully.');
     }

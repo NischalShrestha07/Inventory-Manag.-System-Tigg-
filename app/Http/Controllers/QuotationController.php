@@ -33,6 +33,11 @@ class QuotationController extends Controller
             'terms' => 'nullable|string',
             'product_name' => 'nullable|string',
             'status' => 'nullable|string',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'amount' => 'nullable',
+            'vat' => 'nullable',
 
         ]);
         $data = new Quotation();
@@ -46,6 +51,11 @@ class QuotationController extends Controller
         $data->product_name = $request->input('product_name');
         $data->terms = $request->input('terms');
         $data->status = $request->input('status');
+        $data->amount = $request->input('grandTotal');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
 
         return redirect()->route('quotation.create')->with('success', 'Quotation Added Successfully.');
@@ -64,6 +74,11 @@ class QuotationController extends Controller
             'product_name' => 'nullable|string',
             'terms' => 'nullable|string',
             'status' => 'nullable|string',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'amount' => 'nullable',
+            'vat' => 'nullable',
 
         ]);
         $data = Quotation::findOrFail($request->input('id'));
@@ -77,6 +92,11 @@ class QuotationController extends Controller
         $data->product_name = $request->product_name;
         $data->terms = $request->terms;
         $data->status = $request->status;
+        $data->amount = $request->input('amount');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
         return redirect()->route('quotation.create')->with('success', 'Quotation Updated Successfully.');
     }
