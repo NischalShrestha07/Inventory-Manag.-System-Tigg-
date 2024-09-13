@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Accounts extends Model
+class CustomerPayment extends Model
 {
     use HasFactory;
-    public function account()
+
+    public function customer()
     {
-        return $this->belongsTo(PurchaseOrder::class);
+        return $this->belongsTo(Customer::class);
     }
     public function accounts()
     {
-        return $this->belongsTo(CustomerPayment::class);
+        return $this->belongsTo(Accounts::class);
     }
 }

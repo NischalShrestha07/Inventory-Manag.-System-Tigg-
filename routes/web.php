@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\CreditNotesController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerPaymentController;
 use App\Http\Controllers\DebitNotesController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InvenAdjustmentController;
@@ -160,3 +161,8 @@ Route::get('/payment/create', [SuppilerPaymentController::class, 'index'])->name
 Route::post('/AddNewSupplierPayment', [SuppilerPaymentController::class, 'AddNewSupplierPayment'])->name('payment.add');
 Route::put('/UpdateSupplierPayment', [SuppilerPaymentController::class, 'UpdateSupplierPayment']);
 Route::delete('/payment/{id}', [SuppilerPaymentController::class, 'destroy'])->name('payment.destroy');
+
+Route::get('/customergo/create', [CustomerPaymentController::class, 'index'])->name('cusPayment.create');
+Route::post('/AddNewCustomerPayment', [CustomerPaymentController::class, 'AddNewCustomerPayment'])->name('cusPayment.add');
+Route::put('/UpdateCustomerPayment', [CustomerPaymentController::class, 'UpdateCustomerPayment']);
+Route::delete('/customergo/{id}', [CustomerPaymentController::class, 'destroy'])->name('cusPayment.destroy');
