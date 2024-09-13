@@ -399,6 +399,15 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+                                    <a href="{{route('payment.create')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Supplier Payment</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
                                     <a href="{{route('expense.create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Expenses</p>

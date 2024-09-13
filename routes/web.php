@@ -18,6 +18,7 @@ use App\Http\Controllers\PurchaseBillController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SalesOrderController;
+use App\Http\Controllers\SuppilerPaymentController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UOMController;
 use App\Http\Controllers\VariantProductController;
@@ -154,3 +155,8 @@ Route::get('/creditnote/create', [CreditNotesController::class, 'index'])->name(
 Route::post('/AddNewCreditNote', [CreditNotesController::class, 'AddNewCreditNote'])->name('creditnote.add');
 Route::put('/UpdateCreditNote', [CreditNotesController::class, 'UpdateCreditNote']);
 Route::delete('/creditnote/{id}', [CreditNotesController::class, 'destroy'])->name('creditnote.destroy');
+
+Route::get('/payment/create', [SuppilerPaymentController::class, 'index'])->name('payment.create');
+Route::post('/AddNewSupplierPayment', [SuppilerPaymentController::class, 'AddNewSupplierPayment'])->name('payment.add');
+Route::put('/UpdateSupplierPayment', [SuppilerPaymentController::class, 'UpdateSupplierPayment']);
+Route::delete('/payment/{id}', [SuppilerPaymentController::class, 'destroy'])->name('payment.destroy');
