@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('referenceNo');
             $table->date('date');
             $table->string('product');
-            $table->string('noteno');
             $table->decimal('quantity', 8, 2);
             $table->decimal('rate', 8, 2);
             $table->decimal('discount', 5, 2);

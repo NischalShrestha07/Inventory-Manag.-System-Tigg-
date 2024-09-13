@@ -160,11 +160,6 @@
                                                 </div>
                                             </div>
 
-                                            <div class="m-3">
-                                                <label for="noteno">NoteNo:</label>
-                                                <input type="text" id="noteno" name="noteno" placeholder="Enter Notes"
-                                                    class="form-control mb-2">
-                                            </div>
 
 
 
@@ -185,7 +180,6 @@
                                         <th>PRODUCT</th>
                                         <th>RATE</th>
                                         <th>QUANTITY</th>
-                                        <th>NOTE NO</th>
                                         <th>AMOUNT</th>
                                         <th>ACTIONS</th>
                                     </tr>
@@ -199,7 +193,6 @@
                                         <td>{{ $item->product }}</td>
                                         <td>{{ $item->rate }}</td>
                                         <td>{{ $item->quantity }}</td>
-                                        <td> {{ $item->noteno }}</td>
                                         <td> {{ $item->amount }}</td>
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
@@ -303,13 +296,7 @@
                                                                     </select>
                                                                 </div>
 
-                                                                <div class="m-3">
-                                                                    <label for="noteno">Note No:</label>
-                                                                    <input type="text" id="noteno" name="noteno"
-                                                                        value="{{$item->noteno}}"
-                                                                        placeholder="Enter Note No:"
-                                                                        class="form-control mb-2">
-                                                                </div>
+
 
 
                                                                 <input type="submit" name="save" class="btn btn-success"

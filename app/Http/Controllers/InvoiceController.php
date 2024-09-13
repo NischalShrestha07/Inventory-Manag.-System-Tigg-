@@ -26,7 +26,12 @@ class InvoiceController extends Controller
             'referenceNo' => 'nullable',
             'invoiceDate' => 'nullable|string',
             'dueDate' => 'nullable|string',
-            'terms' => 'nullable|string',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'amou   t' => 'nullable',
+            'vat' => 'nullable',
+
 
         ]);
         $data = new Invoice();
@@ -36,7 +41,12 @@ class InvoiceController extends Controller
         $data->referenceNo = $request->input('referenceNo');
         $data->invoiceDate = $request->input('invoiceDate');
         $data->dueDate = $request->input('dueDate');
-        $data->terms = $request->input('terms');
+        $data->amount = $request->input('grandTotal');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
+
         $data->save();
 
         return redirect()->route('invoice.create')->with('success', 'Invoice Added Successfully.');
@@ -51,8 +61,11 @@ class InvoiceController extends Controller
             'referenceNo' => 'nullable',
             'invoiceDate' => 'nullable|string',
             'dueDate' => 'nullable|string',
-            'terms' => 'nullable|string',
-
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'amount' => 'nullable',
+            'vat' => 'nullable',
         ]);
         $data = Invoice::findOrFail($request->input('id'));
 
@@ -61,7 +74,11 @@ class InvoiceController extends Controller
         $data->referenceNo = $request->referenceNo;
         $data->invoiceDate = $request->invoiceDate;
         $data->dueDate = $request->dueDate;
-        $data->terms = $request->terms;
+        $data->amount = $request->input('amount');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
         return redirect()->route('invoice.create')->with('success', 'Invoice Updated Successfully.');
     }

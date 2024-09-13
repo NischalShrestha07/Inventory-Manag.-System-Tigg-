@@ -29,7 +29,7 @@ class DebitNotesController extends Controller
             'date' => 'required',
             'product' => 'nullable|exists:products,name',
             'amount' => 'nullable',
-            'noteno' => 'nullable',
+            // 'noteno' => 'nullable',
             'quantity' => 'nullable',
             'rate' => 'nullable',
             'vat' => 'nullable',
@@ -41,7 +41,7 @@ class DebitNotesController extends Controller
         $data->referenceNo = $request->input('referenceNo');
         $data->date = $request->input('date');
         $data->product = $request->input('product');
-        $data->noteno = $request->input('noteno');
+        // $data->noteno = $request->input('noteno');
         $data->amount = $request->input('grandTotal');
         $data->rate = $request->input('rate');
         $data->quantity = $request->input('quantity');
@@ -63,7 +63,7 @@ class DebitNotesController extends Controller
             'product' => 'nullable',
             'amount' => 'nullable',
             'account' => 'nullable',
-            'noteno' => 'nullable',
+            // 'noteno' => 'nullable',
             'quantity' => 'nullable',
             'rate' => 'nullable',
             'vat' => 'nullable',
@@ -77,7 +77,7 @@ class DebitNotesController extends Controller
         $data->referenceNo = $request->input('referenceNo');
         $data->date = $request->input('date');
         $data->product = $request->input('product');
-        $data->noteno = $request->input('noteno');
+        // $data->noteno = $request->input('noteno');
         $data->amount = $request->input('amount'); // Store total after VAT
         $data->quantity = $request->input('quantity');
         $data->rate = $request->input('rate');
