@@ -28,4 +28,8 @@ class Quotation extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_name');
     }
+    // public function products()
+    // {
+    //     return $this->belongsToMany(Product::class)->withPivot('quantity', 'amount');
+    // }
 }

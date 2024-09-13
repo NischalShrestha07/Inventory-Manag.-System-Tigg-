@@ -80,14 +80,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="mb-3">
+                                            {{-- <div class="mb-3">
                                                 <label for="tax">Tax:</label>
                                                 <select class="form-control" name="tax" id="tax">
                                                     <option value="" selected>Select Option</option>
                                                     <option value="13">13 %VAT</option>
                                                     <option value="0">0 %VAT</option>
                                                 </select>
-                                            </div>
+                                            </div> --}}
 
                                             <div class="mb-3">
                                                 <label for="primary_unit" class="form-label">Primary Unit</label>
@@ -109,6 +109,69 @@
                                                 <input type="text" id="hscode" name="hscode" placeholder="HS Code"
                                                     class="form-control mb-2">
                                             </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="quantity">Quantity:</label>
+                                                    <input type="number" class="form-control" id="quantity"
+                                                        name="quantity" placeholder="Enter Quantity"
+                                                        oninput="calculateTotals()">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="discount">Discount (%):</label>
+                                                    <input type="number" class="form-control" id="discount"
+                                                        name="discount" placeholder="Enter Discount"
+                                                        oninput="calculateTotals()">
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        {{-- <input type="text" class="form-control" id="amount"
+                                                            placeholder="Rate" /> --}}
+                                                        <label for="rate">Rate:</label>
+                                                        <input type="number" class="form-control" id="rate" name="rate"
+                                                            placeholder="Enter Rate" oninput="calculateTotals()">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <select class="form-select" id="tax" name="tax">
+                                                            <option value="No Vat">No VAT</option>
+                                                            <option value="5%">5%</option>
+                                                            <option value="10%">10%</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <label for="notes"
+                                                            class="form-label"><strong>Notes</strong></label>
+                                                        <textarea class="form-control" id="notes"
+                                                            placeholder="This will appear on print"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h5>Sub Total: <span id="subTotal">0</span></h5>
+                                                                <h5>Non-Taxable Total: <span
+                                                                        id="nonTaxableTotal">0</span></h5>
+                                                                <h5>Taxable Total: <span id="taxableTotal">0</span>
+                                                                </h5>
+                                                                <h5>VAT: <span id="vat">0</span></h5>
+                                                                <h4><strong>Grand Total: <span
+                                                                            id="grandTotal">0</span></strong></h4>
+                                                                <input type="hidden" id="grandTotalInput"
+                                                                    name="grandTotal" value="0">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
@@ -124,6 +187,7 @@
                                         <th>CODE/SKU</th>
                                         <th>NAME</th>
                                         <th>CATEGORY</th>
+                                        <th>QUANTITY</th>
                                         <th>TAX</th>
                                         <th>ACTIONS</th>
                                     </tr>
@@ -134,7 +198,8 @@
                                         <td>{{ $item->code }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->category ? $item->category->name : 'No Category' }}</td>
-                                        <td>{{ $item->tax }}% VAT</td>
+                                        <td>{{ $item->quantity }}</td>
+                                        <td>{{ $item->tax }} VAT</td>
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"
                                                 data-target="#updateModel{{ $item->id }}">
@@ -181,13 +246,6 @@
                                                                     @endforeach
                                                                 </select>
 
-                                                                <label for="tax">Tax:</label>
-                                                                <select class="form-control" name="tax" id="tax">
-                                                                    <option value="{{$item->tax}}" selected>
-                                                                        {{$item->tax}} %VAT</option>
-                                                                    <option value="13">13 %VAT</option>
-                                                                    <option value="0">0 %VAT</option>
-                                                                </select>
 
                                                                 <label for="primary_unit">Primary Unit:</label>
                                                                 <select id="primary_unit" name="primary_unit"
@@ -207,6 +265,44 @@
                                                                         id="hscode" name="hscode"
                                                                         value="{{ $item->hscode }}"
                                                                         placeholder="HS Code">
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="rate">Rate:</label>
+                                                                    <input type="rate" id="rate" name="rate"
+                                                                        placeholder="Enter rate" value="{{$item->rate}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="tax">tax:</label>
+                                                                    <input type="tax" id="tax" name="tax"
+                                                                        placeholder="Enter tax" value="{{$item->tax}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+
+                                                                <div class="m-3">
+                                                                    <label for="quantity">Quantity:</label>
+                                                                    <input type="quantity" id="quantity" name="quantity"
+                                                                        placeholder="Enter Quantity"
+                                                                        value="{{$item->quantity}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="discount">Discount:</label>
+                                                                    <input type="discount" id="discount" name="discount"
+                                                                        placeholder="Enter discount"
+                                                                        value="{{$item->discount}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+
+
+
+
+                                                                <div class="m-3">
+                                                                    <label for="amount">Amount:</label>
+                                                                    <input type="text" id="amount" name="amount"
+                                                                        placeholder="Enter Amount"
+                                                                        value="{{$item->amount}}"
+                                                                        class="form-control mb-2">
                                                                 </div>
 
                                                                 <input type="submit" name="save" class="btn btn-success"
@@ -272,8 +368,63 @@
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
 <script>
+    function calculateTotals() {
+    var quantity = parseFloat(document.getElementById('quantity').value) || 0;
+    var discount = parseFloat(document.getElementById('discount').value) || 0;
+    var rate = parseFloat(document.getElementById('rate').value) || 0;
+    var subTotal = quantity * rate;
+    var discountedTotal = subTotal - (subTotal * (discount / 100));
+    var vat = parseFloat(document.getElementById('tax').value) || 0;
+    var vatAmount = (vat / 100) * discountedTotal;
+
+    document.getElementById('subTotal').textContent = subTotal.toFixed(2);
+    document.getElementById('vat').textContent = vatAmount.toFixed(2);
+    document.getElementById('grandTotal').textContent = (discountedTotal + vatAmount).toFixed(2);
+    document.getElementById('grandTotalInput').value = (discountedTotal + vatAmount).toFixed(2);
+}
+</script>
+<script>
+    function calculateTotals() {
+    // Retrieve values from input fields
+    var quantity = parseFloat(document.getElementById('quantity').value) || 0;
+    var rate = parseFloat(document.getElementById('rate').value) || 0;
+    var discount = parseFloat(document.getElementById('discount').value) || 0;
+    var taxRate = parseFloat(document.getElementById('tax').value) || 0;
+
+    // Calculate subtotal
+    var subtotal = quantity * rate;
+
+    // Apply discount to subtotal
+    var discountedAmount = subtotal - (subtotal * (discount / 100));
+
+    // Calculate VAT
+    var vatAmount = discountedAmount * (taxRate / 100);
+
+    // Calculate grand total
+    var grandTotal = discountedAmount + vatAmount;
+
+    // Update the HTML with calculated values
+    document.getElementById('subTotal').innerText = subtotal.toFixed(2);
+    document.getElementById('nonTaxableTotal').innerText = discountedAmount.toFixed(2);
+    document.getElementById('taxableTotal').innerText = discountedAmount.toFixed(2);
+    document.getElementById('vat').innerText = vatAmount.toFixed(2);
+    document.getElementById('grandTotal').innerText = grandTotal.toFixed(2);
+    document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
+}
+
+// Attach event listeners to inputs to recalculate totals on change
+document.addEventListener('DOMContentLoaded', function() {
+    var inputs = document.querySelectorAll('#quantity, #rate, #discount, #tax');
+    inputs.forEach(function(input) {
+        input.addEventListener('input', calculateTotals);
+    });
+
+    // Initialize totals on page load
+    calculateTotals();
+});
+</script>
+{{-- <script>
     let variantCount = 1;
 
     function addVariant() {
@@ -301,5 +452,5 @@
     $(function() {
         bsCustomFileInput.init();
     });
-</script>
+</script> --}}
 @endsection

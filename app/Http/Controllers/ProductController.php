@@ -25,6 +25,11 @@ class ProductController extends Controller
             'tax' => 'nullable',
             'primary_unit' => 'nullable|exists:u_o_m_s,id',
             'hscode' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'amount' => 'nullable',
+            'vat' => 'nullable',
         ]);
 
         $data = new Product();
@@ -34,6 +39,11 @@ class ProductController extends Controller
         $data->tax = $request->input('tax');
         $data->primary_unit = $request->input('primary_unit');
         $data->hscode = $request->input('hscode');
+        $data->amount = $request->input('grandTotal');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
         // dd($request->all());
 
@@ -65,6 +75,11 @@ class ProductController extends Controller
             'tax' => 'nullable',
             'primary_unit' => 'required',
             'hscode' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'amount' => 'nullable',
+            'vat' => 'nullable',
         ]);
         $data = Product::findOrFail($request->input('id'));
         $data->name = $request->name;
@@ -73,6 +88,11 @@ class ProductController extends Controller
         $data->tax = $request->tax;
         $data->primary_unit = $request->primary_unit;
         $data->hscode = $request->hscode;
+        $data->amount = $request->input('amount');
+        $data->rate = $request->input('rate');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
         // dd($data);
         return redirect()->route('product.create')->with('success', 'Product Updated Successfully.');

@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductionOrderController;
 use App\Http\Controllers\PurchaseBillController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\QuotationController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\SuppilerPaymentController;
 use App\Http\Controllers\SupplierController;
