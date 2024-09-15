@@ -114,8 +114,6 @@
 
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
-                                                            {{-- <input type="text" class="form-control" id="amount"
-                                                                placeholder="Rate" /> --}}
                                                             <label for="rate">Rate:</label>
                                                             <input type="number" class="form-control" id="rate"
                                                                 name="rate" placeholder="Enter Rate"

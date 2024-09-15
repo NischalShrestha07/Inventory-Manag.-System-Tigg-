@@ -105,15 +105,14 @@
 
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
-                                                            {{-- <input type="text" class="form-control" id="amount"
-                                                                placeholder="Rate" /> --}}
+
                                                             <label for="rate">Rate:</label>
                                                             <input type="number" class="form-control" id="rate"
                                                                 name="rate" placeholder="Enter Rate"
                                                                 oninput="calculateTotals()">
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <select class="form-select" id="tax" name="tax">
+                                                            <select class="form-select" id="tax" name="vat">
                                                                 <option value="No Vat">No VAT</option>
                                                                 <option value="5%">5%</option>
                                                                 <option value="10%">10%</option>
@@ -186,7 +185,7 @@
                                     <tr>
                                         {{-- <td>{{ $item->name }}</td> --}}
                                         <td>{{ $item->date }}</td>
-                                        <td>{{ $item->referenceNo }}</td>
+                                        <td>{{ $item->reference }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ $item->rate }}</td>
                                         <td>{{ $item->product }}</td>
@@ -209,14 +208,14 @@
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{ url('UpdateInvenAdjustment') }}"
-                                                                method="POST" enctype="multipart/form-data">
+                                                            <form action="{{ url('UpdateAdjustment') }}" method="POST"
+                                                                enctype="multipart/form-data">
                                                                 @csrf
                                                                 @method('PUT')
 
                                                                 <input type="hidden" name="id" value="{{ $item->id }}">
 
-                                                                <div class="mb-3">
+                                                                {{-- <div class="mb-3">
                                                                     <label for="name">Supplier Name:</label>
                                                                     <div class="input-group">
                                                                         <select
@@ -231,22 +230,21 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
-                                                                </div>
-                                                                <div class="m-3">
+                                                                </div> --}}
+                                                                {{-- <div class="m-3">
 
                                                                     <label for="orderNo"> Order No:</label>
                                                                     <input type="text" id="orderNo" name="orderNo"
                                                                         placeholder="Order No"
                                                                         value="{{$item->orderNo}}"
                                                                         class="form-control mb-2">
-                                                                </div>
+                                                                </div> --}}
 
                                                                 <div class="m-3">
-                                                                    <label for="referenceNo">Reference No:</label>
-                                                                    <input type="text" id="referenceNo"
-                                                                        value="{{$item->referenceNo}}"
-                                                                        name="referenceNo"
-                                                                        placeholder="Enter Reference No"
+                                                                    <label for="reference">Reference :</label>
+                                                                    <input type="text" id="reference"
+                                                                        value="{{$item->reference}}" name="reference"
+                                                                        placeholder="Enter Reference "
                                                                         class="form-control mb-2">
                                                                 </div>
                                                                 <div class="m-3">
@@ -257,44 +255,31 @@
                                                                 </div>
                                                                 <div class="m-3">
                                                                     <label for="rate">Rate:</label>
-                                                                    <input type="rate" id="rate" name="rate"
+                                                                    <input type="text" id="rate" name="rate"
                                                                         placeholder="Enter rate" value="{{$item->rate}}"
                                                                         class="form-control mb-2">
                                                                 </div>
                                                                 <div class="m-3">
                                                                     <label for="tax">VAT:</label>
-                                                                    <input type="tax" id="tax" name="tax"
+                                                                    <input type="text" id="tax" name="tax"
                                                                         placeholder="Enter VAT" value="{{$item->tax}}"
                                                                         class="form-control mb-2">
                                                                 </div>
                                                                 <div class="m-3">
                                                                     <label for="quantity">Quantity:</label>
-                                                                    <input type="quantity" id="quantity" name="quantity"
+                                                                    <input type="text" id="quantity" name="quantity"
                                                                         placeholder="Enter Quantity"
                                                                         value="{{$item->quantity}}"
                                                                         class="form-control mb-2">
                                                                 </div>
                                                                 <div class="m-3">
                                                                     <label for="discount">Discount:</label>
-                                                                    <input type="discount" id="discount" name="discount"
+                                                                    <input type="text" id="discount" name="discount"
                                                                         placeholder="Enter discount"
                                                                         value="{{$item->discount}}"
                                                                         class="form-control mb-2">
                                                                 </div>
-                                                                {{-- <div class="m-3">
-                                                                    <label for="product">Product:</label>
 
-                                                                    <select class="form-select" id="product"
-                                                                        name="product">
-                                                                        <option value="" selected>Select Product
-                                                                        </option>
-                                                                        @foreach ($products as $category)
-                                                                        <option value="{{ $category->name }}">
-                                                                            {{ $category->name }}
-                                                                        </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div> --}}
 
 
                                                                 <div class="m-3">
@@ -319,10 +304,6 @@
                                                                 </div>
 
 
-
-
-
-
                                                                 <input type="submit" name="save" class="btn btn-success"
                                                                     value="Save Now" />
                                                             </form>
@@ -331,7 +312,7 @@
                                                 </div>
                                             </div>
 
-                                            <form action="{{ route('purchaseOrder.destroy', $item->id) }}" method="POST"
+                                            <form action="{{ route('adjustment.destroy', $item->id) }}" method="POST"
                                                 style="display:inline-block;">
                                                 @csrf
                                                 @method('DELETE')
