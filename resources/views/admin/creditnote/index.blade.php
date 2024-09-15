@@ -205,7 +205,9 @@
                                                                             </option>
                                                                             @foreach ($supplier as $category)
 
-                                                                            <option value="{{$category->name}}">
+                                                                            <option value="{{$category->name}}"
+                                                                                {{$category->name==$item->name ?
+                                                                                'selected' : ''}}>
                                                                                 {{$category->name}}</option>
                                                                             @endforeach
 
@@ -247,7 +249,9 @@
                                                                         <option value="" selected>Select Product
                                                                         </option>
                                                                         @foreach ($products as $category)
-                                                                        <option value="{{ $category->name }} ">
+                                                                        <option value="{{ $category->name }} "
+                                                                            {{$category->name==$item->product ?
+                                                                            'selected' :''}}>
                                                                             {{ $category->name }}
                                                                         </option>
                                                                         @endforeach

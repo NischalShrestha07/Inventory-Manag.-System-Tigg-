@@ -300,18 +300,31 @@
                                                                     placeholder="Enter Amount" value="{{$item->amount}}"
                                                                     class="form-control mb-2">
 
-
-
-                                                                <label for="status"> Status:</label>
-                                                                <select class="form-control" name="status" id="status">
-                                                                    <option value="" selected>Select
-                                                                        Status</option>
-                                                                    <option value="Pending">Pending</option>
-                                                                    <option value="In Check">In Check </option>
-                                                                    <option value="In Progress">In Progress
-                                                                    <option value="Complete">Complete </option>
-                                                                    </option>
-                                                                </select>
+                                                                {{-- yo database ma xaina hai ta tei vara chalena --}}
+                                                                {{-- <div class="m-3">
+                                                                    <label for="status"> Status:</label>
+                                                                    <select class="form-control" name="status"
+                                                                        id="status">
+                                                                        <option value="{{$item->status}}">
+                                                                            {{$item->status}} </option>
+                                                                        <option value="Pending">Pending</option>
+                                                                        <option value="In Check">In Check </option>
+                                                                        <option value="In Progress">In Progress
+                                                                        <option value="Complete">Complete </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="m-3">
+                                                                    <label for="stage"> Stage:</label>
+                                                                    <select class="form-control" name="stage"
+                                                                        id="stage">
+                                                                        <option value="{{$item->stage}}">
+                                                                            {{$item->stage}} </option>
+                                                                        <option value="Pending">Pending</option>
+                                                                        <option value="In Check">In Check </option>
+                                                                        <option value="In Progress">In Progress
+                                                                        <option value="Complete">Complete </option>
+                                                                    </select>
+                                                                </div> --}}
 
 
 

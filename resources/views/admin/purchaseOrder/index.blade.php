@@ -254,7 +254,9 @@
                                                                             </option>
                                                                             @foreach ($supplier as $category)
 
-                                                                            <option value="{{$category->name}}">
+                                                                            <option value="{{$category->name}}"
+                                                                                {{$category->name==$item->name ?
+                                                                                'selected' : ''}}>
                                                                                 {{$category->name}}</option>
                                                                             @endforeach
                                                                         </select>
@@ -323,7 +325,9 @@
                                                                         <option value="" selected>Select Account
                                                                         </option>
                                                                         @foreach ($accounts as $category)
-                                                                        <option value="{{ $category->account }}">
+                                                                        <option value="{{ $category->account }}"
+                                                                            {{$category->account == $item->account ?
+                                                                            'selected' : ''}}>
                                                                             {{ $category->account }}
                                                                         </option>
                                                                         @endforeach
