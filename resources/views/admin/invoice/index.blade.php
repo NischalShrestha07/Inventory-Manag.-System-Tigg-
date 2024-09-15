@@ -85,7 +85,18 @@
                                             <input type="date" id="dueDate" name="dueDate" placeholder="Enter Due Date"
                                                 class="form-control mb-2">
 
-
+                                            <label for="product"> Product name:</label>
+                                            <div class="input-group">
+                                                <select class="form-select form-control selectpicker" id="product"
+                                                    name="product">
+                                                    <option value="">Product Name</option>
+                                                    @foreach ($product as $category)
+                                                    <option value="{{ $category->name}}">
+                                                        {{ $category->name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
 
                                             <div class="row mb-3">
@@ -156,6 +167,7 @@
                                     <tr>
                                         <th>CUSTOMER NAME</th>
                                         <th>INVOICE NO</th>
+                                        <th>PRODUCT</th>
                                         <th>REFERENCE NO</th>
                                         <th>INVOICE DATE</th>
                                         <th>AMOUNT</th>
@@ -167,6 +179,7 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->invoiceNo }}</td>
+                                        <td>{{ $item->product }}</td>
                                         <td>{{ $item->referenceNo }}</td>
                                         <td>{{$item->invoiceDate }}</td>
                                         <td>Rs {{ $item->amount }}</td>
@@ -202,7 +215,9 @@
                                                                             <option value="" selected>Customer Name
                                                                             </option>
                                                                             @foreach ($products as $category)
-                                                                            <option value="{{ $category->name }}">
+                                                                            <option value="{{ $category->name }}"
+                                                                                {{$category->name==$item->name
+                                                                                ?'selected' : ''}}>
                                                                                 {{ $category->name }}
                                                                             </option>
                                                                             @endforeach
@@ -232,17 +247,28 @@
                                                                     class="form-control mb-2">
 
 
-                                                                <label for="date">Date:</label>
-                                                                <input type="date" id="date" name="date"
-                                                                    value="{{$item->date}}" placeholder="Enter Date"
-                                                                    class="form-control mb-2">
 
+                                                                <div class="col-md-6">
+                                                                    <label for="quantity">Quantity:</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="quantity" name="quantity"
+                                                                        placeholder="Enter Quantity"
+                                                                        value="{{$item->quantity}}">
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label for="discount">Discount:</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="discount" name="discount"
+                                                                        placeholder="Enter discount"
+                                                                        value="{{$item->discount}}">
+                                                                </div>
 
-                                                                <label for="credit_notes">Credit Notes:</label>
-                                                                <input type="text" id="credit_notes"
-                                                                    value="{{$item->credit_notes}}" name="credit_notes"
-                                                                    placeholder="Enter credit_notes"
-                                                                    class="form-control mb-2">
+                                                                <div class="col-md-6">
+                                                                    <label for="rate">rate:</label>
+                                                                    <input type="number" class="form-control" id="rate"
+                                                                        name="rate" placeholder="Enter rate"
+                                                                        value="{{$item->rate}}">
+                                                                </div>
 
                                                                 <label for="invoiceNo">Invoice No:</label>
                                                                 <input type="text" id="invoiceNo"
@@ -250,14 +276,16 @@
                                                                     placeholder="Enter Invoice No"
                                                                     class="form-control mb-2">
 
-                                                                <label for="product_name"> Product name:</label>
+                                                                <label for="product"> Product name:</label>
                                                                 <div class="input-group">
                                                                     <select
                                                                         class="form-select form-control selectpicker"
-                                                                        id="product_name" name="product_name">
+                                                                        id="product" name="product">
                                                                         <option value="">Product Name</option>
                                                                         @foreach ($product as $category)
-                                                                        <option value="{{ $category->name}}">
+                                                                        <option value="{{ $category->name}}"
+                                                                            {{$category->name==$item->product ?
+                                                                            'selected' : ''}}>
                                                                             {{ $category->name }}
                                                                         </option>
                                                                         @endforeach
@@ -276,7 +304,8 @@
 
                                                                 <label for="status"> Status:</label>
                                                                 <select class="form-control" name="status" id="status">
-                                                                    <option value="" selected>Select Status</option>
+                                                                    <option value="" selected>Select
+                                                                        Status</option>
                                                                     <option value="Pending">Pending</option>
                                                                     <option value="In Check">In Check </option>
                                                                     <option value="In Progress">In Progress

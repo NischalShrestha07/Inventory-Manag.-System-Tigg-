@@ -240,7 +240,10 @@
                                                                             <option value="" selected>Customer Name
                                                                             </option>
                                                                             @foreach ($products as $category)
-                                                                            <option value="{{ $category->name }}">
+                                                                            <option value="{{ $category->name }}"
+                                                                                {{$category->name==$item->customer_name
+                                                                                ?
+                                                                                'selected' : ''}}>
                                                                                 {{ $category->name }}
                                                                             </option>
                                                                             @endforeach
@@ -283,7 +286,9 @@
                                                                         id="product_name" name="product_name">
                                                                         <option value="">Product Name</option>
                                                                         @foreach ($product as $category)
-                                                                        <option value="{{ $category->name}}">
+                                                                        <option value="{{ $category->name}}"
+                                                                            {{$category->name==$item->product_name ?
+                                                                            'selected' : ''}}>
                                                                             {{ $category->name }}
                                                                         </option>
                                                                         @endforeach

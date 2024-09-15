@@ -174,6 +174,7 @@
                                         <th>REFERENCE NO</th>
                                         <th>DATE</th>
                                         <th>DELIVERY DATE</th>
+                                        <th>AMOUNT</th>
                                         <th>STAGE</th>
                                         <th>ACTIONS</th>
                                     </tr>
@@ -186,6 +187,7 @@
                                         <td>{{ $item->referenceno}}</td>
                                         <td>{{ $item->date }}</td>
                                         <td>{{ $item->deliverydate }}</td>
+                                        <td>Rs {{ $item->amount }}</td>
                                         <td>{{ $item->stage }}</td>
                                         <td class="font-weight-medium">
                                             <button type="button" class="btn" title="Edit" data-toggle="modal"

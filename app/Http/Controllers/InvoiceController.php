@@ -31,6 +31,7 @@ class InvoiceController extends Controller
             'quantity' => 'nullable',
             'amou   t' => 'nullable',
             'vat' => 'nullable',
+            'product' => 'nullable',
 
 
         ]);
@@ -46,6 +47,7 @@ class InvoiceController extends Controller
         $data->quantity = $request->input('quantity');
         $data->vat = $request->input('vat');
         $data->discount = $request->input('discount');
+        $data->product = $request->input('product');
 
         $data->save();
 
@@ -65,6 +67,7 @@ class InvoiceController extends Controller
             'discount' => 'nullable',
             'quantity' => 'nullable',
             'amount' => 'nullable',
+            'product' => 'nullable',
             'vat' => 'nullable',
         ]);
         $data = Invoice::findOrFail($request->input('id'));
@@ -78,6 +81,7 @@ class InvoiceController extends Controller
         $data->rate = $request->input('rate');
         $data->quantity = $request->input('quantity');
         $data->vat = $request->input('vat');
+        $data->product = $request->input('product');
         $data->discount = $request->input('discount');
         $data->save();
         return redirect()->route('invoice.create')->with('success', 'Invoice Updated Successfully.');

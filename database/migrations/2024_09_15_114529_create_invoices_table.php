@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('discount', 5, 2);
             $table->decimal('vat', 5, 2)->nullable();
             $table->decimal('amount', 10, 2);
+            $table->string('product');
             $table->timestamps();
         });
     }
