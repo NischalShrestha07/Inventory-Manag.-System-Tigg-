@@ -197,7 +197,7 @@
                                     @endphp
                                     @foreach ($varProducts as $item)
                                     @php
-                                    $i = 1;
+                                    $i++;
                                     @endphp
                                     <tr>
 
@@ -244,24 +244,41 @@
                                                                     class="form-control mb-2">
 
 
+
+
                                                                 <label for="category">Category Name:</label>
-                                                                <input type="text" id="category" name="category"
-                                                                    value="{{ $item->category }}"
-                                                                    placeholder="Enter Category Name:"
-                                                                    class="form-control mb-2">
+                                                                <divclass="input-group">
+                                                                    <select class=" form-control " id="category"
+                                                                        name="category">
+                                                                        <option value="">Select Options</option>
+                                                                        @foreach ($categories as $category)
+                                                                        <option value="{{ $category->name }}" {{
+                                                                            $category->name == $item->product ?
+                                                                            'selected' : '' }}>
+                                                                            {{ $category->name }}
+                                                                        </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    {{-- <button type="button"
+                                                                        class="btn btn-primary ml-2" data-toggle="modal"
+                                                                        data-target="#addCategoryModal">Add
+                                                                        Category</button> --}}
+
+                                                                    </divclass=>
 
 
-                                                                <label for="tax">Tax:</label>
-                                                                <input type="text" id="tax" name="tax"
-                                                                    value="{{ $item->tax }}" placeholder="Tax"
-                                                                    class="form-control mb-2">
+                                                                    <label for="tax">Tax:</label>
+                                                                    <input type="text" id="tax" name="tax"
+                                                                        value="{{ $item->tax }}" placeholder="Tax"
+                                                                        class="form-control mb-2">
 
 
 
 
-                                                                <input type="hidden" name="id" value="{{ $item->id }}">
-                                                                <input type="submit" name="save" class="btn btn-success"
-                                                                    value="Save Changes" />
+                                                                    <input type="hidden" name="id"
+                                                                        value="{{ $item->id }}">
+                                                                    <input type="submit" name="save"
+                                                                        class="btn btn-success" value="Save Changes" />
                                                             </form>
                                                         </div>
                                                     </div>

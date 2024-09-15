@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\UOM;
 use App\Models\VarientAttribute;
@@ -15,10 +16,11 @@ class VariantProductController extends Controller
     public function index()
     {
         $attributes = VarientAttribute::all();
+        $products = Product::all();
         $varProducts = VarientProduct::all();
         $categories = ProductCategory::all();
         $primary_unit = UOM::all();
-        return view('admin.variant_products.index', compact('varProducts', 'categories', 'primary_unit', 'attributes'));
+        return view('admin.variant_products.index', compact('varProducts', 'products', 'categories', 'primary_unit', 'attributes'));
     }
 
     public function AddNewVarProduct(Request $request)
