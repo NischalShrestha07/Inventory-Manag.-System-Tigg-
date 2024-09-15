@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\InvenAdjustment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class InvenAdjustmentController extends Controller
@@ -12,8 +14,10 @@ class InvenAdjustmentController extends Controller
      */
     public function index()
     {
-        $adjustments = InvenAdjustment::all();
-        return view('admin.inven_adjustments.index', compact('adjustments'));
+        $adjustments = InvenAdjustment::with('product')->get();
+        $products = Product::all();
+
+        return view('admin.inven_adjustments.index', compact('adjustments', 'products'));
     }
 
     /**
@@ -23,17 +27,28 @@ class InvenAdjustmentController extends Controller
     {
         $request->validate([
             'date' => 'nullable',
-            'entryNum' => 'required|integer',
+            'entryNo' => 'required|integer',
             'refernce' => 'nullable|string',
             'amount' => 'nullable',
             'note' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'product' => 'nullable',
+            'vat' => 'nullable',
         ]);
         $data = new InvenAdjustment();
         $data->date = $request->input('date');
-        $data->entryNum = $request->input('entryNum');
+        $data->entryNo = $request->input('entryNo');
         $data->reference = $request->input('reference');
         $data->amount = $request->input('amount');
         $data->note = $request->input('note');
+        $data->amount = $request->input('grandTotal');
+        $data->rate = $request->input('rate');
+        $data->product = $request->input('product');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
         // dd($data);
 
@@ -48,17 +63,28 @@ class InvenAdjustmentController extends Controller
     {
         $request->validate([
             'date' => 'nullable',
-            'entryNum' => 'required|integer',
+            'entryNo' => 'required|integer',
             'refernce' => 'nullable|string',
             'amount' => 'nullable',
             'note' => 'nullable',
+            'rate' => 'nullable',
+            'discount' => 'nullable',
+            'quantity' => 'nullable',
+            'product' => 'nullable',
+            'vat' => 'nullable',
         ]);
         $data = InvenAdjustment::findOrFail($request->input('id'));
         $data->date = $request->input('date');
-        $data->entryNum = $request->input('entryNum');
+        $data->entryNo = $request->input('entryNo');
         $data->reference = $request->input('reference');
         $data->amount = $request->input('amount');
         $data->note = $request->input('note');
+        $data->amount = $request->input('amount');
+        $data->rate = $request->input('rate');
+        $data->product = $request->input('product');
+        $data->quantity = $request->input('quantity');
+        $data->vat = $request->input('vat');
+        $data->discount = $request->input('discount');
         $data->save();
         // dd($data);
 

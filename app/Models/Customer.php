@@ -21,4 +21,8 @@ class Customer extends Model
         'climit',
 
     ];
+    public function product()
+    {
+        return $this->belongsTo(InvenAdjustment::class);
+    }
 }

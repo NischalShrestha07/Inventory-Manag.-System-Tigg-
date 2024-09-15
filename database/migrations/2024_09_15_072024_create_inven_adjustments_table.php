@@ -14,10 +14,15 @@ return new class extends Migration
         Schema::create('inven_adjustments', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->integer('entryNum');
+            $table->string('entryNo');
             $table->string('reference');
-            $table->bigInteger('amount');
-            $table->text('note');
+            $table->decimal('quantity', 8, 2);
+            $table->decimal('rate', 8, 2);
+            $table->decimal('amount', 10, 2);
+            $table->string('vat');
+            $table->string('discount');
+            $table->string('product');
+            $table->string('note');
 
             $table->timestamps();
         });
