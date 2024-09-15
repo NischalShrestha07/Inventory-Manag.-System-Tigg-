@@ -185,11 +185,11 @@
                                     <tr>
                                         {{-- <td>{{ $item->name }}</td> --}}
                                         <td>{{ $item->date }}</td>
+                                        <td>{{ $item->entryNo }}</td>
                                         <td>{{ $item->reference }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ $item->rate }}</td>
                                         <td>{{ $item->product }}</td>
-                                        <td>{{ $item->quantity }}</td>
                                         <td>Rs {{ $item->amount }}</td>
 
 
@@ -215,44 +215,30 @@
 
                                                                 <input type="hidden" name="id" value="{{ $item->id }}">
 
-                                                                {{-- <div class="mb-3">
-                                                                    <label for="name">Supplier Name:</label>
-                                                                    <div class="input-group">
-                                                                        <select
-                                                                            class="form-select form-control selectpicker"
-                                                                            id="name" name="name">
-                                                                            <option value="">Supplier Name
-                                                                            </option>
-                                                                            @foreach ($supplier as $category)
-
-                                                                            <option value="{{$category->name}}">
-                                                                                {{$category->name}}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
-                                                                </div> --}}
-                                                                {{-- <div class="m-3">
-
-                                                                    <label for="orderNo"> Order No:</label>
-                                                                    <input type="text" id="orderNo" name="orderNo"
-                                                                        placeholder="Order No"
-                                                                        value="{{$item->orderNo}}"
-                                                                        class="form-control mb-2">
-                                                                </div> --}}
-
-                                                                <div class="m-3">
-                                                                    <label for="reference">Reference :</label>
-                                                                    <input type="text" id="reference"
-                                                                        value="{{$item->reference}}" name="reference"
-                                                                        placeholder="Enter Reference "
-                                                                        class="form-control mb-2">
-                                                                </div>
                                                                 <div class="m-3">
                                                                     <label for="date">Date:</label>
                                                                     <input type="date" id="date" name="date"
                                                                         placeholder="Enter Date" value="{{$item->date}}"
                                                                         class="form-control mb-2">
                                                                 </div>
+                                                                <div class="m-3">
+                                                                    <label for="reference">Reference :</label>
+                                                                    <input type="text" id="reference"
+                                                                        value="{{$item->reference}}" name="reference"
+                                                                        placeholder="Enter Reference "
+                                                                        value="{{$item->reference}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+
+                                                                <div class="m-3">
+                                                                    <label for="entryNo">Entry No :</label>
+                                                                    <input type="text" id="entryNo"
+                                                                        value="{{$item->entryNo}}" name="entryNo"
+                                                                        placeholder="Enter entryNo "
+                                                                        value="{{$item->entryNo}}"
+                                                                        class="form-control mb-2">
+                                                                </div>
+
                                                                 <div class="m-3">
                                                                     <label for="rate">Rate:</label>
                                                                     <input type="text" id="rate" name="rate"
@@ -261,8 +247,8 @@
                                                                 </div>
                                                                 <div class="m-3">
                                                                     <label for="tax">VAT:</label>
-                                                                    <input type="text" id="tax" name="tax"
-                                                                        placeholder="Enter VAT" value="{{$item->tax}}"
+                                                                    <input type="text" id="tax" name="vat"
+                                                                        placeholder="Enter VAT" value="{{$item->vat}}"
                                                                         class="form-control mb-2">
                                                                 </div>
                                                                 <div class="m-3">
@@ -280,14 +266,32 @@
                                                                         class="form-control mb-2">
                                                                 </div>
 
+                                                                <div class="row mb-3">
+                                                                    <div class="col-md-12">
+                                                                        <label for="product"
+                                                                            class="form-label"><strong>Products</strong></label>
+                                                                        <select class="form-select" id="product"
+                                                                            name="product">
+                                                                            <option value="" selected>Select Product
+                                                                            </option>
+                                                                            @foreach ($products as $category)
+                                                                            <option value="{{ $category->name }} " {{
+                                                                                $category->name == $item->product ?
+                                                                                'selected' : '' }}>
+                                                                                {{ $category->name }}
+                                                                            </option>
 
 
-                                                                <div class="m-3">
-                                                                    <label for="product">Product:</label>
-                                                                    <input type="text" id="product" name="product"
-                                                                        placeholder="Enter product"
-                                                                        value="{{$item->product}}"
-                                                                        class="form-control mb-2">
+                                                                            {{-- Note It Above--}}
+
+
+                                                                            {{-- <option value="{{ $category->name }} "
+                                                                                selected>
+                                                                                {{ $category->name }}
+                                                                            </option> --}}
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="m-3">
                                                                     <label for="amount">Amount:</label>
