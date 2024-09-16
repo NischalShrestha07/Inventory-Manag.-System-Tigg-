@@ -53,18 +53,16 @@
                         </div>
 
 
-                        <div class="modal" id="addNewVarAttributes">
+                        {{-- <div class="modal" id="addNewVarAttributes">
                             <div class="modal-dialog">
                                 <div class="modal-content">
 
-                                    <!-- Modal Header -->
                                     <div class="modal-header">
                                         <h4 class="modal-title">Add New Varient Attributes</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
 
-                                    <!-- Modal body -->
                                     <div class="modal-body">
                                         <form action="{{ url('AddNewVarAttribute') }}" method="POST"
                                             enctype="multipart/form-data">
@@ -86,125 +84,244 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> --}}
+
+
+                        <div class="modal fade" id="addNewVarAttributes" tabindex="-1" role="dialog"
+                            aria-labelledby="addNewVarAttributesLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header bg-primary text-white">
+                                        <h4 class="modal-title" id="addNewVarAttributesLabel">Add New Variant Attributes
+                                        </h4>
+                                        <button type="button" class="close text-white" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <form action="{{ url('AddNewVarAttribute') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+
+                                            <!-- Attribute Name Field -->
+                                            <div class="form-group">
+                                                <label for="name" class="font-weight-bold">Attribute Name:</label>
+                                                <input type="text" id="name" name="name"
+                                                    placeholder="Enter Attribute Name" class="form-control mb-3"
+                                                    required>
+                                            </div>
+
+                                            <!-- Options Section -->
+                                            <div class="form-group" id="option-fields">
+                                                <label for="option[]" class="font-weight-bold">Options:</label>
+                                                <input type="text" name="options[]" placeholder="Enter Option"
+                                                    class="form-control mb-2">
+                                            </div>
+
+                                            <!-- Add New Option Button -->
+                                            <button type="button" id="add-option"
+                                                class="btn btn-outline-secondary mb-3">
+                                                <i class="fas fa-plus"></i> Add New Option
+                                            </button>
+
+                                            <!-- Submit Button -->
+                                            <div class="text-right">
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fas fa-save"></i> Save
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>NAME</th>
+                                        <th>OPTIONS </th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                    $i = 0;
+                                    @endphp
+                                    @foreach ($varients as $item)
+                                    @php
+                                    $i++;
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $item->name }}</td>
+                                        <td>
+                                            @foreach($item->options as $option)
+                                            <span>{{ $option->option_name }}</span><br>
+                                            @endforeach
+                                        </td>
+
+                                        {{-- Update Model --}}
+                                        <td class="font-weight-medium">
+                                            <button type="button" class="btn" title="Edit" data-toggle="modal"
+                                                data-target="#updateModel{{ $i }}">
+                                                <i class="fas fa-edit fa-lg"></i>
+                                            </button>
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $i }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+
+
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $i }}" tabindex="-1" role="dialog"
+                                                aria-labelledby="viewModelLabel{{ $i }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header bg-info text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $i }}">Variant
+                                                                Attribute Details</h5>
+                                                            <button type="button" class="close text-white"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- Modal Body -->
+                                                        <div class="modal-body">
+                                                            <h5 class="font-weight-bold">Name:</h5>
+                                                            <p>{{ $item->name }}</p>
+                                                            <h5 class="font-weight-bold">Options:</h5>
+                                                            <ul>
+                                                                @foreach($item->options as $option)
+                                                                <li>{{ $option->option_name }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="modal" id="updateModel{{ $i }}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Update Varient Attribute
+                                                            </h4>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ url('UpdateVarAttribute') }}" method="POST"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+
+
+                                                                <label for="name">Name:</label>
+                                                                <input type="text" id="name" name="name"
+                                                                    value="{{ $item->name }}"
+                                                                    placeholder="Enter Attribute Name:"
+                                                                    class="form-control mb-2">
+
+
+                                                                <label for="option[]">Options:</label>
+                                                                @foreach($item->options as $index => $option)
+                                                                <input type="text" name="options[]"
+                                                                    value="{{ $option->option_name }}"
+                                                                    class="form-control mb-2">
+                                                                @endforeach
+
+
+                                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                <input type="submit" name="save" class="btn btn-success"
+                                                                    value="Save Changes" />
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+
+                                            <div class="modal fade" id="updateModel{{ $i }}" tabindex="-1" role="dialog"
+                                                aria-labelledby="updateModelLabel{{ $i }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h4 class="modal-title" id="updateModelLabel{{ $i }}">Update
+                                                                Variant Attribute</h4>
+                                                            <button type="button" class="close text-white"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ url('UpdateVarAttribute') }}" method="POST"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+
+                                                                <label for="name">Name:</label>
+                                                                <input type="text" id="name" name="name"
+                                                                    value="{{ $item->name }}"
+                                                                    placeholder="Enter Attribute Name:"
+                                                                    class="form-control mb-2">
+
+                                                                <label for="option[]">Options:</label>
+                                                                @foreach($item->options as $index => $option)
+                                                                <input type="text" name="options[]"
+                                                                    value="{{ $option->option_name }}"
+                                                                    class="form-control mb-2">
+                                                                @endforeach
+
+                                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                <input type="submit" name="save" class="btn btn-success"
+                                                                    value="Save Changes" />
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <form action="{{ route('varAttribute.destroy', $item->id) }}" method="POST"
+                                                style="display:inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm w-10" title="Delete"
+                                                    onclick="return confirm('Are you sure you want to delete this item?')">
+                                                    <i class="fas fa-lg fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+                                </tbody>
+
+                            </table>
                         </div>
 
 
 
-                        {{-- <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped"> --}}
-
-
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>NAME</th>
-                                                <th>OPTIONS </th>
-                                                <th>ACTIONS</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php
-                                            $i = 0;
-                                            @endphp
-                                            @foreach ($varients as $item)
-                                            @php
-                                            $i++;
-                                            @endphp
-                                            <tr>
-                                                <td>{{ $item->name }}</td>
-                                                <td>
-                                                    @foreach($item->options as $option)
-                                                    <span>{{ $option->option_name }}</span><br>
-                                                    @endforeach
-                                                </td>
-
-                                                {{-- Update Model --}}
-                                                <td class="font-weight-medium">
-                                                    <button type="button" class="btn" title="Edit" data-toggle="modal"
-                                                        data-target="#updateModel{{ $i }}">
-                                                        <i class="fas fa-edit fa-lg"></i>
-                                                    </button>
-                                                    <div class="modal" id="updateModel{{ $i }}">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title">Update Varient Attribute
-                                                                    </h4>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal">&times;</button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="{{ url('UpdateVarAttribute') }}"
-                                                                        method="POST" enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        @method('PUT')
-
-
-                                                                        <label for="name">Name:</label>
-                                                                        <input type="text" id="name" name="name"
-                                                                            value="{{ $item->name }}"
-                                                                            placeholder="Enter Attribute Name:"
-                                                                            class="form-control mb-2">
-
-
-                                                                        <label for="option[]">Options:</label>
-                                                                        @foreach($item->options as $index => $option)
-                                                                        <input type="text" name="options[]"
-                                                                            value="{{ $option->option_name }}"
-                                                                            class="form-control mb-2">
-                                                                        @endforeach
-
-
-                                                                        <input type="hidden" name="id"
-                                                                            value="{{ $item->id }}">
-                                                                        <input type="submit" name="save"
-                                                                            class="btn btn-success"
-                                                                            value="Save Changes" />
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <form action="{{ route('varAttribute.destroy', $item->id) }}"
-                                                        method="POST" style="display:inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm w-10" title="Delete"
-                                                            onclick="return confirm('Are you sure you want to delete this item?')">
-                                                            <i class="fas fa-lg fa-trash-alt"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-
-                                        </tbody>
-
-                                    </table>
-                                </div>
-
-
-
-                                {{-- CHATgpt codes helps --}}
-                                {{-- <tbody>
-                                    @foreach($varients as $variant)
-                                    <tr>
-                                        <td>{{ $variant->name }}</td>
-                                        <td>
-                                            @foreach($variant->options as $option)
-                                            <span>{{ $option->option_name }}</span><br>
-                                            @endforeach
-                                        </td>
-                                    </tr>
+                        {{-- CHATgpt codes helps --}}
+                        {{-- <tbody>
+                            @foreach($varients as $variant)
+                            <tr>
+                                <td>{{ $variant->name }}</td>
+                                <td>
+                                    @foreach($variant->options as $option)
+                                    <span>{{ $option->option_name }}</span><br>
                                     @endforeach
-                                </tbody> --}}
-                                {{--
-                            </table>
-                        </div> --}}
-
-                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody> --}}
+                        {{--
+                        </table>
+                    </div> --}}
 
                 </div>
 
@@ -212,7 +329,9 @@
 
         </div>
 
-    </section>
+</div>
+
+</section>
 
 </div>
 @endsection

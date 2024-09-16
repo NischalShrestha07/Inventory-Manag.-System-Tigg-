@@ -21,6 +21,7 @@
                             <div>
                                 @if (session('success'))
                                 <div class="alert alert-success bg-success h3 text-white rounded fw-bolder fs-1">
+
                                     {{ session('success') }}
                                 </div>
                                 @endif
@@ -42,131 +43,129 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
 
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
+                                    <div class="modal-header  btn-primary">
                                         <h4 class="modal-title">Add New Product</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
-                                    <!-- Modal body -->
+
                                     <div class="modal-body">
                                         <form action="{{ url('AddNewProduct') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 
-                                            <label for="code">Code/Sku:</label>
-                                            <input type="text" id="code" name="code" placeholder="Enter Code/Sku:"
-                                                class="form-control mb-2">
+                                            <!-- Product Code -->
+                                            <div class="mb-3">
+                                                <label for="code" class="form-label">Code/Sku:</label>
+                                                <input type="text" id="code" name="code" placeholder="Enter Code/Sku:"
+                                                    class="form-control">
+                                            </div>
 
-                                            <label for="name">Product Name:</label>
-                                            <input type="text" id="name" name="name" placeholder="Enter Product Name:"
-                                                class="form-control mb-2">
+                                            <!-- Product Name -->
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label">Product Name:</label>
+                                                <input type="text" id="name" name="name"
+                                                    placeholder="Enter Product Name:" class="form-control">
+                                            </div>
 
+                                            <!-- Category -->
                                             <div class="mb-3">
                                                 <label for="category_id" class="form-label">Category</label>
                                                 <div class="input-group">
-                                                    <select class="form-select form-control selectpicker"
-                                                        id="category_id" name="category_id">
-                                                        <option value="">Select Options</option>
+                                                    <select class="form-select" id="category_id" name="category_id">
+                                                        <option value="">Select Option</option>
                                                         @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">
-                                                            {{ $category->name }}
+                                                        <option value="{{ $category->id }}">{{ $category->name }}
                                                         </option>
                                                         @endforeach
                                                     </select>
-                                                    {{-- <button type="button" class="btn btn-primary ml-2"
-                                                        data-toggle="modal" data-target="#addCategoryModal">Add
-                                                        Category</button> --}}
                                                 </div>
                                             </div>
 
+                                            <!-- Primary Unit -->
                                             <div class="mb-3">
                                                 <label for="primary_unit" class="form-label">Primary Unit</label>
                                                 <div class="input-group">
-                                                    <select class="form-select form-control selectpicker"
-                                                        id="primary_unit" name="primary_unit">
+                                                    <select class="form-select" id="primary_unit" name="primary_unit">
                                                         <option value="" selected>Select Option</option>
                                                         @foreach ($primary_unit as $item)
-                                                        <option value="{{ $item->id }}">
-                                                            {{ $item->shortname }}
-                                                        </option>
+                                                        <option value="{{ $item->id }}">{{ $item->shortname }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
 
+                                            <!-- HS Code -->
                                             <div class="mb-3">
-                                                <label for="hscode">Hs Code:</label>
+                                                <label for="hscode" class="form-label">HS Code:</label>
                                                 <input type="text" id="hscode" name="hscode" placeholder="HS Code"
-                                                    class="form-control mb-2">
+                                                    class="form-control">
                                             </div>
+
+                                            <!-- Quantity and Discount -->
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
-                                                    <label for="quantity">Quantity:</label>
+                                                    <label for="quantity" class="form-label">Quantity:</label>
                                                     <input type="number" class="form-control" id="quantity"
                                                         name="quantity" placeholder="Enter Quantity"
                                                         oninput="calculateTotals()">
                                                 </div>
-
-                                            </div>
-
-                                            <div class="row mb-3">
                                                 <div class="col-md-6">
-                                                    <label for="discount">Discount (%):</label>
+                                                    <label for="discount" class="form-label">Discount (%):</label>
                                                     <input type="number" class="form-control" id="discount"
                                                         name="discount" placeholder="Enter Discount"
                                                         oninput="calculateTotals()">
                                                 </div>
+                                            </div>
 
-                                                <div class="row mb-3">
-                                                    <div class="col-md-6">
-                                                        {{-- <input type="text" class="form-control" id="amount"
-                                                            placeholder="Rate" /> --}}
-                                                        <label for="rate">Rate:</label>
-                                                        <input type="number" class="form-control" id="rate" name="rate"
-                                                            placeholder="Enter Rate" oninput="calculateTotals()">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <select class="form-select" id="tax" name="tax">
-                                                            <option value="No Vat">No VAT</option>
-                                                            <option value="5%">5%</option>
-                                                            <option value="10%">10%</option>
-                                                        </select>
-                                                    </div>
+                                            <!-- Rate and Tax -->
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="rate" class="form-label">Rate:</label>
+                                                    <input type="number" class="form-control" id="rate" name="rate"
+                                                        placeholder="Enter Rate" oninput="calculateTotals()">
                                                 </div>
-
-                                                <div class="row mb-3">
-                                                    <div class="col-md-12">
-                                                        <label for="notes"
-                                                            class="form-label"><strong>Notes</strong></label>
-                                                        <textarea class="form-control" id="notes"
-                                                            placeholder="This will appear on print"></textarea>
-                                                    </div>
+                                                <div class="col-md-6">
+                                                    <label for="tax" class="form-label">Tax:</label>
+                                                    <select class="form-select" id="tax" name="tax">
+                                                        <option value="No Vat">No VAT</option>
+                                                        <option value="5%">5%</option>
+                                                        <option value="10%">10%</option>
+                                                    </select>
                                                 </div>
+                                            </div>
 
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <h5>Sub Total: <span id="subTotal">0</span></h5>
-                                                                <h5>Non-Taxable Total: <span
-                                                                        id="nonTaxableTotal">0</span></h5>
-                                                                <h5>Taxable Total: <span id="taxableTotal">0</span>
-                                                                </h5>
-                                                                <h5>VAT: <span id="vat">0</span></h5>
-                                                                <h4><strong>Grand Total: <span
-                                                                            id="grandTotal">0</span></strong></h4>
-                                                                <input type="hidden" id="grandTotalInput"
-                                                                    name="grandTotal" value="0">
-                                                            </div>
-                                                        </div>
+                                            <!-- Notes -->
+                                            <div class="mb-3">
+                                                <label for="notes" class="form-label"><strong>Notes</strong></label>
+                                                <textarea class="form-control" id="notes" name="notes"
+                                                    placeholder="This will appear on print"></textarea>
+                                            </div>
+
+                                            <!-- Totals -->
+                                            <div class="mb-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5>Sub Total: <span id="subTotal">0</span></h5>
+                                                        <h5>Non-Taxable Total: <span id="nonTaxableTotal">0</span></h5>
+                                                        <h5>Taxable Total: <span id="taxableTotal">0</span></h5>
+                                                        <h5>VAT: <span id="vat">0</span></h5>
+                                                        <h4><strong>Grand Total: <span id="grandTotal">0</span></strong>
+                                                        </h4>
+                                                        <input type="hidden" id="grandTotalInput" name="grandTotal"
+                                                            value="0">
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <input type="submit" name="save" class="btn btn-success" value="Save Now" />
+                                            <!-- Submit Button -->
+                                            <div class="d-grid">
+                                                <input type="submit" name="save" class="btn btn-success"
+                                                    value="Save Now">
+                                            </div>
                                         </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -269,7 +268,7 @@
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <h6><strong>Tax:</strong></h6>
-                                                                            <p>{{ $item->tax }}% VAT</p>
+                                                                            <p>{{ $item->tax }} VAT</p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
@@ -299,13 +298,19 @@
                                                 </div>
                                             </div>
 
-                                            <div class="modal" id="updateModel{{ $item->id }}">
-                                                <div class="modal-dialog">
+
+                                            {{-- Update Model --}}
+                                            <div class="modal fade" id="updateModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="updateModelLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Update Product</h4>
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal">&times;</button>
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="updateModelLabel">Update Product
+                                                            </h5>
+                                                            <button type="button" class="close text-white"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <form action="{{ url('UpdateProduct') }}" method="POST"
@@ -315,97 +320,125 @@
 
                                                                 <input type="hidden" name="id" value="{{ $item->id }}">
 
-                                                                <div class="mb-3">
-                                                                    <label for="productName" class="form-label">Product
-                                                                        Name:</label>
-                                                                    <input type="text" class="form-control" id="name"
-                                                                        name="name" value="{{ $item->name }}"
-                                                                        placeholder="Name">
+                                                                <div class="form-row">
+                                                                    <!-- Product Name -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="name">Product Name:</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="name" name="name"
+                                                                            value="{{ $item->name }}"
+                                                                            placeholder="Enter product name">
+                                                                    </div>
+
+                                                                    <!-- Code/SKU -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="code">Code/SKU:</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="code" name="code"
+                                                                            value="{{ $item->code }}"
+                                                                            placeholder="Enter code/SKU">
+                                                                    </div>
                                                                 </div>
 
-                                                                <label for="code">Code/Sku:</label>
-                                                                <input type="text" id="code" name="code"
-                                                                    value="{{ $item->code }}"
-                                                                    placeholder="Enter Code/Sku:"
-                                                                    class="form-control mb-2">
+                                                                <div class="form-row">
+                                                                    <!-- Category -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="category_id">Category:</label>
+                                                                        <select id="category_id" name="category_id"
+                                                                            class="form-control">
+                                                                            @foreach($categories as $category)
+                                                                            <option value="{{ $category->id }}" {{
+                                                                                $category->id == $item->category_id ?
+                                                                                'selected'
+                                                                                : '' }}>{{ $category->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
 
-                                                                <label for="category_id">Category:</label>
-                                                                <select id="category_id" name="category_id"
-                                                                    class="form-control mb-2">
-                                                                    @foreach($categories as $category)
-                                                                    <option value="{{ $category->id }}">
-                                                                        {{ $category->name }}
-                                                                    </option>
-                                                                    @endforeach
-                                                                </select>
-
-
-                                                                <label for="primary_unit">Primary Unit:</label>
-                                                                <select id="primary_unit" name="primary_unit"
-                                                                    class="form-control mb-2">
-                                                                    @foreach($primary_unit as $unit)
-                                                                    <option value="{{ $unit->id }}" {{ $unit->id ==
-                                                                        $item->primary_unit ? 'selected' : '' }}>
-                                                                        {{ $unit->name }}
-                                                                    </option>
-                                                                    @endforeach
-                                                                </select>
-
-                                                                <div class="mb-3">
-                                                                    <label for="hscode"
-                                                                        class="form-label">Hscode</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="hscode" name="hscode"
-                                                                        value="{{ $item->hscode }}"
-                                                                        placeholder="HS Code">
-                                                                </div>
-                                                                <div class="m-3">
-                                                                    <label for="rate">Rate:</label>
-                                                                    <input type="rate" id="rate" name="rate"
-                                                                        placeholder="Enter rate" value="{{$item->rate}}"
-                                                                        class="form-control mb-2">
-                                                                </div>
-                                                                <div class="m-3">
-                                                                    <label for="tax">tax:</label>
-                                                                    <input type="tax" id="tax" name="tax"
-                                                                        placeholder="Enter tax" value="{{$item->tax}}"
-                                                                        class="form-control mb-2">
+                                                                    <!-- Primary Unit -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="primary_unit">Primary Unit:</label>
+                                                                        <select id="primary_unit" name="primary_unit"
+                                                                            class="form-control">
+                                                                            @foreach($primary_unit as $unit)
+                                                                            <option value="{{ $unit->id }}" {{ $unit->id
+                                                                                == $item->primary_unit ? 'selected' : ''
+                                                                                }}>{{ $unit->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
 
-                                                                <div class="m-3">
-                                                                    <label for="quantity">Quantity:</label>
-                                                                    <input type="quantity" id="quantity" name="quantity"
-                                                                        placeholder="Enter Quantity"
-                                                                        value="{{$item->quantity}}"
-                                                                        class="form-control mb-2">
-                                                                </div>
-                                                                <div class="m-3">
-                                                                    <label for="discount">Discount:</label>
-                                                                    <input type="discount" id="discount" name="discount"
-                                                                        placeholder="Enter discount"
-                                                                        value="{{$item->discount}}"
-                                                                        class="form-control mb-2">
-                                                                </div>
+                                                                <div class="form-row">
+                                                                    <!-- Hscode -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="hscode">HS Code:</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="hscode" name="hscode"
+                                                                            value="{{ $item->hscode }}"
+                                                                            placeholder="Enter HS code">
+                                                                    </div>
 
-
-
-
-                                                                <div class="m-3">
-                                                                    <label for="amount">Amount:</label>
-                                                                    <input type="text" id="amount" name="amount"
-                                                                        placeholder="Enter Amount"
-                                                                        value="{{$item->amount}}"
-                                                                        class="form-control mb-2">
+                                                                    <!-- Rate -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="rate">Rate:</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="rate" name="rate"
+                                                                            value="{{ $item->rate }}"
+                                                                            placeholder="Enter rate">
+                                                                    </div>
                                                                 </div>
 
-                                                                <input type="submit" name="save" class="btn btn-success"
-                                                                    value="Save Now" />
+                                                                <div class="form-row">
+                                                                    <!-- Tax -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="tax">Tax:</label>
+                                                                        <input type="text" class="form-control" id="tax"
+                                                                            name="tax" value="{{ $item->tax }}"
+                                                                            placeholder="Enter tax">
+                                                                    </div>
+
+                                                                    <!-- Quantity -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="quantity">Quantity:</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="quantity" name="quantity"
+                                                                            value="{{ $item->quantity }}"
+                                                                            placeholder="Enter quantity">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <!-- Discount -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="discount">Discount:</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="discount" name="discount"
+                                                                            value="{{ $item->discount }}"
+                                                                            placeholder="Enter discount">
+                                                                    </div>
+
+                                                                    <!-- Amount -->
+                                                                    <div class="form-group col-md-6">
+                                                                        <label for="amount">Amount:</label>
+                                                                        <input type="number" class="form-control"
+                                                                            id="amount" name="amount"
+                                                                            value="{{ $item->amount }}"
+                                                                            placeholder="Enter amount">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Save
+                                                                        Changes</button>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <form action="{{ route('product.destroy', $item->id) }}" method="POST"
                                                 style="display:inline-block;">
                                                 @csrf
