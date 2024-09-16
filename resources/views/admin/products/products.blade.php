@@ -80,15 +80,6 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="mb-3">
-                                                <label for="tax">Tax:</label>
-                                                <select class="form-control" name="tax" id="tax">
-                                                    <option value="" selected>Select Option</option>
-                                                    <option value="13">13 %VAT</option>
-                                                    <option value="0">0 %VAT</option>
-                                                </select>
-                                            </div> --}}
-
                                             <div class="mb-3">
                                                 <label for="primary_unit" class="form-label">Primary Unit</label>
                                                 <div class="input-group">
@@ -207,6 +198,106 @@
                                                 data-target="#updateModel{{ $item->id }}">
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </button>
+
+
+                                            <!-- View Button -->
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $item->id }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="viewModelLabel{{ $item->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
+                                                                Product Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Enhanced Product Details Card -->
+                                                            <div class="card">
+                                                                <div class="card-header bg-dark text-white">
+                                                                    <h5 class="card-title mb-0">Product Information</h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Code/SKU:</strong></h6>
+                                                                            <p>{{ $item->code }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Product Name:</strong></h6>
+                                                                            <p>{{ $item->name }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Category:</strong></h6>
+                                                                            <p>{{ $item->category ?
+                                                                                $item->category->name : 'No Category' }}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Primary Unit:</strong></h6>
+                                                                            @foreach ($primary_unit as $unit)
+                                                                            @if ($unit->id == $item->primary_unit)
+                                                                            <p>{{ $unit->name }}</p>
+                                                                            @endif
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>HS Code:</strong></h6>
+                                                                            <p>{{ $item->hscode }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Quantity:</strong></h6>
+                                                                            <p>{{ $item->quantity }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Rate:</strong></h6>
+                                                                            <p>Rs {{ $item->rate }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Tax:</strong></h6>
+                                                                            <p>{{ $item->tax }}% VAT</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Discount:</strong></h6>
+                                                                            <p>{{ $item->discount }}%</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Amount:</strong></h6>
+                                                                            <p>Rs {{ $item->amount }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h6><strong>Notes:</strong></h6>
+                                                                            <p>{{ $item->notes ?? 'No Notes' }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="modal" id="updateModel{{ $item->id }}">
                                                 <div class="modal-dialog">
@@ -426,33 +517,5 @@ document.addEventListener('DOMContentLoaded', function() {
     calculateTotals();
 });
 </script>
-{{-- <script>
-    let variantCount = 1;
 
-    function addVariant() {
-        variantCount++;
-        const container = document.createElement('div');
-        container.className = 'mb-3';
-        container.innerHTML = `
-            <div class="mb-3">
-                <label for="attributes-${variantCount}" class="form-label">Attribute ${variantCount}</label>
-                <input type="text" class="form-control" id="attributes-${variantCount}" name="attributes[]" placeholder="Enter attribute name">
-            </div>
-            <div class="mb-3">
-                <label for="options-${variantCount}" class="form-label">Options for Attribute ${variantCount}</label>
-                <select class="form-select" id="options-${variantCount}" name="options[]">
-                    <option value="">Select an option</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                </select>
-            </div>
-        `;
-        document.getElementById('dynamic-variants').appendChild(container);
-    }
-
-    $(function() {
-        bsCustomFileInput.init();
-    });
-</script> --}}
 @endsection

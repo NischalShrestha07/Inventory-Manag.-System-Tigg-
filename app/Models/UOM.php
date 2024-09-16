@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class UOM extends Model
 {
     use HasFactory;
+
+    public function primatyUnit()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

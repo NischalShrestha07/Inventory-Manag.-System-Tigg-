@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('primaryUnit')->get();
         $categories = ProductCategory::all();
         $primary_unit = UOM::all();
         return view('admin.products.products', compact('products', 'categories', 'primary_unit'));
