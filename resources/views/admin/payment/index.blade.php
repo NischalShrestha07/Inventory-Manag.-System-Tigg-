@@ -98,11 +98,6 @@
                                                     class="form-control mb-2">
 
 
-                                                {{-- <label for="hello">Amount</label>
-                                                <input type="text" name="hello"> --}}
-
-
-
                                                 <div class="m-3">
                                                     <label for="mode"> Payment Mode:</label>
                                                     <select class="form-control" name="mode" id="mode">
@@ -193,7 +188,9 @@
                                                                             </option>
                                                                             @foreach ($supplier as $category)
 
-                                                                            <option value="{{$category->name}}">
+                                                                            <option value="{{$category->name}}"
+                                                                                {{$category->name == $item->name ?
+                                                                                'selected' : ''}}>
                                                                                 {{$category->name}}</option>
                                                                             @endforeach
                                                                         </select>
@@ -242,7 +239,9 @@
                                                                         <option value="" selected>Select Account
                                                                         </option>
                                                                         @foreach ($accounts as $category)
-                                                                        <option value="{{ $category->account }}">
+                                                                        <option value="{{ $category->account }}"
+                                                                            {{$category->account == $item->account ?
+                                                                            'selected' : ''}}>
                                                                             {{ $category->account }}
                                                                         </option>
                                                                         @endforeach

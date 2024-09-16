@@ -145,14 +145,14 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="row mb-3">
+                                                    {{-- <div class="row mb-3">
                                                         <div class="col-md-12">
                                                             <label for="notes"
                                                                 class="form-label"><strong>Notes</strong></label>
                                                             <textarea class="form-control" id="notes"
                                                                 placeholder="This will appear on print"></textarea>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -242,9 +242,12 @@
                                                                             </option>
                                                                             @foreach ($supplier as $category)
 
-                                                                            <option value="{{$category->name}}">
+                                                                            <option value="{{$category->name}}"
+                                                                                {{$category->name==$item->name ?
+                                                                                'selected' : ''}}>
                                                                                 {{$category->name}}</option>
                                                                             @endforeach
+
 
 
                                                                         </select>
@@ -335,20 +338,22 @@
                                                                         <option value="" selected>Select Product
                                                                         </option>
                                                                         @foreach ($products as $category)
-                                                                        <option value="{{ $category->name }}">
+                                                                        <option value="{{ $category->name }}"
+                                                                            {{$category->name == $item->product ?
+                                                                            'selected' : ''}}>
                                                                             {{ $category->name }}
                                                                         </option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
 
-                                                                <div class="m-3">
+                                                                {{-- <div class="m-3">
                                                                     <label for="noteno">Note No:</label>
                                                                     <input type="text" id="noteno" name="noteno"
                                                                         value="{{$item->noteno}}"
                                                                         placeholder="Enter Note No:"
                                                                         class="form-control mb-2">
-                                                                </div>
+                                                                </div> --}}
 
 
                                                                 <input type="submit" name="save" class="btn btn-success"

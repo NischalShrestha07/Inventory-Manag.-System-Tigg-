@@ -250,8 +250,8 @@
                                                                         </option>
                                                                         @foreach ($products as $category)
                                                                         <option value="{{ $category->name }} "
-                                                                            {{$category->name==$item->product ?
-                                                                            'selected' :''}}>
+                                                                            {{$category->name == $item->product ?
+                                                                            'selected' : ''}}>
                                                                             {{ $category->name }}
                                                                         </option>
                                                                         @endforeach

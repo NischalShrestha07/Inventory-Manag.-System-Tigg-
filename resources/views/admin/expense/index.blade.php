@@ -114,14 +114,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row mb-3">
-                                                    <div class="col-md-12">
-                                                        <label for="notes"
-                                                            class="form-label"><strong>Notes</strong></label>
-                                                        <textarea class="form-control" id="notes" name="notes"
-                                                            placeholder="This will appear on print"></textarea>
-                                                    </div>
-                                                </div>
 
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -211,7 +203,9 @@
                                                                             </option>
                                                                             @foreach ($supplier as $category)
 
-                                                                            <option value="{{$category->name}}">
+                                                                            <option value="{{$category->name}}"
+                                                                                {{$category->name == $item->name ?
+                                                                                'selected' : ''}}>
                                                                                 {{$category->name}}</option>
                                                                             @endforeach
                                                                         </select>
@@ -261,7 +255,9 @@
                                                                         <option value="" selected>Select Account
                                                                         </option>
                                                                         @foreach ($accounts as $category)
-                                                                        <option value="{{ $category->account }}">
+                                                                        <option value="{{ $category->account }}"
+                                                                            {{$category->account == $item->account ?
+                                                                            'selected' : ''}}>
                                                                             {{ $category->account }}
                                                                         </option>
                                                                         @endforeach
