@@ -320,8 +320,7 @@
                                                                         id="account">
                                                                         <option value="{{$item->account}}">
                                                                             {{$item->account}}</option>
-                                                                        {{-- <option value="" selected>Select Account
-                                                                        </option> --}}
+
                                                                         @foreach ($accounts as $category)
                                                                         <option value="{{ $category->account }}"
                                                                             {{$category->account==$item->account ?
@@ -353,8 +352,13 @@
                                                                         class="form-control mb-2">
                                                                 </div>
 
-                                                                <input type="submit" name="save" class="btn btn-success"
-                                                                    value="Save Now" />
+                                                                <div class="d-grid">
+                                                                    <button type="submit" name="save"
+                                                                        class="btn btn-success" value="Save Changes"><i
+                                                                            class="fas fa-save"></i>
+                                                                        Save Changes </button>
+
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>

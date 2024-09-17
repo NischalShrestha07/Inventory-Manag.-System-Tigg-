@@ -43,8 +43,8 @@
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add New Invoice</h4>
+                                    <div class="modal-header btn-primary">
+                                        <h4 class="modal-title "><b>Add New Invoice</b></h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -100,7 +100,7 @@
 
 
                                             <div class="row mb-3">
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <label for="quantity">Quantity:</label>
                                                     <input type="number" class="form-control" id="quantity"
                                                         name="quantity" placeholder="Enter Quantity"
@@ -110,7 +110,7 @@
                                             </div>
 
                                             <div class="row mb-3">
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <label for="discount">Discount (%):</label>
                                                     <input type="number" class="form-control" id="discount"
                                                         name="discount" placeholder="Enter Discount"
@@ -125,6 +125,7 @@
                                                             placeholder="Enter Rate" oninput="calculateTotals()">
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label for="vat">VAT:</label>
                                                         <select class="form-select" id="tax" name="tax">
                                                             <option value="No Vat">No VAT</option>
                                                             <option value="5%">5%</option>
@@ -190,11 +191,111 @@
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </button>
 
-                                            <div class="modal" id="updateModel{{ $item->id }}">
-                                                <div class="modal-dialog">
+
+
+                                            <!-- View Button -->
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $item->id }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="viewModelLabel{{ $item->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Update Invoice</h4>
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
+                                                                Customer Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Enhanced Product Details Card -->
+                                                            <div class="card">
+                                                                <div class="card-header bg-dark text-white">
+                                                                    <h5 class="card-title mb-0">Customer Information
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Name:</strong></h6>
+                                                                            <p>{{ $item->name }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Invoice No:</strong></h6>
+                                                                            <p>{{ $item->invoiceNo}}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Invoice Date:</strong></h6>
+                                                                            <p>{{ $item->invoiceDate }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Product Name:</strong></h6>
+                                                                            <p>{{ $item->product }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Quantity:</strong></h6>
+                                                                            <p>{{ $item->quantity}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Rate:</strong></h6>
+                                                                            <p>{{ $item->rate }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Discount:</strong></h6>
+                                                                            <p>{{ $item->discount }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Reference No:</strong></h6>
+                                                                            <p>{{ $item->referenceNo }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Amount:</strong></h6>
+                                                                            <p>{{ $item->amount}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Due Date:</strong></h6>
+                                                                            <p>{{ $item->dueDate}}</p>
+                                                                        </div>
+
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="modal" id="updateModel{{ $item->id }}">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header btn-primary">
+                                                            <h4 class="modal-title"><b>Update Invoice</b></h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
@@ -248,27 +349,19 @@
 
 
 
-                                                                <div class="col-md-6">
-                                                                    <label for="quantity">Quantity:</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="quantity" name="quantity"
-                                                                        placeholder="Enter Quantity"
-                                                                        value="{{$item->quantity}}">
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label for="discount">Discount:</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="discount" name="discount"
-                                                                        placeholder="Enter discount"
-                                                                        value="{{$item->discount}}">
-                                                                </div>
+                                                                <label for="quantity">Quantity:</label>
+                                                                <input type="number" class="form-control" id="quantity"
+                                                                    name="quantity" placeholder="Enter Quantity"
+                                                                    value="{{$item->quantity}}">
+                                                                <label for="discount">Discount:</label>
+                                                                <input type="number" class="form-control" id="discount"
+                                                                    name="discount" placeholder="Enter discount"
+                                                                    value="{{$item->discount}}">
 
-                                                                <div class="col-md-6">
-                                                                    <label for="rate">rate:</label>
-                                                                    <input type="number" class="form-control" id="rate"
-                                                                        name="rate" placeholder="Enter rate"
-                                                                        value="{{$item->rate}}">
-                                                                </div>
+                                                                <label for="rate">rate:</label>
+                                                                <input type="number" class="form-control" id="rate"
+                                                                    name="rate" placeholder="Enter rate"
+                                                                    value="{{$item->rate}}">
 
                                                                 <label for="invoiceNo">Invoice No:</label>
                                                                 <input type="text" id="invoiceNo"
@@ -329,9 +422,12 @@
 
 
 
-
-                                                                <input type="submit" name="save" class="btn btn-success"
-                                                                    value="Save Now" />
+                                                                <div class="d-grid">
+                                                                    <button type="submit" name="save"
+                                                                        class="btn btn-success" value="Save "><i
+                                                                            class="fas fa-save"></i>
+                                                                        Save Changes </button>
+                                                                </div>
                                                         </div>
 
                                                         </form>

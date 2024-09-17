@@ -43,8 +43,8 @@
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add New Credit Note</h4>
+                                    <div class="modal-header btn-primary">
+                                        <h4 class="modal-title"><b>Add New Credit Note</b></h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -78,6 +78,8 @@
                                                 class="form-control mb-2">
 
 
+
+
                                             <div class="container">
                                                 <div class="row mb-3">
                                                     <div class="col-md-12">
@@ -94,12 +96,35 @@
                                                     </div>
                                                 </div>
 
+                                            </div>
+
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-12">
+                                                    <label for="quantity">Quantity:</label>
+                                                    <input type="number" class="form-control" id="quantity"
+                                                        name="quantity" placeholder="Enter Quantity"
+                                                        oninput="calculateTotals()">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="discount">Discount (%):</label>
+                                                    <input type="number" class="form-control" id="discount"
+                                                        name="discount" placeholder="Enter Discount"
+                                                        oninput="calculateTotals()">
+                                                </div>
+
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
-                                                        <input type="text" class="form-control" id="amount"
-                                                            placeholder="Amount" />
+                                                        <label for="rate">Rate:</label>
+                                                        <input type="number" class="form-control" id="rate" name="rate"
+                                                            placeholder="Enter Rate" oninput="calculateTotals()">
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label for="vat" class="form-label">VAT:</label>
                                                         <select class="form-select" id="tax" name="tax">
                                                             <option value="No Vat">No VAT</option>
                                                             <option value="5%">5%</option>
@@ -108,14 +133,13 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row mb-3">
-                                                    <div class="col-md-12">
-                                                        <label for="notes"
-                                                            class="form-label"><strong>Notes</strong></label>
-                                                        <textarea class="form-control" id="notes" name="notes"
-                                                            placeholder="This will appear on print"></textarea>
-                                                    </div>
+
+                                                <div class="m-3">
+                                                    <label for="noteno">NoteNo:</label>
+                                                    <input type="text" id="noteno" name="noteno"
+                                                        placeholder="Enter Notes" class="form-control mb-2">
                                                 </div>
+
 
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -124,7 +148,8 @@
                                                                 <h5>Sub Total: <span id="subTotal">0</span></h5>
                                                                 <h5>Non-Taxable Total: <span
                                                                         id="nonTaxableTotal">0</span></h5>
-                                                                <h5>Taxable Total: <span id="taxableTotal">0</span></h5>
+                                                                <h5>Taxable Total: <span id="taxableTotal">0</span>
+                                                                </h5>
                                                                 <h5>VAT: <span id="vat">0</span></h5>
                                                                 <h4><strong>Grand Total: <span
                                                                             id="grandTotal">0</span></strong></h4>
@@ -136,15 +161,14 @@
                                                 </div>
                                             </div>
 
-                                            <div class="m-3">
-                                                <label for="noteno">NoteNo:</label>
-                                                <input type="text" id="noteno" name="noteno" placeholder="Enter Notes"
-                                                    class="form-control mb-2">
+
+
+                                            <div class="d-grid">
+                                                <button type="submit" name="save" class="btn btn-success"
+                                                    value="Save Changes"><i class="fas fa-save"></i>
+                                                    Save </button>
+
                                             </div>
-
-
-
-                                            <input type="submit" name="save" class="btn btn-success" value="Save Now" />
                                         </form>
                                     </div>
                                 </div>
@@ -179,11 +203,84 @@
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </button>
 
-                                            <div class="modal" id="updateModel{{ $item->id }}">
-                                                <div class="modal-dialog">
+                                            <!-- View Button -->
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $item->id }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="viewModelLabel{{ $item->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Update Credit Note</h4>
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
+                                                                Customer Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Enhanced Product Details Card -->
+                                                            <div class="card">
+                                                                <div class="card-header bg-dark text-white">
+                                                                    <h5 class="card-title mb-0">Credit Notes Information
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Name:</strong></h6>
+                                                                            <p>{{ $item->name }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Reference No:</strong></h6>
+                                                                            <p>{{ $item->referenceNo}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Date:</strong></h6>
+                                                                            <p>{{ $item->date }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Product Name:</strong></h6>
+                                                                            <p>{{ $item->product }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Amount:</strong></h6>
+                                                                            <p>{{ $item->amount }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Note No:</strong></h6>
+                                                                            <p>{{ $item->noteno}}</p>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal" id="updateModel{{ $item->id }}">
+                                                <div class="modal-dialogn modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header btn-primary">
+                                                            <h4 class="modal-title"><b>Update Credit Note</b></h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
@@ -246,7 +343,7 @@
 
                                                                     <select class="form-select" id="product"
                                                                         name="product">
-                                                                        <option value="" selected>Select Product
+                                                                        <option value="">Select Product
                                                                         </option>
                                                                         @foreach ($products as $category)
                                                                         <option value="{{ $category->name }} "
@@ -267,8 +364,12 @@
                                                                 </div>
 
 
-                                                                <input type="submit" name="save" class="btn btn-success"
-                                                                    value="Save Now" />
+                                                                <div class="d-grid">
+                                                                    <button type="submit" name="save"
+                                                                        class="btn btn-success" value="Save Changes"><i
+                                                                            class="fas fa-save"></i>
+                                                                        Save Changes </button>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -304,86 +405,44 @@
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
 <script>
-    let variantCount = 1;
+    function calculateTotals() {
+    // Retrieve values from input fields
+    var quantity = parseFloat(document.getElementById('quantity').value) || 0;
+    var rate = parseFloat(document.getElementById('rate').value) || 0;
+    var discount = parseFloat(document.getElementById('discount').value) || 0;
+    var taxRate = parseFloat(document.getElementById('tax').value) || 0;
 
-    function addVariant() {
-        variantCount++;
-        const container = document.createElement('div');
-        container.className = 'mb-3';
-        container.innerHTML = `
-            <div class="mb-3">
-                <label for="attributes-${variantCount}" class="form-label">Attribute ${variantCount}</label>
-                <input type="text" class="form-control" id="attributes-${variantCount}" name="attributes[]" placeholder="Enter attribute name">
-            </div>
-            <div class="mb-3">
-                <label for="options-${variantCount}" class="form-label">Options for Attribute ${variantCount}</label>
-                <select class="form-select" id="options-${variantCount}" name="options[]">
-                    <option value="">Select an option</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                </select>
-            </div>
-        `;
-        document.getElementById('dynamic-variants').appendChild(container);
-    }
+    // Calculate subtotal
+    var subtotal = quantity * rate;
 
-    $(function() {
-        bsCustomFileInput.init();
+    // Apply discount to subtotal
+    var discountedAmount = subtotal - (subtotal * (discount / 100));
+
+    // Calculate VAT
+    var vatAmount = discountedAmount * (taxRate / 100);
+
+    // Calculate grand total
+    var grandTotal = discountedAmount + vatAmount;
+
+    // Update the HTML with calculated values
+    document.getElementById('subTotal').innerText = subtotal.toFixed(2);
+    document.getElementById('nonTaxableTotal').innerText = discountedAmount.toFixed(2);
+    document.getElementById('taxableTotal').innerText = discountedAmount.toFixed(2);
+    document.getElementById('vat').innerText = vatAmount.toFixed(2);
+    document.getElementById('grandTotal').innerText = grandTotal.toFixed(2);
+    document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
+}
+
+// Attach event listeners to inputs to recalculate totals on change
+document.addEventListener('DOMContentLoaded', function() {
+    var inputs = document.querySelectorAll('#quantity, #rate, #discount, #tax');
+    inputs.forEach(function(input) {
+        input.addEventListener('input', calculateTotals);
     });
 
-
-    document.addEventListener('DOMContentLoaded', function() {
-    const accountSelect = document.getElementById('account');
-    const amountInput = document.getElementById('amount');
-    const taxSelect = document.getElementById('tax');
-
-    const subTotalElem = document.getElementById('subTotal');
-    const nonTaxableTotalElem = document.getElementById('nonTaxableTotal');
-    const taxableTotalElem = document.getElementById('taxableTotal');
-    const vatElem = document.getElementById('vat');
-    const grandTotalElem = document.getElementById('grandTotal');
-    const grandTotalInput = document.getElementById('grandTotalInput');
-
-    // Fetch accounts from the server
-    fetch('/api/accounts') // Adjust the URL to your API endpoint
-    .then(response => response.json())
-    .then(data => {
-    // Populate accounts dynamically
-    data.forEach(account => {
-    const option = document.createElement('option');
-    option.value = account.id;
-    option.textContent = account.name;
-    accountSelect.appendChild(option);
-    });
-    })
-    .catch(error => console.error('Error fetching accounts:', error));
-
-    // Event listener to handle changes in amount and tax
-    amountInput.addEventListener('input', updateTotals);
-    taxSelect.addEventListener('change', updateTotals);
-
-    function updateTotals() {
-    const amount = parseFloat(amountInput.value) || 0;
-    const taxRate = parseFloat(taxSelect.value.replace('%', '')) || 0; // Remove '%' and convert to number
-
-    const subTotal = amount;
-    const taxableTotal = subTotal;
-    const vat = (taxRate / 100) * taxableTotal;
-    const grandTotal = taxableTotal + vat;
-
-    subTotalElem.textContent = subTotal.toFixed(2);
-    nonTaxableTotalElem.textContent = (0).toFixed(2); // Adjust if you have non-taxable totals
-    taxableTotalElem.textContent = taxableTotal.toFixed(2);
-    vatElem.textContent = vat.toFixed(2);
-    grandTotalElem.textContent = grandTotal.toFixed(2);
-    grandTotalInput.value = grandTotal.toFixed(2); // Update hidden input
-    }
-
-    // Optionally trigger updateTotals on page load if needed
-    updateTotals();
-    });
+    // Initialize totals on page load
+    calculateTotals();
+});
 </script>
 @endsection
