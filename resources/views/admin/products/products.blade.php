@@ -44,7 +44,7 @@
                                 <div class="modal-content">
 
                                     <div class="modal-header  btn-primary">
-                                        <h4 class="modal-title">Add New Product</h4>
+                                        <h4 class="modal-title"><b>Add New Product</b></h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -159,9 +159,14 @@
                                             </div>
 
                                             <!-- Submit Button -->
-                                            <div class="d-grid">
+                                            {{-- <div class="d-grid">
                                                 <input type="submit" name="save" class="btn btn-success"
                                                     value="Save Now">
+                                            </div> --}}
+                                            <div class="text-right">
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fas fa-save"></i> Save
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -431,8 +436,10 @@
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Save
+                                                                    <button type="submit" class="btn btn-primary"><i
+                                                                            class="fas fa-save"></i> Save
                                                                         Changes</button>
+
                                                                 </div>
                                                             </form>
                                                         </div>
