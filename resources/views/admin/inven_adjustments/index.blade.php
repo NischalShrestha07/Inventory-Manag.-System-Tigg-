@@ -43,8 +43,8 @@
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add New Inventory Adjustment</h4>
+                                    <div class="modal-header btn-primary">
+                                        <h4 class="modal-title"><b>Add New Inventory Adjustment</b></h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -54,20 +54,24 @@
                                             enctype="multipart/form-data">
                                             @csrf
 
-                                            <label for="date">Date:</label>
-                                            <input type="date" id="date" name="date" placeholder="Enter Date:"
-                                                class="form-control mb-2">
+                                            <div class="col-md-6">
+                                                <label for="date">Date:</label>
+                                                <input type="date" id="date" name="date" placeholder="Enter Date:"
+                                                    class="form-control mb-2">
+                                            </div>
+                                            <div class="col-md-6">
 
+                                                <label for="entryNo">Entry Number:</label>
+                                                <input type="text" id="entryNo" name="entryNo"
+                                                    placeholder="Enter Entry Number:" class="form-control mb-2">
+                                            </div>
 
-                                            <label for="entryNo">Entry Number:</label>
-                                            <input type="text" id="entryNo" name="entryNo"
-                                                placeholder="Enter Entry Number:" class="form-control mb-2">
+                                            <div class="col-md-6">
 
-
-                                            <label for="reference">Reference:</label>
-                                            <input type="text" id="reference" name="reference" placeholder="Reference"
-                                                class="form-control mb-2">
-
+                                                <label for="reference">Reference:</label>
+                                                <input type="text" id="reference" name="reference"
+                                                    placeholder="Reference" class="form-control mb-2">
+                                            </div>
 
                                             <div class="container">
                                                 <div class="row mb-3">
@@ -105,13 +109,13 @@
 
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
-
                                                             <label for="rate">Rate:</label>
                                                             <input type="number" class="form-control" id="rate"
                                                                 name="rate" placeholder="Enter Rate"
                                                                 oninput="calculateTotals()">
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="vat">VAT:</label>
                                                             <select class="form-select" id="tax" name="vat">
                                                                 <option value="No Vat">No VAT</option>
                                                                 <option value="5%">5%</option>
@@ -143,15 +147,20 @@
                                                                     </h5>
                                                                     <h5>VAT: <span id="vat">0</span></h5>
                                                                     <h4><strong>Grand Total: <span
-                                                                                id="grandTotal">0</span></strong></h4>
+                                                                                id="grandTotal">0</span></strong>
+                                                                    </h4>
                                                                     <input type="hidden" id="grandTotalInput"
                                                                         name="grandTotal" value="0">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <input type="submit" name="save" class="btn btn-success"
-                                                        value="Save Now" />
+                                                    <div class="d-grid">
+                                                        <button type="submit" name="save" class="btn btn-success"
+                                                            value="Save Changes"><i class="fas fa-save"></i>
+                                                            Save </button>
+
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -202,11 +211,88 @@
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </button>
 
-                                            <div class="modal" id="updateModel{{ $item->id }}">
-                                                <div class="modal-dialog">
+
+                                            <!-- View Button -->
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $item->id }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="viewModelLabel{{ $item->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Update Inventory Adjustment</h4>
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
+                                                                Inventory Adjustment Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Enhanced Product Details Card -->
+                                                            <div class="card">
+                                                                <div class="card-header bg-dark text-white">
+                                                                    <h5 class="card-title mb-0">Product Information</h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Date:</strong></h6>
+                                                                            <p>{{ $item->date }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Entry No:</strong></h6>
+                                                                            <p>{{ $item->entryNo }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Reference:</strong></h6>
+                                                                            <p>{{ $item->reference }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Quantity:</strong></h6>
+                                                                            <p>{{ $item->quantity }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Rate:</strong></h6>
+                                                                            <p>{{ $item->rate }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Product:</strong></h6>
+                                                                            <p>{{ $item->product }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Amount:</strong></h6>
+                                                                            <p>{{ $item->amount }}</p>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal" id="updateModel{{ $item->id }}">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header btn-primary">
+                                                            <h4 class="modal-title"><b>Update Inventory Adjustment</b>
+                                                            </h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>

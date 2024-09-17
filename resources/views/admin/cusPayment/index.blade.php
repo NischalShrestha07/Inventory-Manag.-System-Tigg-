@@ -35,8 +35,7 @@
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success mr-3"
                                     data-target="#addNewCustomerPayment">Add New</button>
-                                {{-- <a type="button" data-toggle="modal" class="btn btn-primary mr-3"
-                                    data-target="#addNewQuickReceipt">Quick Receipt</a> --}}
+
                             </div>
                         </div>
 
@@ -46,8 +45,8 @@
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add New Customer Payment</h4>
+                                    <div class="modal-header btn-primary">
+                                        <h4 class="modal-title"><b>Add New Customer Payment</b></h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -101,16 +100,16 @@
 
 
 
-                                                <div class="m-3">
-                                                    <label for="mode">Payment Mode:</label>
-                                                    <select class="form-control" name="mode" id="mode">
-                                                        <option value="" selected>Select Payment Mode</option>
-                                                        <option value="Online Transfer">Online Transfer</option>
-                                                        <option value="Cash">Cash </option>
-                                                        <option value="Cheque">Cheque
-                                                        </option>
-                                                    </select>
-                                                </div>
+
+                                                <label for="mode">Payment Mode:</label>
+                                                <select class="form-control" name="mode" id="mode">
+                                                    <option value="" selected>Select Payment Mode</option>
+                                                    <option value="Online Transfer">Online Transfer</option>
+                                                    <option value="Cash">Cash </option>
+                                                    <option value="Cheque">Cheque
+                                                    </option>
+                                                </select>
+
 
                                                 <label for="payreference">Payment Reference:</label>
                                                 <input type="text" id="payreference" name="payreference"
@@ -120,8 +119,12 @@
                                                 <input type="text" id="note" name="note" placeholder="Enter Note:"
                                                     class="form-control mb-2">
 
-                                                <input type="submit" name="save" class="btn btn-success"
-                                                    value="Save Now" />
+                                                <div class="d-grid">
+                                                    <button type="submit" name="save" class="btn btn-success"
+                                                        value="Save "><i class="fas fa-save"></i>
+                                                        Save </button>
+
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -155,8 +158,8 @@
                                         <td>{{ $item->entryno }}</td>
                                         <td>{{ $item->payreference }}</td>
                                         <td>{{ $item->date }}</td>
-                                        <td>{{ $item->amount }}</td>
-                                        <td>Rs {{ $item->account }}</td>
+                                        <td>Rs {{ $item->amount }}</td>
+                                        <td>{{ $item->account }}</td>
 
 
                                         <td class="font-weight-medium">
@@ -165,11 +168,92 @@
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </button>
 
-                                            <div class="modal" id="updateModel{{ $item->id }}">
-                                                <div class="modal-dialog">
+                                            <!-- View Button -->
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $item->id }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="viewModelLabel{{ $item->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Update Customer Payment</h4>
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
+                                                                Customer Payment Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Enhanced Product Details Card -->
+                                                            <div class="card">
+                                                                <div class="card-header bg-dark text-white">
+                                                                    <h5 class="card-title mb-0">Customer Payment
+                                                                        Information</h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Customer Name:</strong></h6>
+                                                                            <p>{{ $item->name }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Account
+                                                                                    :</strong></h6>
+                                                                            <p>{{ $item->account }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Entry No:</strong>
+                                                                            </h6>
+                                                                            <p>{{ $item->entryno }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Date:</strong></h6>
+                                                                            <p>{{ $item->date }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Pay Reference:</strong></h6>
+                                                                            <p>{{ $item->payreference }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Amount:</strong></h6>
+                                                                            <p>{{ $item->amount }}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Payment Mode:</strong></h6>
+                                                                            <p>{{ $item->mode }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Note:</strong></h6>
+                                                                            <p>{{ $item->note }}</p>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal" id="updateModel{{ $item->id }}">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header btn-primary">
+                                                            <h4 class="modal-title"><b>Update Customer Payment</b></h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
@@ -200,7 +284,6 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="m-3">
-
                                                                     <label for="entryno"> Entry No:</label>
                                                                     <input type="text" id="entryno" name="entryno"
                                                                         placeholder="Entry No"
@@ -222,8 +305,6 @@
                                                                         placeholder="Enter Date" value="{{$item->date}}"
                                                                         class="form-control mb-2">
                                                                 </div>
-
-
 
 
                                                                 <div class="m-3">
@@ -251,11 +332,7 @@
                                                                         <!-- Accounts will be dynamically populated here -->
                                                                     </select>
                                                                     </select>
-
-
                                                                 </div>
-
-
 
                                                                 <div class="m-3">
                                                                     <label for="mode"> Payment Mode:</label>
