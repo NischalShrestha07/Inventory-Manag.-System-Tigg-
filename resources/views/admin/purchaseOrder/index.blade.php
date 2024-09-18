@@ -43,8 +43,8 @@
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add New Purchase Order</h4>
+                                    <div class="modal-header btn-primary">
+                                        <h4 class="modal-title"><b>Add New Purchase Order</b></h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -84,9 +84,19 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <label for="orderNo"> Order No:</label>
+                                                <input type="text" id="orderNo" name="orderNo" placeholder="Order No"
+                                                    class="form-control mb-2">
 
+                                                <label for="referenceNo">Reference No:</label>
+                                                <input type="text" id="referenceNo" name="referenceNo"
+                                                    placeholder="Enter Reference No" class="form-control mb-2">
+
+                                                <label for="date">Date:</label>
+                                                <input type="date" id="date" name="date" placeholder="Enter Date"
+                                                    class="form-control mb-2">
                                                 <div class="row mb-3">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <label for="quantity">Quantity:</label>
                                                         <input type="number" class="form-control" id="quantity"
                                                             name="quantity" placeholder="Enter Quantity"
@@ -96,7 +106,7 @@
                                                 </div>
 
                                                 <div class="row mb-3">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <label for="discount">Discount (%):</label>
                                                         <input type="number" class="form-control" id="discount"
                                                             name="discount" placeholder="Enter Discount"
@@ -105,14 +115,13 @@
 
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
-                                                            {{-- <input type="text" class="form-control" id="amount"
-                                                                placeholder="Rate" /> --}}
                                                             <label for="rate">Rate:</label>
                                                             <input type="number" class="form-control" id="rate"
                                                                 name="rate" placeholder="Enter Rate"
                                                                 oninput="calculateTotals()">
                                                         </div>
                                                         <div class="col-md-6">
+                                                            <label for="vat">VAT:</label>
                                                             <select class="form-select" id="tax" name="tax">
                                                                 <option value="No Vat">No VAT</option>
                                                                 <option value="5%">5%</option>
@@ -150,17 +159,6 @@
                                                     </div>
                                                 </div>
 
-                                                <label for="orderNo"> Order No:</label>
-                                                <input type="text" id="orderNo" name="orderNo" placeholder="Order No"
-                                                    class="form-control mb-2">
-
-                                                <label for="referenceNo">Reference No:</label>
-                                                <input type="text" id="referenceNo" name="referenceNo"
-                                                    placeholder="Enter Reference No" class="form-control mb-2">
-
-                                                <label for="date">Date:</label>
-                                                <input type="date" id="date" name="date" placeholder="Enter Date"
-                                                    class="form-control mb-2">
 
 
                                                 <label for="cterms">Condition & Terms:</label>
@@ -178,9 +176,12 @@
                                                         </option>
                                                     </select>
                                                 </div>
+                                                <div class="d-grid">
+                                                    <button type="submit" name="save" class="btn btn-success"
+                                                        value="Save Changes"><i class="fas fa-save"></i>
+                                                        Save </button>
 
-                                                <input type="submit" name="save" class="btn btn-success"
-                                                    value="Save Now" />
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -228,11 +229,107 @@
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </button>
 
-                                            <div class="modal" id="updateModel{{ $item->id }}">
-                                                <div class="modal-dialog">
+                                            <!-- View Button -->
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $item->id }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="viewModelLabel{{ $item->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Update Purchase Order</h4>
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
+                                                                Customer Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Enhanced Product Details Card -->
+                                                            <div class="card">
+                                                                <div class="card-header bg-dark text-white">
+                                                                    <h5 class="card-title mb-0">Credit Notes Information
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Name:</strong></h6>
+                                                                            <p>{{ $item->name }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Reference No:</strong></h6>
+                                                                            <p>{{ $item->referenceNo}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Date:</strong></h6>
+                                                                            <p>{{ $item->date }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Order No:</strong></h6>
+                                                                            <p>{{ $item->orderNo }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Account:</strong></h6>
+                                                                            <p>{{ $item->account}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Amount:</strong></h6>
+                                                                            <p>{{ $item->amount }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Quantity:</strong></h6>
+                                                                            <p>{{ $item->quantity}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Rate:</strong></h6>
+                                                                            <p>{{ $item->rate }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Discount:</strong></h6>
+                                                                            <p>{{ $item->discount}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Stage:</strong></h6>
+                                                                            <p>{{ $item->stage }}</p>
+                                                                        </div>
+
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal" id="updateModel{{ $item->id }}">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header btn-primary">
+                                                            <h4 class="modal-title"><b>Update Purchase Order</b></h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
@@ -361,9 +458,13 @@
                                                                 </div>
 
 
+                                                                <div class="d-grid">
+                                                                    <button type="submit" name="save"
+                                                                        class="btn btn-success" value="Save Changes"><i
+                                                                            class="fas fa-save"></i>
+                                                                        Save Changes</button>
 
-                                                                <input type="submit" name="save" class="btn btn-success"
-                                                                    value="Save Now" />
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>

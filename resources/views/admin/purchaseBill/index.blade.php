@@ -43,8 +43,8 @@
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add New Purchase Bill</h4>
+                                    <div class="modal-header btn-primary">
+                                        <h4 class="modal-title"><b>Add New Purchase Bill</b></h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -128,8 +128,6 @@
 
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
-                                                            {{-- <input type="text" class="form-control" id="amount"
-                                                                placeholder="Rate" /> --}}
                                                             <label for="rate">Rate:</label>
                                                             <input type="number" class="form-control" id="rate"
                                                                 name="rate" placeholder="Enter Rate"
@@ -144,15 +142,6 @@
                                                             </select>
                                                         </div>
                                                     </div>
-
-                                                    {{-- <div class="row mb-3">
-                                                        <div class="col-md-12">
-                                                            <label for="notes"
-                                                                class="form-label"><strong>Notes</strong></label>
-                                                            <textarea class="form-control" id="notes"
-                                                                placeholder="This will appear on print"></textarea>
-                                                        </div>
-                                                    </div> --}}
 
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -177,7 +166,12 @@
 
 
 
-                                            <input type="submit" name="save" class="btn btn-success" value="Save Now" />
+                                            <div class="d-grid">
+                                                <button type="submit" name="save" class="btn btn-success"
+                                                    value="Save Changes"><i class="fas fa-save"></i>
+                                                    Save </button>
+
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -216,11 +210,112 @@
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </button>
 
-                                            <div class="modal" id="updateModel{{ $item->id }}">
-                                                <div class="modal-dialog">
+                                            <!-- View Button -->
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $item->id }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="viewModelLabel{{ $item->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Update Purchase Bill</h4>
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
+                                                                Purchase Bill Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Enhanced Product Details Card -->
+                                                            <div class="card">
+                                                                <div class="card-header bg-dark text-white">
+                                                                    <h5 class="card-title mb-0">Purchase Bill
+                                                                        Information
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Name:</strong></h6>
+                                                                            <p>{{ $item->name }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Reference No:</strong></h6>
+                                                                            <p>{{ $item->referenceNo}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Bill Date:</strong></h6>
+                                                                            <p>{{ $item->billDate }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Bill No:</strong></h6>
+                                                                            <p>{{ $item->billNo}}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Due Date:</strong></h6>
+                                                                            <p>{{ $item->dueDate}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Invoice Reference No:</strong>
+                                                                            </h6>
+                                                                            <p>{{ $item->invoReferenceNo }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Product Name:</strong></h6>
+                                                                            <p>{{ $item->product}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Discount:</strong></h6>
+                                                                            <p>{{ $item->discount}}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Quantity:</strong></h6>
+                                                                            <p>{{ $item->quantity}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Rate:</strong></h6>
+                                                                            <p>{{ $item->rate }}</p>
+                                                                        </div>
+
+                                                                    </div>
+
+
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="modal" id="updateModel{{ $item->id }}">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header btn-primary">
+                                                            <h4 class="modal-title"><b>Update Purchase Bill</b></h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
@@ -247,8 +342,6 @@
                                                                                 'selected' : ''}}>
                                                                                 {{$category->name}}</option>
                                                                             @endforeach
-
-
 
                                                                         </select>
                                                                     </div>
@@ -284,8 +377,6 @@
                                                                         value="{{$item->discount}}"
                                                                         class="form-control mb-2">
                                                                 </div>
-
-
 
                                                                 <div class="m-3">
                                                                     <label for="billDate">Bill Date:</label>
@@ -347,17 +438,14 @@
                                                                     </select>
                                                                 </div>
 
-                                                                {{-- <div class="m-3">
-                                                                    <label for="noteno">Note No:</label>
-                                                                    <input type="text" id="noteno" name="noteno"
-                                                                        value="{{$item->noteno}}"
-                                                                        placeholder="Enter Note No:"
-                                                                        class="form-control mb-2">
-                                                                </div> --}}
 
+                                                                <div class="d-grid">
+                                                                    <button type="submit" name="save"
+                                                                        class="btn btn-success" value="Save Changes"><i
+                                                                            class="fas fa-save"></i>
+                                                                        Save Changes </button>
 
-                                                                <input type="submit" name="save" class="btn btn-success"
-                                                                    value="Save Now" />
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
