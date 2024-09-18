@@ -158,11 +158,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Submit Button -->
-                                            {{-- <div class="d-grid">
-                                                <input type="submit" name="save" class="btn btn-success"
-                                                    value="Save Now">
-                                            </div> --}}
+
                                             <div class="text-right">
                                                 <button type="submit" class="btn btn-success">
                                                     <i class="fas fa-save"></i> Save
@@ -174,6 +170,10 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+
 
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -227,7 +227,8 @@
                                                             <!-- Enhanced Product Details Card -->
                                                             <div class="card">
                                                                 <div class="card-header bg-dark text-white">
-                                                                    <h5 class="card-title mb-0">Product Information</h5>
+                                                                    <h5 class="card-title mb-0">Product Information
+                                                                    </h5>
                                                                 </div>
                                                                 <div class="card-body">
                                                                     <div class="row">
@@ -244,7 +245,8 @@
                                                                         <div class="col-md-6">
                                                                             <h6><strong>Category:</strong></h6>
                                                                             <p>{{ $item->category ?
-                                                                                $item->category->name : 'No Category' }}
+                                                                                $item->category->name : 'No
+                                                                                Category' }}
                                                                             </p>
                                                                         </div>
                                                                         <div class="col-md-6">
@@ -310,7 +312,8 @@
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-primary text-white">
-                                                            <h5 class="modal-title" id="updateModelLabel">Update Product
+                                                            <h5 class="modal-title" id="updateModelLabel"><b>Update
+                                                                    Product</b>
                                                             </h5>
                                                             <button type="button" class="close text-white"
                                                                 data-dismiss="modal" aria-label="Close">
@@ -353,21 +356,25 @@
                                                                             class="form-control">
                                                                             @foreach($categories as $category)
                                                                             <option value="{{ $category->id }}" {{
-                                                                                $category->id == $item->category_id ?
+                                                                                $category->id == $item->category_id
+                                                                                ?
                                                                                 'selected'
-                                                                                : '' }}>{{ $category->name }}</option>
+                                                                                : '' }}>{{ $category->name }}
+                                                                            </option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
 
                                                                     <!-- Primary Unit -->
                                                                     <div class="form-group col-md-6">
-                                                                        <label for="primary_unit">Primary Unit:</label>
+                                                                        <label for="primary_unit">Primary
+                                                                            Unit:</label>
                                                                         <select id="primary_unit" name="primary_unit"
                                                                             class="form-control">
                                                                             @foreach($primary_unit as $unit)
                                                                             <option value="{{ $unit->id }}" {{ $unit->id
-                                                                                == $item->primary_unit ? 'selected' : ''
+                                                                                == $item->primary_unit ? 'selected'
+                                                                                : ''
                                                                                 }}>{{ $unit->name }}</option>
                                                                             @endforeach
                                                                         </select>
@@ -461,7 +468,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
             </div>
@@ -469,32 +475,6 @@
     </section>
 </div>
 
-<!-- Add Category Modal -->
-<div class="modal" id="addCategoryModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Add New Category</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form action="{{ url('AddCategory') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="category" name="category"
-                            placeholder="Enter Category Name">
-                    </div>
-                    <input type="submit" name="save" class="btn btn-success" value="Add Category" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('customJs')

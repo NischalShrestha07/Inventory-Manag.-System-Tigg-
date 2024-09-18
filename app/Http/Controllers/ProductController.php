@@ -15,7 +15,11 @@ class ProductController extends Controller
         $categories = ProductCategory::all();
         $primary_unit = UOM::all();
         return view('admin.products.products', compact('products', 'categories', 'primary_unit'));
+        // dd($categories);
     }
+
+
+
     public function AddNewProduct(Request $request)
     {
         $request->validate([
