@@ -116,7 +116,7 @@
                                                     </div>
                                                 </div>
 
-
+                                                {{-- I DONT KNOW 4O --}}
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="card">
@@ -196,7 +196,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-primary text-white">
                                                             <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
-                                                                Customer Details</h5>
+                                                                Expense Details</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
@@ -206,7 +206,7 @@
                                                             <!-- Enhanced Product Details Card -->
                                                             <div class="card">
                                                                 <div class="card-header bg-dark text-white">
-                                                                    <h5 class="card-title mb-0">Credit Notes Information
+                                                                    <h5 class="card-title mb-0">Expenses Information
                                                                     </h5>
                                                                 </div>
                                                                 <div class="card-body">
