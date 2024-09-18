@@ -43,8 +43,8 @@
                                 <div class="modal-content">
 
                                     <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Add New Expense</h4>
+                                    <div class="modal-header btn-primary">
+                                        <h4 class="modal-title"><b>Add New Expense</b></h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -102,10 +102,12 @@
 
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
+                                                        <label for="amount" class="form-label">Amount</label>
                                                         <input type="text" class="form-control" id="amount"
                                                             placeholder="Amount" />
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label for="vat" class="form-label">VAT:</label>
                                                         <select class="form-select" id="tax" name="tax">
                                                             <option value="No Vat">No VAT</option>
                                                             <option value="5%">5%</option>
@@ -140,9 +142,11 @@
                                                     class="form-control mb-2">
                                             </div>
 
-
-
-                                            <input type="submit" name="save" class="btn btn-success" value="Save Now" />
+                                            <div class="d-grid">
+                                                <button type="submit" name="save" class="btn btn-success"
+                                                    value="Save "><i class="fas fa-save"></i>
+                                                    Save </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -177,11 +181,93 @@
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </button>
 
-                                            <div class="modal" id="updateModel{{ $item->id }}">
-                                                <div class="modal-dialog">
+
+                                            <!-- View Button -->
+                                            <button type="button" class="btn" title="View" data-toggle="modal"
+                                                data-target="#viewModel{{ $item->id }}">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+
+                                            <!-- View Modal -->
+                                            <div class="modal fade" id="viewModel{{ $item->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="viewModelLabel{{ $item->id }}"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Update Expense</h4>
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h5 class="modal-title" id="viewModelLabel{{ $item->id }}">
+                                                                Customer Details</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Enhanced Product Details Card -->
+                                                            <div class="card">
+                                                                <div class="card-header bg-dark text-white">
+                                                                    <h5 class="card-title mb-0">Credit Notes Information
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Name:</strong></h6>
+                                                                            <p>{{ $item->name }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Invoice No:</strong></h6>
+                                                                            <p>{{ $item->invoiceNo}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Date:</strong></h6>
+                                                                            <p>{{ $item->date }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Due Date:</strong></h6>
+                                                                            <p>{{ $item->dueDate }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Account:</strong></h6>
+                                                                            <p>{{ $item->account}}</p>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Amount:</strong></h6>
+                                                                            <p>{{ $item->amount }}</p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Note:</strong></h6>
+                                                                            <p>{{ $item->note}}</p>
+                                                                        </div>
+
+
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal" id="updateModel{{ $item->id }}">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header btn-primary">
+                                                            <h4 class="modal-title"><b>Update Expense</b></h4>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal">&times;</button>
                                                         </div>
@@ -275,8 +361,12 @@
                                                                 </div>
 
 
-                                                                <input type="submit" name="save" class="btn btn-success"
-                                                                    value="Save Now" />
+                                                                <div class="d-grid">
+                                                                    <button type="submit" name="save"
+                                                                        class="btn btn-success" value="Save Changes"><i
+                                                                            class="fas fa-save"></i>
+                                                                        Save Changes </button>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
