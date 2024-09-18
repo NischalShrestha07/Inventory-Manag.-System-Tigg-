@@ -40,9 +40,9 @@ Route::get('/form', [AdminController::class, 'form'])->name('admin.form');
 
 Route::get('/product/create', [ProductController::class, 'index'])->name('product.create');
 Route::post('/AddNewProduct', [ProductController::class, 'AddNewProduct']);
-// Route::post('/AddCategory', [ProductController::class, 'AddCategory']);
 Route::put('/UpdateProduct', [ProductController::class, 'UpdateProduct']);
 Route::delete('/DeleteProduct/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 
 
 Route::get('/uom/create', [UOMController::class, 'index'])->name('uom.create');
@@ -55,6 +55,8 @@ Route::get('/varProduct/create', [VariantProductController::class, 'index'])->na
 Route::post('/AddNewVarProduct', [VariantProductController::class, 'AddNewVarProduct']);
 Route::put('/UpdateVarProduct', [VariantProductController::class, 'UpdateVarProduct']);
 Route::delete('/varProduct/{id}', [VariantProductController::class, 'destroy'])->name('varProduct.destroy');
+Route::get('/varProducts', [VariantProductController::class, 'index'])->name('varProduct.index');
+
 
 //Ajax Use to access the dependent options
 Route::get('/fetch-options/{attribute}', [VariantProductController::class, 'fetchOptions']);

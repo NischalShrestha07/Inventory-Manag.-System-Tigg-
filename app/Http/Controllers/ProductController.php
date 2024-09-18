@@ -9,13 +9,26 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('primaryUnit')->get();
+        $query = Product::query();
+
+        // Add filtering based on request parameters
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->input('category_id'));
+        }
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+        $products = $query->with('primaryUnit')->get();
+
+        // $products = Product::with('primaryUnit')->get();
         $categories = ProductCategory::all();
         $primary_unit = UOM::all();
+        // dd($query->toSql(), $query->getBindings());
+
         return view('admin.products.products', compact('products', 'categories', 'primary_unit'));
-        // dd($categories);
     }
 
 

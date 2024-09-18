@@ -39,6 +39,36 @@
                             </div>
                         </div>
 
+                        <div class="p-4">
+                            <form method="GET" action="{{ route('product.index') }}" class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="category_id" class="form-label">Category</label>
+                                        <select class="form-select" id="category_id" name="category_id">
+                                            <option value="">Select Option</option>
+                                            @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}" {{ request('category_id')==$category->id
+                                                ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="name" class="form-label">Product Name</label>
+                                        <input type="text" id="name" name="name" class="form-control"
+                                            placeholder="Enter Product Name" value="{{ request('name') }}">
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-dark">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
                         <div class="modal" id="addNewProduct">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">

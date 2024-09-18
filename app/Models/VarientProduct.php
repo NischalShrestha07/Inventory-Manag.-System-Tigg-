@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class VarientProduct extends Model
 {
     use HasFactory;
+    public function primaryUnit()
+    {
+        return $this->belongsTo(UOM::class);
+    }
 }

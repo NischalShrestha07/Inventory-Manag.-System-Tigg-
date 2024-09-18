@@ -12,16 +12,27 @@ use Illuminate\Http\Request;
 
 class VariantProductController extends Controller
 {
-    //
-    public function index()
+    public function index(Request $request)
     {
+        $query = VarientProduct::query();
+
+        if ($request->filled('category')) {
+            $query->where('category', $request->input('category'));
+        }
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+
+        $varProducts = $query->with('primaryUnit')->get();
         $attributes = VarientAttribute::all();
-        $products = Product::all();
-        $varProducts = VarientProduct::all();
         $categories = ProductCategory::all();
         $primary_unit = UOM::all();
-        return view('admin.variant_products.index', compact('varProducts', 'products', 'categories', 'primary_unit', 'attributes'));
+
+        return view('admin.variant_products.index', compact('varProducts', 'categories', 'primary_unit', 'attributes'));
     }
+
+
 
     public function AddNewVarProduct(Request $request)
     {
