@@ -9,9 +9,22 @@ use Illuminate\Http\Request;
 
 class SuppilerPaymentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $payment = SuppilerPayment::with('supplier')->get();
+        $query = SuppilerPayment::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', $request->input('name'));
+            // fetching by the name column not by the id as in DB the name is of string type which means id can't be stored in string as it is integer.
+        }
+
+        if ($request->filled('account')) {
+            $query->where('account', $request->input('account'));
+        }
+
+
+        // $payment = SuppilerPayment::with('supplier')->get();
+        $payment = $query->get();
         $accounts = Accounts::with('account')->get();
         $supplier = Supplier::all();
         return view('admin.payment.index', compact('payment', 'supplier', 'accounts'));

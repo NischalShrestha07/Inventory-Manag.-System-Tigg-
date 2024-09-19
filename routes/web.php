@@ -127,6 +127,8 @@ Route::get('/supplier/create', [SupplierController::class, 'index'])->name('supp
 Route::post('/AddNewSupplier', [SupplierController::class, 'AddNewSupplier'])->name('supplier.add');
 Route::put('/UpdateSupplier', [SupplierController::class, 'UpdateSupplier']);
 Route::delete('/supplier/{id}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
+Route::get('/supplierFilter', [SupplierController::class, 'index'])->name('supplier.index');
+
 
 Route::get('/purchaseOrder/create', [PurchaseOrderController::class, 'index'])->name('purchaseOrder.create');
 Route::post('/AddNewPurchaseOrder', [PurchaseOrderController::class, 'AddNewPurchaseOrder'])->name('purchaseOrder.add');
@@ -154,6 +156,8 @@ Route::get('/purchaseBill/create', [PurchaseBillController::class, 'index'])->na
 Route::post('/AddNewPurchaseBill', [PurchaseBillController::class, 'AddNewPurchaseBill'])->name('purchaseBill.add');
 Route::put('/UpdatePurchaseBill', [PurchaseBillController::class, 'UpdatePurchaseBill']);
 Route::delete('/purchaseBill/{id}', [PurchaseBillController::class, 'destroy'])->name('purchaseBill.destroy');
+Route::get('/filterPurchaseBill', [PurchaseBillController::class, 'index'])->name('purchaseBill.index');
+
 
 Route::get('/creditnote/create', [CreditNotesController::class, 'index'])->name('creditnote.create');
 Route::post('/AddNewCreditNote', [CreditNotesController::class, 'AddNewCreditNote'])->name('creditnote.add');
@@ -164,6 +168,8 @@ Route::get('/payment/create', [SuppilerPaymentController::class, 'index'])->name
 Route::post('/AddNewSupplierPayment', [SuppilerPaymentController::class, 'AddNewSupplierPayment'])->name('payment.add');
 Route::put('/UpdateSupplierPayment', [SuppilerPaymentController::class, 'UpdateSupplierPayment']);
 Route::delete('/payment/{id}', [SuppilerPaymentController::class, 'destroy'])->name('payment.destroy');
+Route::get('/supplierPayment', [SuppilerPaymentController::class, 'index'])->name('payment.index');
+
 
 Route::get('/customergo/create', [CustomerPaymentController::class, 'index'])->name('cusPayment.create');
 Route::post('/AddNewCustomerPayment', [CustomerPaymentController::class, 'AddNewCustomerPayment'])->name('cusPayment.add');

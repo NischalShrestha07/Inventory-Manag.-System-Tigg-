@@ -32,10 +32,51 @@
                                 </div>
                                 @endif
                             </div>
+
+
+
+
                             <div class="navbar d-flex justify-content-end">
                                 <button type="button" data-toggle="modal" class="btn btn-success mr-3"
                                     data-target="#addNewSupplierPayment">Add New</button>
                             </div>
+                        </div>
+
+
+                        <div class="p-4">
+                            <form method="GET" action="{{ route('payment.index') }}" class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="name" class="form-label">Supplier Name</label>
+                                        <select class="form-select" id="name" name="name">
+                                            <option value="">Select Option</option>
+                                            @foreach ($supplier as $category)
+                                            <option value="{{ $category->name }}" {{ request('name')==$category->id
+                                                ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="account" class="form-label">Account</label>
+                                        <select class="form-select" id="account" name="account">
+                                            <option value="">Select Option</option>
+                                            @foreach ($accounts as $category)
+                                            <option value="{{ $category->account }}" {{ request('account')==$category->
+                                                id ?
+                                                'selected' : '' }}>
+                                                {{ $category->account }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-dark">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
 
                         <div class="modal" id="addNewSupplierPayment">

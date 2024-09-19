@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $suppliers = Supplier::all();
+        $query = Supplier::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', $request->input('name'));
+        }
+
+        if ($request->filled('group')) {
+            $query->where('group', $request->input('group'));
+        }
+
+        // $suppliers = Supplier::all();
+        $suppliers = $query->get();
         return view('admin.supplier.index', compact('suppliers'));
     }
 

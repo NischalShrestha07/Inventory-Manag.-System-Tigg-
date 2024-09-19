@@ -9,9 +9,20 @@ use Illuminate\Http\Request;
 
 class PurchaseBillController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $purchaseBill = PurchaseBill::with('supplier')->get();
+
+        $query = PurchaseBill::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', $request->input('name'));
+        }
+
+        if ($request->filled('product')) {
+            $query->where('product', $request->input('product'));
+        }
+        $purchaseBill = $query->get();
+        // $purchaseBill = PurchaseBill::with('supplier')->get();
         $products = Product::all();
         $supplier = Supplier::all();
         return view('admin.purchaseBill.index', compact('purchaseBill', 'supplier', 'products'));

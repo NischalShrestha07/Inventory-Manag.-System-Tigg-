@@ -44,7 +44,7 @@
                                         <label for="name" class="form-label">Supplier Name</label>
                                         <select class="form-select" id="name" name="name">
                                             <option value="">Select Option</option>
-                                            @foreach ($supplier as $category)
+                                            @foreach ($suppliers as $category)
                                             <option value="{{ $category->name }}" {{ request('name')==$category->id ?
                                                 'selected' : '' }}>
                                                 {{ $category->name }}
@@ -52,7 +52,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    {{-- <div class="col-md-3">
                                         <label for="account" class="form-label">Account</label>
                                         <select class="form-select" id="account" name="account">
                                             <option value="">Select Option</option>
@@ -64,7 +64,7 @@
                                             </option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6 d-flex align-items-end">
                                         <button type="submit" class="btn btn-dark">Filter</button>
                                     </div>
