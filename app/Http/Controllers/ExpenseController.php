@@ -23,9 +23,13 @@ class ExpenseController extends Controller
 
 
 
-        $expense = $query->with('supplier')->get();
-        $accounts = Accounts::with('account')->get();
+        // $expense = $query->with('supplier')->get();
+        $expense = $query->get();
+        // $accounts = Accounts::with('account')->get();
+        $accounts = Accounts::all();
         $supplier = Supplier::all();
+        // dd($query->toSql(), $query->getBindings());
+
         return view('admin.expense.index', compact('expense', 'supplier', 'accounts'));
     }
 
