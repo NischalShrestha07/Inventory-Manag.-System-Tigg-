@@ -148,6 +148,7 @@ Route::get('/debitnote/create', [DebitNotesController::class, 'index'])->name('d
 Route::post('/AddNewDebitNote', [DebitNotesController::class, 'AddNewDebitNote'])->name('debitnote.add');
 Route::put('/UpdateDebitNote', [DebitNotesController::class, 'UpdateDebitNote']);
 Route::delete('/debitnote/{id}', [DebitNotesController::class, 'destroy'])->name('debitnote.destroy');
+Route::get('/filterDebitNote', [DebitNotesController::class, 'index'])->name('debitnotes.index');
 
 Route::get('/purchaseBill/create', [PurchaseBillController::class, 'index'])->name('purchaseBill.create');
 Route::post('/AddNewPurchaseBill', [PurchaseBillController::class, 'AddNewPurchaseBill'])->name('purchaseBill.add');

@@ -9,9 +9,20 @@ use Illuminate\Http\Request;
 
 class DebitNotesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $debitnote = DebitNotes::with('supplier')->get();
+        $query = DebitNotes::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', $request->input('name'));
+        }
+
+        if ($request->filled('product')) {
+            $query->where('product', $request->input('product'));
+        }
+
+        $debitnote = $query->get();
+        // $debitnote = DebitNotes::with('supplier')->get();
         $products = Product::all();
         $supplier = Supplier::all();
         return view('admin.debitnote.index', compact('debitnote', 'supplier', 'products'));

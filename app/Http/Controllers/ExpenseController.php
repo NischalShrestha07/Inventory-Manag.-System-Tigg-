@@ -15,6 +15,7 @@ class ExpenseController extends Controller
 
         if ($request->filled('name')) {
             $query->where('name', $request->input('name'));
+            // fetching by the name column not by the id as in DB the name is of string type which means id can't be stored in string as it is integer.
         }
 
         if ($request->filled('account')) {
