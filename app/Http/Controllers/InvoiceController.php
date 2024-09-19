@@ -18,6 +18,7 @@ class InvoiceController extends Controller
     }
 
 
+
     public function AddNewInvoice(Request $request)
     {
         $request->validate([

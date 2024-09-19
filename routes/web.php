@@ -120,6 +120,7 @@ Route::get('/invoice/create', [InvoiceController::class, 'index'])->name('invoic
 Route::post('/AddNewInvoice', [InvoiceController::class, 'AddNewInvoice'])->name('invoice.add');
 Route::put('/UpdateInvoice', [InvoiceController::class, 'UpdateInvoice']);
 Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');
+Route::get('/invoiceFilters', [InvoiceController::class, 'index'])->name('invoice.index');
 
 
 Route::get('/supplier/create', [SupplierController::class, 'index'])->name('supplier.create');
@@ -141,6 +142,7 @@ Route::get('/expense/create', [ExpenseController::class, 'index'])->name('expens
 Route::post('/AddNewExpense', [ExpenseController::class, 'AddNewExpense'])->name('expense.add');
 Route::put('/UpdateExpense', [ExpenseController::class, 'UpdateExpense']);
 Route::delete('/expense/{id}', [ExpenseController::class, 'destroy'])->name('expense.destroy');
+Route::get('/filterExpense', [ExpenseController::class, 'index'])->name('expense.index');
 
 Route::get('/debitnote/create', [DebitNotesController::class, 'index'])->name('debitnote.create');
 Route::post('/AddNewDebitNote', [DebitNotesController::class, 'AddNewDebitNote'])->name('debitnote.add');

@@ -38,6 +38,50 @@
                             </div>
                         </div>
 
+
+                        <div class="p-4">
+                            <form method="GET" action="{{ route('expense.index') }}" class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="name" class="form-label">Supplier Name</label>
+                                        <select class="form-select" id="name" name="name">
+                                            <option value="">Select Option</option>
+                                            @foreach ($supplier as $category)
+                                            <option value="{{ $category->id }}" {{ request('name')==$category->id
+                                                ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="account" class="form-label">Account</label>
+                                        <select class="form-select" id="account" name="account">
+                                            <option value="">Select Option</option>
+                                            @foreach ($accounts as $category)
+                                            <option value="{{ $category->id }}" {{ request('account')==$category->id
+                                                ?
+                                                'selected' : '' }}>
+                                                {{ $category->account }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{-- <div class="col-md-3">
+                                        <label for="name" class="form-label">Product Name</label>
+                                        <input type="text" id="name" name="name" class="form-control"
+                                            placeholder="Enter Product Name" value="{{ request('name') }}">
+                                    </div> --}}
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-dark">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
                         <div class="modal" id="addNewExpense">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -56,11 +100,12 @@
 
                                             <label for="name">Supplier Name:</label>
                                             <div class="input-group">
-                                                <select class="form-select form-control selectpicker" id="name"
-                                                    name="name">
+                                                <select class="form-select form-control " id="name" name="name">
                                                     <option value="" selected>Select Supplier </option>
                                                     @foreach ($supplier as $category)
+                                                    {{-- <option value="{{ $category->name }}"> --}}
                                                     <option value="{{ $category->name }}">
+                                                        {{-- replace name by id above --}}
                                                         {{ $category->name }}
                                                     </option>
                                                     @endforeach
@@ -92,6 +137,7 @@
                                                             <option value="" selected>Select Account</option>
                                                             @foreach ($accounts as $category)
                                                             <option value="{{ $category->account }}">
+                                                                {{-- same here --}}
                                                                 {{ $category->account }}
                                                             </option>
                                                             @endforeach
@@ -302,12 +348,6 @@
                                                                     <label for="invoiceNo">Invoice No:</label>
                                                                     <input type="text" id="invoiceNo"
                                                                         value="{{$item->invoiceNo}}" name="invoiceNo"
-                                                                        class="form-control mb-2">
-                                                                </div>
-                                                                <div class="m-3">
-                                                                    <label for="account">Account:</label>
-                                                                    <input type="text" id="account"
-                                                                        value="{{$item->account}}" name="account"
                                                                         class="form-control mb-2">
                                                                 </div>
 

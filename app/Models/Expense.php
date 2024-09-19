@@ -11,10 +11,10 @@ class Expense extends Model
 
     public function account()
     {
-        return $this->belongsTo(Accounts::class);
+        return $this->belongsTo(Accounts::class, 'account_id');
     }
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 }
