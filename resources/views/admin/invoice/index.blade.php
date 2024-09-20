@@ -37,7 +37,41 @@
                                     data-target="#addNewInvoice">Add New</button>
                             </div>
                         </div>
-
+                        <div class="p-4">
+                            <form method="GET" action="{{ route('invoice.index') }}" class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="name" class="form-label">Customer Name:</label>
+                                        <select class="form-select" id="name" name="name">
+                                            <option value="">Select Option</option>
+                                            @foreach ($products as $category)
+                                            <option value="{{ $category->name }}" {{ request('name')==$category->id
+                                                ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="product" class="form-label">Product Name:</label>
+                                        <select class="form-select" id="product" name="product">
+                                            <option value="">Select Option</option>
+                                            @foreach ($product as $category)
+                                            <option value="{{ $category->name }}" {{ request('name')==$category->
+                                                id ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-dark">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
 
 
 

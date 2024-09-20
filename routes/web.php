@@ -116,6 +116,8 @@ Route::get('/salesOrder/create', [SalesOrderController::class, 'index'])->name('
 Route::post('/AddNewSalesOrder', [SalesOrderController::class, 'AddNewSalesOrder'])->name('salesOrder.add');
 Route::put('/UpdateSalesOrder', [SalesOrderController::class, 'UpdateSalesOrder']);
 Route::delete('/salesOrder/{id}', [SalesOrderController::class, 'destroy'])->name('salesOrder.destroy');
+Route::get('/salesOrderFilter', [SalesOrderController::class, 'index'])->name('salesOrder.index');
+
 
 
 Route::get('/invoice/create', [InvoiceController::class, 'index'])->name('invoice.create');
@@ -167,6 +169,8 @@ Route::get('/creditnote/create', [CreditNotesController::class, 'index'])->name(
 Route::post('/AddNewCreditNote', [CreditNotesController::class, 'AddNewCreditNote'])->name('creditnote.add');
 Route::put('/UpdateCreditNote', [CreditNotesController::class, 'UpdateCreditNote']);
 Route::delete('/creditnote/{id}', [CreditNotesController::class, 'destroy'])->name('creditnote.destroy');
+Route::get('/creditnoteFilter', [CreditNotesController::class, 'index'])->name('creditnote.index');
+
 
 Route::get('/payment/create', [SuppilerPaymentController::class, 'index'])->name('payment.create');
 Route::post('/AddNewSupplierPayment', [SuppilerPaymentController::class, 'AddNewSupplierPayment'])->name('payment.add');

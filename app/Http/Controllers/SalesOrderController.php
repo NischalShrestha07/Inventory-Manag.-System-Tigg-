@@ -9,11 +9,18 @@ use Illuminate\Http\Request;
 
 class SalesOrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $query = SalesOrder::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', $request->input('name'));
+            // fetching by the name column not by the id as in DB the name is of string type which means id can't be stored in string as it is integer.
+        }
+
         // $products = Customer::all();
         $hello = Customer::all();
-        $salesOrder = SalesOrder::all();
+        $salesOrder = $query->get();
         return view('admin.salesOrder.index', compact('salesOrder', 'hello'));
     }
 

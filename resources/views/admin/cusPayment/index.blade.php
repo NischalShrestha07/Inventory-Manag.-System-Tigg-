@@ -40,13 +40,13 @@
                         </div>
 
                         <div class="p-4">
-                            <form method="GET" action="{{ route('supplier.index') }}" class="mb-3">
+                            <form method="GET" action="{{ route('cusPayment.index') }}" class="mb-3">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <label for="name" class="form-label">Supplier Name</label>
+                                        <label for="name" class="form-label">Customer Name</label>
                                         <select class="form-select" id="name" name="name">
                                             <option value="">Select Option</option>
-                                            @foreach ($suppliers as $category)
+                                            @foreach ($customer as $category)
                                             <option value="{{ $category->name }}" {{ request('name')==$category->id ?
                                                 'selected' : '' }}>
                                                 {{ $category->name }}
@@ -55,13 +55,14 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="product_name" class="form-label">Product Name:</label>
-                                        <select class="form-select" id="product_name" name="product_name">
+                                        <label for="account" class="form-label">Account Name:</label>
+                                        <select class="form-select" id="account" name="account">
                                             <option value="">Select Option</option>
-                                            @foreach ($product as $category)
-                                            <option value="{{ $category->name }}" {{ request('name')==$category->id ?
+                                            @foreach ($accounts as $category)
+                                            <option value="{{ $category->account }}" {{ request('account')==$category->
+                                                id ?
                                                 'selected' : '' }}>
-                                                {{ $category->name }}
+                                                {{ $category->account }}
                                             </option>
                                             @endforeach
                                         </select>
@@ -108,7 +109,7 @@
                                                 <div class="row mb-3">
                                                     <div class="col-md-12">
                                                         <label for="account"
-                                                            class="form-label"><strong>Accounts</strong></label>
+                                                            class="form-label"><strong>Accounts:</strong></label>
                                                         <select class="form-select" id="account" name="account">
                                                             <option value="" selected>Select Account</option>
                                                             @foreach ($accounts as $category)

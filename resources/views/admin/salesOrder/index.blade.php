@@ -38,6 +38,30 @@
                             </div>
                         </div>
 
+                        <div class="p-4">
+                            <form method="GET" action="{{ route('salesOrder.index') }}" class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="name" class="form-label">Customer Name:</label>
+                                        <select class="form-select" id="name" name="name">
+                                            <option value="">Select Option</option>
+                                            @foreach ($hello as $category)
+                                            <option value="{{ $category->name }}" {{ request('name')==$category->id ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-dark">Filter</button>
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        </div>
+
                         <div class="modal" id="addNewSalesOrder">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">

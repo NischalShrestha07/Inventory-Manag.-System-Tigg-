@@ -54,7 +54,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="product" class="form-label">Account:</label>
+                                        <label for="product" class="form-label">Product Name:</label>
                                         <select class="form-select" id="product" name="product">
                                             <option value="">Select Option</option>
                                             @foreach ($products as $category)

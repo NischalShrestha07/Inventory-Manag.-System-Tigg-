@@ -9,9 +9,22 @@ use Illuminate\Http\Request;
 
 class CreditNotesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $creditnote = CreditNotes::with('customer')->get();
+
+        $query = CreditNotes::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', $request->input('name'));
+            // fetching by the name column not by the id as in DB the name is of string type which means id can't be stored in string as it is integer.
+        }
+
+        if ($request->filled('product')) {
+            $query->where('product', $request->input('product'));
+        }
+
+        // $creditnote = CreditNotes::with('customer')->get();
+        $creditnote = $query->get();
         $products = Product::all();
         $supplier = Customer::all();
         return view('admin.creditnote.index', compact('creditnote', 'supplier', 'products'));

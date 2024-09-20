@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Accounts;
 use App\Models\Customer;
 use App\Models\CustomerPayment;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Symfony\Component\Console\Input\Input;
 
@@ -19,14 +20,15 @@ class CustomerPaymentController extends Controller
             $query->where('name', $request->input('name'));
         }
 
-        if ($request->filled('product')) {
+        if ($request->filled('account')) {
             # code...
-            $query->where('product', $request->input('product'));
+            $query->where('account', $request->input('account'));
         }
         // $payment = CustomerPayment::with('customer')->get();
         $payment = $query->get();
         $accounts = Accounts::with('accounts')->get();
         $customer = Customer::all();
+        // $product = Product::all();
         return view('admin.cusPayment.index', compact('payment', 'customer', 'accounts'));
     }
 

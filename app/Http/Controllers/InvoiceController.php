@@ -9,11 +9,23 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
+        $query = Invoice::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', $request->input('name'));
+            // fetching by the name column not by the id as in DB the name is of string type which means id can't be stored in string as it is integer.
+        }
+
+        if ($request->filled('product')) {
+            $query->where('product', $request->input('product'));
+        }
         $products = Customer::all();
         $product = Product::all();
-        $invoice = Invoice::with('customer')->get();
+        $invoice = $query->get();
+        // $invoice = Invoice::with('customer')->get();
         return view('admin.invoice.index', compact('invoice', 'products', 'product'));
     }
 
