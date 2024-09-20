@@ -246,8 +246,9 @@
                                                 </div>
                                             </div> --}}
 
-                                            <div class="modal fade" id="updateModel{{ $i }}" tabindex="-1" role="dialog"
-                                                aria-labelledby="updateModelLabel{{ $i }}" aria-hidden="true">
+                                            {{-- <div class="modal fade" id="updateModel{{ $i }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="updateModelLabel{{ $i }}"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-primary text-white">
@@ -284,8 +285,49 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
+
+
+                                            <div class="modal fade" id="updateModel{{ $i }}" tabindex="-1" role="dialog"
+                                                aria-labelledby="updateModelLabel{{ $i }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-primary text-white">
+                                                            <h4 class="modal-title" id="updateModelLabel{{ $i }}">Update
+                                                                Variant Attribute</h4>
+                                                            <button type="button" class="close text-white"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ url('UpdateVarAttribute/' . $item->id) }}"
+                                                                method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+
+                                                                <label for="name">Name:</label>
+                                                                <input type="text" id="name" name="name"
+                                                                    value="{{ $item->name }}"
+                                                                    placeholder="Enter Attribute Name:"
+                                                                    class="form-control mb-2">
+
+                                                                <label for="option[]">Options:</label>
+                                                                @foreach($item->options as $index => $option)
+                                                                <input type="text" name="options[]"
+                                                                    value="{{ $option->option_name }}"
+                                                                    class="form-control mb-2">
+                                                                @endforeach
+
+                                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                <input type="submit" name="save" class="btn btn-success"
+                                                                    value="Save Changes" />
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <form action="{{ route('varAttribute.destroy', $item->id) }}" method="POST"
                                                 style="display:inline-block;">
                                                 @csrf

@@ -61,39 +61,77 @@ class VarientAttributeController extends Controller
     }
 
 
-    public function UpdateVarAttribute(Request $request, VarientAttribute $varientAttribute)
+    // public function UpdateVarAttribute(Request $request, VarientAttribute $varientAttribute)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string',
+    //         'options' => 'nullable|array',
+    //         'options.*' => 'nullable|string|max:260',
+
+    //     ]);
+
+    //     //Update the Varient Attribute Name
+    //     $varientAttribute->name = $request->input('name');
+    //     $varientAttribute->save();
+
+    //     if ($request->has('options')) {
+    //         //clear the existing options to avoid duplicates
+    //         $varientAttribute->options()->delete();
+
+
+
+    //         //create or update options
+    //         foreach ($request->input('options') as $option) {
+    //             if (!empty($option)) {
+    //                 VarientOption::create([
+    //                     'varient_attribute_id' => $varientAttribute->id,
+    //                     'option_name' => $option,
+    //                 ]);
+    //             }
+    //         }
+    //     }
+
+
+    //     return redirect()->route('varAttribute.create')->with('success', 'Varient Attribute and Options Updated Successfully.');
+    // }
+
+
+    public function UpdateVarAttribute(Request $request, $id)
     {
+        // Validate incoming data
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|max:260',
             'options' => 'nullable|array',
             'options.*' => 'nullable|string|max:260',
-
         ]);
 
-        //Update the Varient Attribute Name
+        // Fetch the Variant Attribute by ID
+        $varientAttribute = VarientAttribute::findOrFail($id);
+
+        // Update the Varient Attribute Name
         $varientAttribute->name = $request->input('name');
         $varientAttribute->save();
 
+        // If options are provided, clear the existing options and recreate them
         if ($request->has('options')) {
-            //clear the existing options to avoid duplicates
+            // Clear existing options to avoid duplicates
             $varientAttribute->options()->delete();
 
-
-
-            //create or update options
+            // Recreate or update options
             foreach ($request->input('options') as $option) {
                 if (!empty($option)) {
                     VarientOption::create([
-                        'varient_attribute_id' => $varientAttribute->id,
+                        'varient_attribute_id' => $varientAttribute->id, // Make sure this matches your table column
                         'option_name' => $option,
                     ]);
                 }
             }
         }
 
-
-        return redirect()->route('varAttribute.create')->with('success', 'Varient Attribute and Options Updated Successfully.');
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Varient Attribute and Options Updated Successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
