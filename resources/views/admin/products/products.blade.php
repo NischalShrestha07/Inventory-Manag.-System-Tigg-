@@ -56,10 +56,25 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
+                                        <label for="name" class="form-label">Product Name:</label>
+                                        <select class="form-select" id="name" name="name">
+                                            <option value="">Select Option</option>
+                                            @foreach ($products as $category)
+                                            <option value="{{ $category->name }}" {{ request('name')==$category->id
+                                                ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+
+                                    {{-- <div class="col-md-3">
                                         <label for="name" class="form-label">Product Name</label>
                                         <input type="text" id="name" name="name" class="form-control"
                                             placeholder="Enter Product Name" value="{{ request('name') }}">
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6 d-flex align-items-end">
                                         <button type="submit" class="btn btn-dark">Filter</button>
                                     </div>

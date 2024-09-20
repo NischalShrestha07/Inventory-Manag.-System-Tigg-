@@ -17,11 +17,10 @@ class ProductController extends Controller
         if ($request->filled('category_id')) {
             $query->where('category_id', $request->input('category_id'));
         }
-
         if ($request->filled('name')) {
             $query->where('name', 'like', '%' . $request->input('name') . '%');
         }
-        $products = $query->with('primaryUnit')->get();
+        $products = $query->get();
 
         // $products = Product::with('primaryUnit')->get();
         $categories = ProductCategory::all();
