@@ -8,9 +8,21 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::all();
+        $query = Customer::query();
+
+        if ($request->filled('name')) {
+            # code...
+            $query->where('name', $request->input('name'));
+        }
+
+        if ($request->filled('group')) {
+            # code...
+            $query->where('group', $request->input('group'));
+        }
+        // $customers = Customer::all();
+        $customers = $query->get();
         return view('admin.customer.index', compact('customers'));
     }
 

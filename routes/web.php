@@ -102,12 +102,14 @@ Route::get('/quotation/create', [QuotationController::class, 'index'])->name('qu
 Route::post('/AddNewQuotation', [QuotationController::class, 'AddNewQuotation']);
 Route::put('/UpdateQuotation', [QuotationController::class, 'UpdateQuotation']);
 Route::delete('/quotation/{id}', [QuotationController::class, 'destroy'])->name('quotation.destroy');
+Route::get('/quotationFilter', [QuotationController::class, 'index'])->name('quotation.index');
 
 
 Route::get('/customer/create', [CustomerController::class, 'index'])->name('customer.create');
 Route::post('/AddNewCustomer', [CustomerController::class, 'AddNewCustomer'])->name('customer.add');
 Route::put('/UpdateCustomer', [CustomerController::class, 'UpdateCustomer']);
 Route::delete('/customer/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
+Route::get('/customerFilter', [CustomerController::class, 'index'])->name('customer.index');
 
 
 Route::get('/salesOrder/create', [SalesOrderController::class, 'index'])->name('salesOrder.create');
@@ -134,6 +136,8 @@ Route::get('/purchaseOrder/create', [PurchaseOrderController::class, 'index'])->
 Route::post('/AddNewPurchaseOrder', [PurchaseOrderController::class, 'AddNewPurchaseOrder'])->name('purchaseOrder.add');
 Route::put('/UpdatePurchaseOrder', [PurchaseOrderController::class, 'UpdatePurchaseOrder']);
 Route::delete('/purchaseOrder/{id}', [PurchaseOrderController::class, 'destroy'])->name('purchaseOrder.destroy');
+Route::get('/purchaseOrderFilter', [PurchaseOrderController::class, 'index'])->name('purchaseOrder.index');
+
 
 Route::get('/account/create', [AccountsController::class, 'index'])->name('account.create');
 Route::post('/AddNewAccount', [AccountsController::class, 'AddNewAccount'])->name('account.add');
@@ -175,3 +179,4 @@ Route::get('/customergo/create', [CustomerPaymentController::class, 'index'])->n
 Route::post('/AddNewCustomerPayment', [CustomerPaymentController::class, 'AddNewCustomerPayment'])->name('cusPayment.add');
 Route::put('/UpdateCustomerPayment', [CustomerPaymentController::class, 'UpdateCustomerPayment']);
 Route::delete('/customergo/{id}', [CustomerPaymentController::class, 'destroy'])->name('cusPayment.destroy');
+Route::get('/customergoFilter', [CustomerPaymentController::class, 'index'])->name('cusPayment.index');

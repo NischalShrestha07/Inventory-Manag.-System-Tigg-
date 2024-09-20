@@ -38,6 +38,41 @@
                             </div>
                         </div>
 
+                        <div class="p-4">
+                            <form method="GET" action="{{ route('customer.index') }}" class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="name" class="form-label">Customer Name</label>
+                                        <select class="form-select" id="name" name="name">
+                                            <option value="">Select Option</option>
+                                            @foreach ($customers as $category)
+                                            <option value="{{ $category->name }}" {{ request('name')==$category->id ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col mb-3">
+                                        <label for="group"> Group:</label>
+                                        <select class="form-control" name="group" id="group">
+                                            <option value="" selected>Select Group</option>
+                                            <option value="abc enterprise">abc enterprise
+                                            </option>
+                                            <option value="Ramesh Trader">Ramesh Trader
+                                            </option>
+                                            <option value="Prakash Store">Prakash Store
+                                            </option>
+                                            <option value="Om Trader">Om Trader</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-dark">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                         <div class="modal" id="addNewCustomer">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">

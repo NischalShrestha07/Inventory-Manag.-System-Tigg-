@@ -12,11 +12,22 @@ class QuotationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Quotation::query();
+
+        if ($request->filled('customer_name')) {
+            $query->where('customer_name', $request->input('customer_name'));
+        }
+
+        if ($request->filled('product_name')) {
+            $query->where('product_name', $request->input('product_name'));
+        }
+
+        $quotation = $query->get();
         $products = Customer::all();
         $product = Product::all();
-        $quotation = Quotation::with('customer')->get();
+        // $quotation = Quotation::with('customer')->get();
         return view('admin.quotations.index', compact('quotation', 'products', 'product'));
     }
 

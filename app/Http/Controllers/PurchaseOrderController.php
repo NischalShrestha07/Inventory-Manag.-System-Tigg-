@@ -9,9 +9,16 @@ use Illuminate\Http\Request;
 
 class PurchaseOrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $purchase = PurchaseOrder::with('supplier')->get();
+        $query = PurchaseOrder::query();
+
+        if ($request->filled('name')) {
+            $query->where('name', $request->input('name'));
+        }
+
+        // $purchase = PurchaseOrder::with('supplier')->get();
+        $purchase = $query->get();
         $accounts = Accounts::with('account')->get();
         $supplier = Supplier::all();
         return view('admin.purchaseOrder.index', compact('purchase', 'supplier', 'accounts'));

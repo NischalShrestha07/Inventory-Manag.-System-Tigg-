@@ -6,12 +6,25 @@ use App\Models\Accounts;
 use App\Models\Customer;
 use App\Models\CustomerPayment;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class CustomerPaymentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $payment = CustomerPayment::with('customer')->get();
+        $query = CustomerPayment::query();
+
+        if ($request->filled('name')) {
+            # code...
+            $query->where('name', $request->input('name'));
+        }
+
+        if ($request->filled('product')) {
+            # code...
+            $query->where('product', $request->input('product'));
+        }
+        // $payment = CustomerPayment::with('customer')->get();
+        $payment = $query->get();
         $accounts = Accounts::with('accounts')->get();
         $customer = Customer::all();
         return view('admin.cusPayment.index', compact('payment', 'customer', 'accounts'));

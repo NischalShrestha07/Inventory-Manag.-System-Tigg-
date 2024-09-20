@@ -38,6 +38,41 @@
                             </div>
                         </div>
 
+                        <div class="p-4">
+                            <form method="GET" action="{{ route('quotation.index') }}" class="mb-3">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="customer_name" class="form-label">Customer Name:</label>
+                                        <select class="form-select" id="customer_name" name="customer_name">
+                                            <option value="">Select Option</option>
+                                            @foreach ($products as $category)
+                                            <option value="{{ $category->name }}" {{ request('name')==$category->id ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="product_name" class="form-label">Product Name:</label>
+                                        <select class="form-select" id="product_name" name="product_name">
+                                            <option value="">Select Option</option>
+                                            @foreach ($product as $category)
+                                            <option value="{{ $category->name }}" {{ request('name')==$category->id ?
+                                                'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button type="submit" class="btn btn-dark">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
                         <div class="modal" id="addNewQuotation">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
